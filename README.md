@@ -101,6 +101,20 @@ Creates plots and charts for result interpretation.
 
 ## 📊 Features
 
+### Experimental Infrastructure
+
+The project includes a comprehensive experimental infrastructure located in `experiments_organized/`:
+
+- **`run_all_experiments.sh`**: Automated batch script that executes all possible experiment combinations
+- **`structure.md`**: Defines the hierarchical organization of experiments
+- **758 JSON result files**: Organized across multiple noise conditions and parameters
+
+The experiments were generated using the `run_all_experiments.sh` script, which systematically runs all combinations of:
+- Dataset types (mini, small, original, augmented)
+- Land cover areas (assatigue, popolar, sunset)
+- Feature methods (RGB stats, WST, hybrid)
+- K-best feature selection values (2, 5, 10, 20)
+
 ### Feature Extraction Methods
 
 1. **RGB Statistical Features**
@@ -130,13 +144,22 @@ The project includes comprehensive experimental results organized by:
 
 ```
 experiments_organized/
-└── {noise_type}/
-    └── {land_cover_class}/
-        └── {dataset_size}/
-            └── {k_features}/
-                └── {method}/
-                    └── results.json
+└── {noise_type}/                    # e.g., rgb_clean_kbest, rgb_gaussian30_kbest
+    └── {land_cover_class}/          # assatigue, popolar, sunset
+        └── {dataset_size}/          # mini, small, original, augmented
+            └── {k_features}/        # k2, k5, k10, k20
+                └── {method}/        # advanced_stats, wst, hybrid
+                    └── {method}_k{k}_{size}_report.json
 ```
+
+### Experiment Generation Script
+
+The comprehensive experiment results were generated using `experiments_organized/run_all_experiments.sh`, which:
+
+- Systematically runs all parameter combinations
+- Generates detailed logs for each experiment
+- Creates organized JSON reports with performance metrics
+- Provides batch processing capabilities for large-scale analysis
 
 ### Key Findings
 
@@ -181,15 +204,15 @@ Key libraries used:
 
 ## 📝 Experiments
 
-The project includes extensive experiments across different conditions:
+The project includes extensive experiments across different conditions, with results stored in `experiments_organized/`:
 
 ### Noise Types
-- **Clean**: Original images without noise
-- **Gaussian**: Various noise levels (10, 30, 50)
-- **Poisson**: Poisson noise (40, 60)
-- **Salt & Pepper**: Salt and pepper noise (5, 15, 25)
-- **Speckle**: Speckle noise (15, 35, 55)
-- **Uniform**: Uniform noise (10, 25, 40)
+- **Clean**: Original images without noise (`rgb_clean_kbest/`)
+- **Gaussian**: Gaussian noise level 30 and 50 (`rgb_gaussian30_kbest/`, `rgb_gaussian50_kbest/`)
+- **Poisson**: Poisson noise level 60 (`rgb_poisson60_kbest/`)
+- **Salt & Pepper**: Salt and pepper noise level 25 (`rgb_salt_pepper25_kbest/`)
+- **Speckle**: Speckle noise level 55 (`rgb_salt_spekle55_kbest/`)
+- **Uniform**: Uniform noise level 40 (`rgb_salt_uniform40_kbest/`)
 
 ### Feature Selection
 - **k=2**: Minimal feature set
