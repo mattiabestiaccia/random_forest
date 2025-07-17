@@ -1,0 +1,57 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Mini_Sunset_k5",
+  "area_name": "sunset",
+  "dataset_type": "mini",
+  "feature_method": "wst",
+  "k_features": 5,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_salt_and_pepper_25/mini",
+    "area_name": "sunset",
+    "total_images": 15,
+    "classes": {
+      "garden": 5,
+      "low_veg": 5,
+      "trees": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_mini",
+    "k_features": 5
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k5",
+    "num_features": 5,
+    "selected_features": [
+      "R_std",
+      "R_WST0_std",
+      "G_WST0_std",
+      "B_WST4_std",
+      "B_WST13_std"
+    ],
+    "feature_scores": [
+      0.643784548784549,
+      0.8051866651866657,
+      0.5590226440226442,
+      0.5900231250231254,
+      0.5787316387316392
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666666,
+    "std_accuracy": 0.26666666666666666,
+    "cv_scores": [
+      1.0,
+      0.3333333333333333,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T18:05:24.429642"
+}

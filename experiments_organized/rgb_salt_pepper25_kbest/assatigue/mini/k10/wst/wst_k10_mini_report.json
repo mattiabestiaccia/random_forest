@@ -1,0 +1,67 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Mini_Assatigue_k10",
+  "area_name": "assatigue",
+  "dataset_type": "mini",
+  "feature_method": "wst",
+  "k_features": 10,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_salt_and_pepper_25/mini",
+    "area_name": "assatigue",
+    "total_images": 15,
+    "classes": {
+      "low_veg": 5,
+      "trees": 5,
+      "water": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_mini",
+    "k_features": 10
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k10",
+    "num_features": 10,
+    "selected_features": [
+      "G_mean",
+      "B_mean",
+      "R_WST0_std",
+      "R_WST12_std",
+      "B_WST0_mean",
+      "B_WST9_mean",
+      "B_WST10_mean",
+      "B_WST12_mean",
+      "B_WST12_std",
+      "B_WST18_mean"
+    ],
+    "feature_scores": [
+      0.5525147075147081,
+      0.770292485292486,
+      0.5664829614829621,
+      0.6834911384911391,
+      0.8020385170385176,
+      0.7553718503718507,
+      0.560292485292486,
+      0.5602131202131206,
+      0.833625818625819,
+      0.6918797868797875
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.7999999999999999,
+    "std_accuracy": 0.16329931618554525,
+    "cv_scores": [
+      1.0,
+      0.6666666666666666,
+      0.6666666666666666,
+      1.0,
+      0.6666666666666666
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T18:02:40.545814"
+}

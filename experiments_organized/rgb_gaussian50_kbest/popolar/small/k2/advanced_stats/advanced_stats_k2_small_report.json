@@ -1,0 +1,51 @@
+{
+  "experiment_name": "KBest_Advanced_Stats_RGB_Small_Popolar_k2",
+  "area_name": "popolar",
+  "dataset_type": "small",
+  "feature_method": "advanced_stats",
+  "k_features": 2,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_50/small",
+    "area_name": "popolar",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 54,
+    "feature_method": "advanced_stats",
+    "dataset_type": "rgb_small",
+    "k_features": 2
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k2",
+    "num_features": 2,
+    "selected_features": [
+      "B_skew",
+      "B_cv"
+    ],
+    "feature_scores": [
+      0.8499051864397658,
+      0.8500037208030058
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.888888888888889,
+    "std_accuracy": 0.09938079899999065,
+    "cv_scores": [
+      0.7777777777777778,
+      1.0,
+      0.7777777777777778,
+      0.8888888888888888,
+      1.0
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T12:49:43.959238"
+}

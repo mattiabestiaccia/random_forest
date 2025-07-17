@@ -1,0 +1,67 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Small_Popolar_k10",
+  "area_name": "popolar",
+  "dataset_type": "small",
+  "feature_method": "hybrid",
+  "k_features": 10,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_salt_and_pepper_25/small",
+    "area_name": "popolar",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_small",
+    "k_features": 10
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k10",
+    "num_features": 10,
+    "selected_features": [
+      "R_skew",
+      "R_cv",
+      "R_p50",
+      "G_p50",
+      "B_mean",
+      "B_skew",
+      "B_cv",
+      "B_p50",
+      "G_WST0_std",
+      "B_WST0_mean"
+    ],
+    "feature_scores": [
+      0.7872931778963843,
+      0.7722231861597264,
+      0.7941899231264631,
+      0.7654990899512892,
+      0.8149609857602707,
+      0.818092298891584,
+      0.8416934905639906,
+      0.7864443789103306,
+      0.773739386009259,
+      0.8168128376121226
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666666,
+    "std_accuracy": 0.0831479419283098,
+    "cv_scores": [
+      0.7777777777777778,
+      1.0,
+      0.7777777777777778,
+      0.8888888888888888,
+      0.8888888888888888
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T18:13:07.281395"
+}

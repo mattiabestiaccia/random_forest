@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Original_Popolar_k20",
+  "area_name": "popolar",
+  "dataset_type": "original",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_speckle_55/original",
+    "area_name": "popolar",
+    "total_images": 121,
+    "classes": {
+      "low_veg": 41,
+      "trees": 40,
+      "water": 40
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_original",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "B_mean",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "R_WST2_mean",
+      "R_WST3_mean",
+      "R_WST13_mean",
+      "G_WST0_std",
+      "B_WST0_mean",
+      "B_WST0_std",
+      "B_WST1_mean",
+      "B_WST2_mean",
+      "B_WST3_mean",
+      "B_WST4_mean",
+      "B_WST5_mean",
+      "B_WST12_mean",
+      "B_WST19_mean",
+      "B_WST22_mean",
+      "B_WST23_mean",
+      "B_WST24_mean"
+    ],
+    "feature_scores": [
+      0.8794049952099388,
+      0.8897394789235693,
+      0.883032176109847,
+      1.0300230304818225,
+      0.8559978898087148,
+      0.8958844384204052,
+      0.8575488610764426,
+      1.000642353197898,
+      0.893596187111996,
+      0.9419252196506906,
+      0.9393538709987133,
+      0.8836708183712079,
+      0.9321630320994716,
+      0.8756422213480488,
+      0.857215180656093,
+      0.8520779902587314,
+      0.8472140628290126,
+      0.8543242672774884,
+      0.8509536121868431,
+      0.8540691162519083
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9586666666666668,
+    "std_accuracy": 0.026360745226356737,
+    "cv_scores": [
+      0.96,
+      1.0,
+      0.9583333333333334,
+      0.9583333333333334,
+      0.9166666666666666
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-16T20:16:45.751001"
+}

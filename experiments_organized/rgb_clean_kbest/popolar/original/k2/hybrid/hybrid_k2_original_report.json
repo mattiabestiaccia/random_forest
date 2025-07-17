@@ -1,0 +1,51 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Original_Popolar_k2",
+  "area_name": "popolar",
+  "dataset_type": "original",
+  "feature_method": "hybrid",
+  "k_features": 2,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/datasets/dataset_rgb_clean/original",
+    "area_name": "popolar",
+    "total_images": 121,
+    "classes": {
+      "low_veg": 41,
+      "trees": 40,
+      "water": 40
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_original",
+    "k_features": 2
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k2",
+    "num_features": 2,
+    "selected_features": [
+      "G_iqr",
+      "B_min"
+    ],
+    "feature_scores": [
+      1.0950445190453826,
+      1.1040993531002166
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9916666666666668,
+    "std_accuracy": 0.016666666666666653,
+    "cv_scores": [
+      1.0,
+      1.0,
+      0.9583333333333334,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-17T12:51:28.337594"
+}

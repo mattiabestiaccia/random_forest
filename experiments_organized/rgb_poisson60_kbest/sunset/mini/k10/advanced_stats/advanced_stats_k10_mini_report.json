@@ -1,0 +1,67 @@
+{
+  "experiment_name": "KBest_Advanced_Stats_RGB_Mini_Sunset_k10",
+  "area_name": "sunset",
+  "dataset_type": "mini",
+  "feature_method": "advanced_stats",
+  "k_features": 10,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/mini",
+    "area_name": "sunset",
+    "total_images": 15,
+    "classes": {
+      "garden": 5,
+      "low_veg": 5,
+      "trees": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 54,
+    "feature_method": "advanced_stats",
+    "dataset_type": "rgb_mini",
+    "k_features": 10
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k10",
+    "num_features": 10,
+    "selected_features": [
+      "R_std",
+      "R_var",
+      "R_mad",
+      "R_grad_mean",
+      "G_max",
+      "G_grad_mean",
+      "B_var",
+      "B_skew",
+      "B_mad",
+      "B_grad_mean"
+    ],
+    "feature_scores": [
+      0.6186258186258189,
+      0.662514707514708,
+      0.6247369297369301,
+      0.7585464535464541,
+      1.050631590631591,
+      0.7635464535464538,
+      0.5796575646575648,
+      0.640528175528176,
+      0.612832167832168,
+      0.6158480408480411
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9333333333333332,
+    "std_accuracy": 0.13333333333333336,
+    "cv_scores": [
+      0.6666666666666666,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T17:21:55.984418"
+}

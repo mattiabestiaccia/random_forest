@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_salt_and_pepper_25/small",
+    "area_name": "assatigue",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "G_mean",
+      "B_mean",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "G_WST0_mean",
+      "G_WST0_std",
+      "G_WST2_mean",
+      "B_WST0_mean",
+      "B_WST1_std",
+      "B_WST9_mean",
+      "B_WST10_mean",
+      "B_WST11_mean",
+      "B_WST11_std",
+      "B_WST17_mean",
+      "B_WST17_std",
+      "B_WST18_mean",
+      "B_WST20_mean",
+      "B_WST20_std",
+      "B_WST23_std"
+    ],
+    "feature_scores": [
+      0.6657843780542514,
+      0.6499113621812356,
+      0.6751847307879373,
+      0.6477949600648334,
+      0.7224973564338966,
+      0.6783064239096306,
+      0.7342968532333933,
+      0.6231693372094931,
+      0.6722217678249744,
+      0.5729894900503851,
+      0.5743453849485916,
+      0.5563193275625484,
+      0.6323532412897812,
+      0.536602633872507,
+      0.6597410695109427,
+      0.6291409250567259,
+      0.5562156751522154,
+      0.6315603921635986,
+      0.5341962747994811,
+      0.6888349318271996
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.7777777777777778,
+    "std_accuracy": 0.0,
+    "cv_scores": [
+      0.7777777777777778,
+      0.7777777777777778,
+      0.7777777777777778,
+      0.7777777777777778,
+      0.7777777777777778
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T18:08:04.479286"
+}

@@ -1,0 +1,57 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Small_Assatigue_k5",
+  "area_name": "assatigue",
+  "dataset_type": "small",
+  "feature_method": "hybrid",
+  "k_features": 5,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_speckle_55/small",
+    "area_name": "assatigue",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_small",
+    "k_features": 5
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k5",
+    "num_features": 5,
+    "selected_features": [
+      "G_cv",
+      "G_p10",
+      "R_WST0_std",
+      "G_WST0_std",
+      "B_WST21_mean"
+    ],
+    "feature_scores": [
+      0.7782450038482105,
+      0.7771592377624446,
+      0.9715780288479017,
+      0.9639169771182226,
+      0.798623884227091
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9555555555555555,
+    "std_accuracy": 0.054433105395181765,
+    "cv_scores": [
+      1.0,
+      1.0,
+      1.0,
+      0.8888888888888888,
+      0.8888888888888888
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T19:57:25.940576"
+}

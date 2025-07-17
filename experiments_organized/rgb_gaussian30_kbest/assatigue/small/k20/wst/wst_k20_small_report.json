@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_30/small",
+    "area_name": "assatigue",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "G_mean",
+      "G_std",
+      "B_mean",
+      "B_std",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "R_WST1_std",
+      "G_WST0_mean",
+      "G_WST0_std",
+      "B_WST0_mean",
+      "B_WST2_mean",
+      "B_WST3_mean",
+      "B_WST6_mean",
+      "B_WST9_mean",
+      "B_WST14_mean",
+      "B_WST19_mean",
+      "B_WST20_mean",
+      "B_WST23_mean",
+      "B_WST24_mean"
+    ],
+    "feature_scores": [
+      0.7142411681777079,
+      0.6761106567138633,
+      0.6247893390325603,
+      0.665519827789701,
+      0.5413902096774283,
+      0.7160930200295597,
+      0.8956758137790204,
+      0.47197706939824635,
+      0.6779007801706534,
+      0.862557974827848,
+      0.6499995456027523,
+      0.45101751802527246,
+      0.5291510922699583,
+      0.46506483128731313,
+      0.4306787608592675,
+      0.5210987964366403,
+      0.4592461412538962,
+      0.4725728981761046,
+      0.4445071459386063,
+      0.525905819024685
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666666,
+    "std_accuracy": 0.0831479419283098,
+    "cv_scores": [
+      0.8888888888888888,
+      0.8888888888888888,
+      0.7777777777777778,
+      0.7777777777777778,
+      1.0
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T14:17:22.565410"
+}

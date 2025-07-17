@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/small",
+    "area_name": "assatigue",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "R_std",
+      "G_std",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "R_WST1_mean",
+      "R_WST2_mean",
+      "R_WST6_std",
+      "R_WST14_mean",
+      "R_WST18_mean",
+      "R_WST19_mean",
+      "G_WST0_std",
+      "G_WST16_mean",
+      "G_WST22_mean",
+      "B_WST1_mean",
+      "B_WST3_mean",
+      "B_WST11_mean",
+      "B_WST18_mean",
+      "B_WST20_mean",
+      "B_WST22_mean"
+    ],
+    "feature_scores": [
+      0.7288443427808828,
+      0.9161015917047979,
+      0.8509294707973831,
+      0.7232887872253273,
+      0.9027734692100089,
+      0.6884386990419056,
+      0.6708725614757678,
+      0.7340236742089239,
+      0.683509245779119,
+      0.6717191223223289,
+      0.7346460102492169,
+      0.8451852857884923,
+      0.7547422103454171,
+      0.6963567686266419,
+      0.673756159359366,
+      0.7125833198531932,
+      0.7891441664140395,
+      0.6917183206548607,
+      0.6826450482482547,
+      0.7039766179131579
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666666,
+    "std_accuracy": 0.0831479419283098,
+    "cv_scores": [
+      0.8888888888888888,
+      1.0,
+      0.7777777777777778,
+      0.8888888888888888,
+      0.7777777777777778
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T17:24:32.920344"
+}

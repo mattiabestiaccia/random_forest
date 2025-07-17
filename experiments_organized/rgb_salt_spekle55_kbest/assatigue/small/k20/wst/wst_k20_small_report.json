@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_speckle_55/small",
+    "area_name": "assatigue",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_WST0_std",
+      "R_WST1_std",
+      "R_WST3_std",
+      "R_WST17_mean",
+      "R_WST24_mean",
+      "G_WST0_mean",
+      "G_WST0_std",
+      "G_WST19_mean",
+      "B_WST2_mean",
+      "B_WST3_mean",
+      "B_WST6_mean",
+      "B_WST7_mean",
+      "B_WST9_mean",
+      "B_WST10_mean",
+      "B_WST13_mean",
+      "B_WST15_mean",
+      "B_WST16_mean",
+      "B_WST19_mean",
+      "B_WST21_mean",
+      "B_WST23_mean"
+    ],
+    "feature_scores": [
+      0.9715780288479017,
+      0.7057350398228837,
+      0.7064369353734754,
+      0.7073532412897812,
+      0.718429880699754,
+      0.726533937137144,
+      0.9639169771182226,
+      0.74109302002956,
+      0.7105374644740046,
+      0.7025215914581315,
+      0.7550171822870557,
+      0.7125031531063599,
+      0.7255727378426111,
+      0.7459431082129817,
+      0.7069572175604244,
+      0.7077332316697718,
+      0.7151125807157874,
+      0.7115248721280787,
+      0.798623884227091,
+      0.7732623321988723
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.888888888888889,
+    "std_accuracy": 0.07027283689263066,
+    "cv_scores": [
+      0.8888888888888888,
+      1.0,
+      0.7777777777777778,
+      0.8888888888888888,
+      0.8888888888888888
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T19:56:29.753243"
+}

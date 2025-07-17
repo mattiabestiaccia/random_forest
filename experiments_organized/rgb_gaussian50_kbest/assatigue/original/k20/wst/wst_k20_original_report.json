@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Original_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "original",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_50/original",
+    "area_name": "assatigue",
+    "total_images": 116,
+    "classes": {
+      "low_veg": 40,
+      "water": 40,
+      "trees": 36
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_original",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "G_mean",
+      "B_mean",
+      "B_std",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "R_WST1_mean",
+      "R_WST2_mean",
+      "G_WST0_mean",
+      "G_WST0_std",
+      "B_WST0_mean",
+      "B_WST0_std",
+      "B_WST1_mean",
+      "B_WST2_mean",
+      "B_WST3_mean",
+      "B_WST4_mean",
+      "B_WST6_mean",
+      "B_WST7_mean",
+      "B_WST13_mean",
+      "B_WST21_mean"
+    ],
+    "feature_scores": [
+      0.6123078295376423,
+      0.6732555778395992,
+      0.6552888591452599,
+      0.39111398229666783,
+      0.6151398155592833,
+      0.8207080385063643,
+      0.3867286673575807,
+      0.36093166738561755,
+      0.6442291684252583,
+      0.8572191167341103,
+      0.657825565109627,
+      0.3652208656177509,
+      0.5283019612580058,
+      0.5755484534659763,
+      0.5172768846256683,
+      0.5500766494882572,
+      0.3492121164912336,
+      0.42026344372280655,
+      0.4113268991186241,
+      0.3690852536722171
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9054347826086957,
+    "std_accuracy": 0.0633426186275368,
+    "cv_scores": [
+      0.875,
+      0.8695652173913043,
+      0.8260869565217391,
+      0.9565217391304348,
+      1.0
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-16T12:59:56.611105"
+}

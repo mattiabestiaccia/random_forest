@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Popolar_k20",
+  "area_name": "popolar",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_50/small",
+    "area_name": "popolar",
+    "total_images": 45,
+    "classes": {
+      "low_veg": 15,
+      "trees": 15,
+      "water": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "R_std",
+      "G_mean",
+      "G_std",
+      "B_mean",
+      "B_std",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "R_WST1_std",
+      "G_WST0_mean",
+      "G_WST0_std",
+      "B_WST0_mean",
+      "B_WST0_std",
+      "B_WST1_mean",
+      "B_WST2_mean",
+      "B_WST3_mean",
+      "B_WST3_std",
+      "B_WST4_mean",
+      "B_WST5_mean",
+      "B_WST8_mean"
+    ],
+    "feature_scores": [
+      0.762831898435105,
+      0.4757785454268235,
+      0.5351526294017634,
+      0.6834536493694501,
+      0.8398017006009857,
+      0.5217175806541205,
+      0.761641422244629,
+      1.0577588850287578,
+      0.3924889631367321,
+      0.5386543129034469,
+      0.8860850650216043,
+      0.837209108008393,
+      0.8141245977957747,
+      0.45417960601679286,
+      0.36431273214928583,
+      0.389363406775882,
+      0.36855525806301226,
+      0.44433046160033496,
+      0.4050489225148739,
+      0.34997785555750616
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9111111111111111,
+    "std_accuracy": 0.08314794192830981,
+    "cv_scores": [
+      0.7777777777777778,
+      1.0,
+      0.8888888888888888,
+      1.0,
+      0.8888888888888888
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T12:48:56.637819"
+}

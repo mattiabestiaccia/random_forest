@@ -1,0 +1,51 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Small_Sunset_k2",
+  "area_name": "sunset",
+  "dataset_type": "small",
+  "feature_method": "hybrid",
+  "k_features": 2,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_salt_and_pepper_25/small",
+    "area_name": "sunset",
+    "total_images": 45,
+    "classes": {
+      "garden": 15,
+      "low_veg": 15,
+      "trees": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_small",
+    "k_features": 2
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k2",
+    "num_features": 2,
+    "selected_features": [
+      "R_WST0_std",
+      "G_WST0_std"
+    ],
+    "feature_scores": [
+      0.8372630139530948,
+      0.6918203057725048
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8444444444444444,
+    "std_accuracy": 0.11331154474650633,
+    "cv_scores": [
+      1.0,
+      0.8888888888888888,
+      0.7777777777777778,
+      0.8888888888888888,
+      0.6666666666666666
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T18:15:39.278237"
+}

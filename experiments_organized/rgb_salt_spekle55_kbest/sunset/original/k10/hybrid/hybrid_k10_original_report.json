@@ -1,0 +1,67 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Original_Sunset_k10",
+  "area_name": "sunset",
+  "dataset_type": "original",
+  "feature_method": "hybrid",
+  "k_features": 10,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_speckle_55/original",
+    "area_name": "sunset",
+    "total_images": 120,
+    "classes": {
+      "garden": 40,
+      "low_veg": 40,
+      "trees": 40
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_original",
+    "k_features": 10
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k10",
+    "num_features": 10,
+    "selected_features": [
+      "B_kurt",
+      "B_cv",
+      "B_p10",
+      "R_WST0_std",
+      "R_WST1_std",
+      "R_WST2_std",
+      "R_WST3_std",
+      "G_WST0_std",
+      "B_WST3_mean",
+      "B_WST14_mean"
+    ],
+    "feature_scores": [
+      0.7112180600864757,
+      0.7112403873787925,
+      0.7083036219221184,
+      0.8524148359070063,
+      0.810464733626935,
+      0.7599862201198182,
+      0.7895004305699871,
+      0.7026920058264146,
+      0.704499254666308,
+      0.7340664721232653
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9833333333333332,
+    "std_accuracy": 0.03333333333333335,
+    "cv_scores": [
+      0.9166666666666666,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-16T20:27:08.240595"
+}

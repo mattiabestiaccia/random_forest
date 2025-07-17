@@ -1,0 +1,67 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Sunset_k10",
+  "area_name": "sunset",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 10,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_30/small",
+    "area_name": "sunset",
+    "total_images": 45,
+    "classes": {
+      "garden": 15,
+      "low_veg": 15,
+      "trees": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 10
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k10",
+    "num_features": 10,
+    "selected_features": [
+      "R_std",
+      "B_mean",
+      "B_std",
+      "R_WST0_std",
+      "G_WST0_std",
+      "B_WST0_mean",
+      "B_WST7_mean",
+      "B_WST7_std",
+      "B_WST8_mean",
+      "B_WST19_mean"
+    ],
+    "feature_scores": [
+      0.5370895105018136,
+      0.5345638499016936,
+      0.5745351902897007,
+      0.740568422536281,
+      0.7314535237233968,
+      0.5620506223884663,
+      0.5918125271503711,
+      0.5834743747435913,
+      0.6155316629528402,
+      0.5246700255858265
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9111111111111111,
+    "std_accuracy": 0.08314794192830981,
+    "cv_scores": [
+      1.0,
+      0.7777777777777778,
+      0.8888888888888888,
+      1.0,
+      0.8888888888888888
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T14:23:00.377244"
+}

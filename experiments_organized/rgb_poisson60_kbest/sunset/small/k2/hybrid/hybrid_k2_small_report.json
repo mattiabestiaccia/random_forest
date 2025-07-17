@@ -1,0 +1,51 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Small_Sunset_k2",
+  "area_name": "sunset",
+  "dataset_type": "small",
+  "feature_method": "hybrid",
+  "k_features": 2,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/small",
+    "area_name": "sunset",
+    "total_images": 45,
+    "classes": {
+      "garden": 15,
+      "low_veg": 15,
+      "trees": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_small",
+    "k_features": 2
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k2",
+    "num_features": 2,
+    "selected_features": [
+      "B_WST6_mean",
+      "B_WST7_mean"
+    ],
+    "feature_scores": [
+      0.9351617200296323,
+      0.8596519851442523
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9333333333333332,
+    "std_accuracy": 0.08888888888888889,
+    "cv_scores": [
+      1.0,
+      0.7777777777777778,
+      0.8888888888888888,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T17:31:46.965360"
+}

@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Advanced_Stats_RGB_Mini_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "mini",
+  "feature_method": "advanced_stats",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/datasets/dataset_rgb_clean/mini",
+    "area_name": "assatigue",
+    "total_images": 15,
+    "classes": {
+      "low_veg": 5,
+      "trees": 5,
+      "water": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 54,
+    "feature_method": "advanced_stats",
+    "dataset_type": "rgb_mini",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_var",
+      "R_min",
+      "R_range",
+      "R_skew",
+      "R_kurt",
+      "R_cv",
+      "R_iqr",
+      "R_mad",
+      "R_grad_mean",
+      "G_min",
+      "G_max",
+      "G_kurt",
+      "G_iqr",
+      "G_mad",
+      "G_grad_mean",
+      "B_mean",
+      "B_min",
+      "B_skew",
+      "B_p10",
+      "B_p25"
+    ],
+    "feature_scores": [
+      0.7687051837051841,
+      1.206482961482962,
+      0.7998162948162955,
+      0.8813482813482818,
+      0.7646816146816151,
+      0.7887051837051839,
+      0.917594072594073,
+      1.0287051837051842,
+      0.9098162948162953,
+      0.9558480408480412,
+      0.9478562178562182,
+      0.7613482813482819,
+      0.8987051837051838,
+      0.917594072594073,
+      0.7987051837051844,
+      0.7775940725940731,
+      0.8953718503718506,
+      0.8211342361342362,
+      0.9820385170385175,
+      0.851482961482962
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.7999999999999999,
+    "std_accuracy": 0.16329931618554522,
+    "cv_scores": [
+      0.6666666666666666,
+      0.6666666666666666,
+      1.0,
+      0.6666666666666666,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-17T12:28:16.727873"
+}

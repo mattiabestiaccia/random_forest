@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Mini_Sunset_k20",
+  "area_name": "sunset",
+  "dataset_type": "mini",
+  "feature_method": "hybrid",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/mini",
+    "area_name": "sunset",
+    "total_images": 15,
+    "classes": {
+      "garden": 5,
+      "low_veg": 5,
+      "trees": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_mini",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_max",
+      "R_grad_mean",
+      "G_max",
+      "G_grad_mean",
+      "R_WST0_std",
+      "R_WST1_std",
+      "R_WST5_mean",
+      "R_WST5_std",
+      "R_WST6_mean",
+      "R_WST6_std",
+      "R_WST7_mean",
+      "G_WST5_mean",
+      "G_WST5_std",
+      "G_WST6_mean",
+      "G_WST6_std",
+      "B_WST3_std",
+      "B_WST6_std",
+      "B_WST7_mean",
+      "B_WST7_std",
+      "B_WST8_mean"
+    ],
+    "feature_scores": [
+      0.7539913789913795,
+      0.6918797868797875,
+      1.0935945535945542,
+      0.8079908979908985,
+      0.9437845487845493,
+      0.7023006623006629,
+      0.776482961482962,
+      0.8209274059274063,
+      0.7619591519591524,
+      1.0731496281496287,
+      0.8764829614829619,
+      0.712514707514708,
+      0.7375940725940728,
+      0.7328057128057133,
+      0.7512184112184113,
+      0.7402371702371706,
+      0.8280702630702637,
+      0.6964829614829617,
+      0.7891260591260596,
+      0.7381496281496285
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666666,
+    "std_accuracy": 0.16329931618554522,
+    "cv_scores": [
+      0.6666666666666666,
+      1.0,
+      0.6666666666666666,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T17:22:53.842818"
+}

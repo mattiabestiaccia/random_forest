@@ -1,0 +1,57 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Original_Assatigue_k5",
+  "area_name": "assatigue",
+  "dataset_type": "original",
+  "feature_method": "hybrid",
+  "k_features": 5,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/datasets/dataset_rgb_clean/original",
+    "area_name": "assatigue",
+    "total_images": 116,
+    "classes": {
+      "low_veg": 40,
+      "water": 40,
+      "trees": 36
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_original",
+    "k_features": 5
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k5",
+    "num_features": 5,
+    "selected_features": [
+      "R_min",
+      "R_iqr",
+      "G_min",
+      "G_iqr",
+      "B_min"
+    ],
+    "feature_scores": [
+      1.0560524229447597,
+      1.081913586497608,
+      1.034171697160891,
+      1.0752636511838796,
+      1.0794081810887945
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9916666666666668,
+    "std_accuracy": 0.016666666666666653,
+    "cv_scores": [
+      0.9583333333333334,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-17T12:45:32.885230"
+}

@@ -1,0 +1,51 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Mini_Assatigue_k2",
+  "area_name": "assatigue",
+  "dataset_type": "mini",
+  "feature_method": "wst",
+  "k_features": 2,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_30/mini",
+    "area_name": "assatigue",
+    "total_images": 15,
+    "classes": {
+      "low_veg": 5,
+      "trees": 5,
+      "water": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_mini",
+    "k_features": 2
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k2",
+    "num_features": 2,
+    "selected_features": [
+      "R_WST0_std",
+      "B_WST8_mean"
+    ],
+    "feature_scores": [
+      0.8091813741813749,
+      0.8307133607133612
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666666,
+    "std_accuracy": 0.16329931618554522,
+    "cv_scores": [
+      0.6666666666666666,
+      1.0,
+      0.6666666666666666,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T14:11:32.577064"
+}

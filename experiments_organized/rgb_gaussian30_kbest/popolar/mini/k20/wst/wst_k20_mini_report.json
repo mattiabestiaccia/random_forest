@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Mini_Popolar_k20",
+  "area_name": "popolar",
+  "dataset_type": "mini",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_gaussian_30/mini",
+    "area_name": "popolar",
+    "total_images": 15,
+    "classes": {
+      "low_veg": 5,
+      "trees": 5,
+      "water": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_mini",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_mean",
+      "G_std",
+      "B_mean",
+      "R_WST0_mean",
+      "R_WST0_std",
+      "R_WST1_std",
+      "R_WST2_std",
+      "R_WST3_std",
+      "R_WST19_mean",
+      "G_WST0_std",
+      "G_WST5_mean",
+      "G_WST8_mean",
+      "B_WST0_mean",
+      "B_WST1_mean",
+      "B_WST2_mean",
+      "B_WST3_mean",
+      "B_WST10_mean",
+      "B_WST11_mean",
+      "B_WST13_mean",
+      "B_WST18_mean"
+    ],
+    "feature_scores": [
+      0.8162689162689163,
+      0.637221297221298,
+      0.9320385170385177,
+      0.86960224960225,
+      0.8258480408480411,
+      0.5602347652347657,
+      0.5228538128538134,
+      0.5369807969807976,
+      0.45526122026122073,
+      0.8619591519591525,
+      0.4635464535464542,
+      0.4889673289673293,
+      0.967594072594073,
+      0.5369519369519371,
+      0.5472212972212973,
+      0.5068220668220673,
+      0.5197080697080705,
+      0.4896792096792104,
+      0.5304488104488112,
+      0.5937027787027789
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.7333333333333332,
+    "std_accuracy": 0.13333333333333336,
+    "cv_scores": [
+      1.0,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.6666666666666666
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T14:13:44.209119"
+}

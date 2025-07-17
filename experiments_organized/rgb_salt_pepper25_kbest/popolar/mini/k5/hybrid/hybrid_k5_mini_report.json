@@ -1,0 +1,57 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Mini_Popolar_k5",
+  "area_name": "popolar",
+  "dataset_type": "mini",
+  "feature_method": "hybrid",
+  "k_features": 5,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_salt_and_pepper_25/mini",
+    "area_name": "popolar",
+    "total_images": 15,
+    "classes": {
+      "low_veg": 5,
+      "trees": 5,
+      "water": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_mini",
+    "k_features": 5
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k5",
+    "num_features": 5,
+    "selected_features": [
+      "B_skew",
+      "B_p50",
+      "R_WST0_mean",
+      "R_WST1_mean",
+      "B_WST0_mean"
+    ],
+    "feature_scores": [
+      0.9709274059274065,
+      0.8956628556628561,
+      0.9051578051578058,
+      0.9209274059274062,
+      0.9070385170385173
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.8666666666666668,
+    "std_accuracy": 0.26666666666666666,
+    "cv_scores": [
+      1.0,
+      1.0,
+      1.0,
+      0.3333333333333333,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-16T18:04:47.554199"
+}

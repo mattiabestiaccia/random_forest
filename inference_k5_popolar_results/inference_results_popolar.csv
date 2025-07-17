@@ -1,0 +1,4 @@
+image_path,true_label,predicted_label,confidence,prob_low_veg,prob_trees,prob_water
+/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/original/popolar/low_veg/DJI_0149_crop_4452_2827_128x128.png,low_veg,low_veg,0.5403333333333333,0.5403333333333333,0.0,0.4596666666666666
+/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/original/popolar/trees/DJI_0701_crop_893_1802_128x128.png,trees,trees,0.5644444444444444,0.24055555555555558,0.5644444444444444,0.195
+/home/brusc/Projects/random_forest/dataset_rgb_poisson_60_new/original/popolar/water/DJI_0149_crop_1755_2375_128x128.png,water,water,0.743,0.21733333333333335,0.03966666666666667,0.743

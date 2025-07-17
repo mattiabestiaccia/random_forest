@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Hybrid_RGB_Original_Sunset_k20",
+  "area_name": "sunset",
+  "dataset_type": "original",
+  "feature_method": "hybrid",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/datasets/dataset_rgb_clean/original",
+    "area_name": "sunset",
+    "total_images": 120,
+    "classes": {
+      "garden": 40,
+      "low_veg": 40,
+      "trees": 40
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 204,
+    "feature_method": "hybrid",
+    "dataset_type": "rgb_original",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_std",
+      "R_var",
+      "R_mad",
+      "B_cv",
+      "R_WST0_std",
+      "R_WST2_mean",
+      "R_WST10_mean",
+      "R_WST13_mean",
+      "R_WST15_mean",
+      "G_WST2_mean",
+      "G_WST2_std",
+      "G_WST6_mean",
+      "G_WST14_mean",
+      "G_WST15_mean",
+      "B_WST1_mean",
+      "B_WST2_mean",
+      "B_WST5_std",
+      "B_WST10_std",
+      "B_WST15_mean",
+      "B_WST16_mean"
+    ],
+    "feature_scores": [
+      0.836664772567772,
+      0.8375058020098514,
+      0.8313975827869733,
+      0.8547078883481694,
+      0.8878143113173114,
+      0.8238953896972945,
+      0.8249506764858205,
+      0.8283129438385348,
+      0.8291931589894543,
+      0.8576952433205809,
+      0.8299662520935585,
+      0.8453998646809813,
+      0.8522180426841954,
+      0.8560169735234942,
+      0.8369645753640096,
+      0.842028292556491,
+      0.865674355328627,
+      0.8304311400894955,
+      0.8245958073300448,
+      0.8603712921494908
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.975,
+    "std_accuracy": 0.02041241452319313,
+    "cv_scores": [
+      0.9583333333333334,
+      1.0,
+      0.9583333333333334,
+      1.0,
+      0.9583333333333334
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-17T13:00:30.012301"
+}

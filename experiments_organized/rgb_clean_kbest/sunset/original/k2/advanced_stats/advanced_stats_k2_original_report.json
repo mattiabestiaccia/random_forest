@@ -1,0 +1,51 @@
+{
+  "experiment_name": "KBest_Advanced_Stats_RGB_Original_Sunset_k2",
+  "area_name": "sunset",
+  "dataset_type": "original",
+  "feature_method": "advanced_stats",
+  "k_features": 2,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/datasets/dataset_rgb_clean/original",
+    "area_name": "sunset",
+    "total_images": 120,
+    "classes": {
+      "garden": 40,
+      "low_veg": 40,
+      "trees": 40
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 54,
+    "feature_method": "advanced_stats",
+    "dataset_type": "rgb_original",
+    "k_features": 2
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k2",
+    "num_features": 2,
+    "selected_features": [
+      "R_var",
+      "B_cv"
+    ],
+    "feature_scores": [
+      0.8375058020098514,
+      0.8547078883481694
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9833333333333332,
+    "std_accuracy": 0.03333333333333335,
+    "cv_scores": [
+      0.9166666666666666,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "n_estimators": 50
+  },
+  "timestamp": "2025-07-17T12:57:06.369483"
+}

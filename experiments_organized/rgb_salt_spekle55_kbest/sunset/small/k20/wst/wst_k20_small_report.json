@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Small_Sunset_k20",
+  "area_name": "sunset",
+  "dataset_type": "small",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_speckle_55/small",
+    "area_name": "sunset",
+    "total_images": 45,
+    "classes": {
+      "garden": 15,
+      "low_veg": 15,
+      "trees": 15
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_small",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "B_std",
+      "R_WST0_std",
+      "R_WST1_std",
+      "R_WST2_std",
+      "R_WST3_std",
+      "G_WST0_std",
+      "G_WST1_std",
+      "G_WST3_std",
+      "B_WST2_std",
+      "B_WST8_mean",
+      "B_WST9_std",
+      "B_WST12_std",
+      "B_WST14_std",
+      "B_WST17_std",
+      "B_WST18_std",
+      "B_WST19_std",
+      "B_WST20_std",
+      "B_WST21_std",
+      "B_WST22_std",
+      "B_WST24_std"
+    ],
+    "feature_scores": [
+      0.6286823712648388,
+      0.7423579909925158,
+      0.6847522913181889,
+      0.7303109598343738,
+      0.6440794672827916,
+      0.6793442441141171,
+      0.7057632594908207,
+      0.615940983001878,
+      0.609456990075856,
+      0.66390026965478,
+      0.6820622449033331,
+      0.6555042222533565,
+      0.6646680650091532,
+      0.6398454801865683,
+      0.7500709029119912,
+      0.718973931556399,
+      0.6286061433916759,
+      0.6249806947662273,
+      0.730929334603756,
+      0.6798748746604073
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.9333333333333332,
+    "std_accuracy": 0.05443310539518176,
+    "cv_scores": [
+      0.8888888888888888,
+      0.8888888888888888,
+      1.0,
+      1.0,
+      0.8888888888888888
+    ],
+    "n_estimators": 10
+  },
+  "timestamp": "2025-07-16T20:03:23.681097"
+}

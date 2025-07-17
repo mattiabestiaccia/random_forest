@@ -1,0 +1,87 @@
+{
+  "experiment_name": "KBest_Wst_RGB_Mini_Assatigue_k20",
+  "area_name": "assatigue",
+  "dataset_type": "mini",
+  "feature_method": "wst",
+  "k_features": 20,
+  "dataset_info": {
+    "data_directory": "/home/brusc/Projects/random_forest/dataset_rgb_uniform_40/mini",
+    "area_name": "assatigue",
+    "total_images": 15,
+    "classes": {
+      "low_veg": 5,
+      "trees": 5,
+      "water": 5
+    },
+    "image_shape": [
+      3,
+      128,
+      128
+    ],
+    "total_features_available": 156,
+    "feature_method": "wst",
+    "dataset_type": "rgb_mini",
+    "k_features": 20
+  },
+  "feature_selection": {
+    "method": "SelectKBest_k20",
+    "num_features": 20,
+    "selected_features": [
+      "R_std",
+      "G_std",
+      "B_mean",
+      "R_WST0_std",
+      "R_WST5_mean",
+      "R_WST5_std",
+      "R_WST6_mean",
+      "R_WST6_std",
+      "R_WST7_mean",
+      "R_WST7_std",
+      "R_WST8_mean",
+      "G_WST0_std",
+      "G_WST1_mean",
+      "G_WST5_mean",
+      "G_WST6_mean",
+      "G_WST7_mean",
+      "B_WST0_mean",
+      "B_WST5_mean",
+      "B_WST6_mean",
+      "B_WST8_mean"
+    ],
+    "feature_scores": [
+      0.7353718503718507,
+      0.8348162948162954,
+      0.7909274059274061,
+      0.7675940725940726,
+      0.7202924852924859,
+      0.8187051837051842,
+      0.7397369297369301,
+      0.6146022496022503,
+      0.9264829614829619,
+      0.7081496281496287,
+      0.6040466940466949,
+      0.6731496281496283,
+      0.6691813741813748,
+      0.8336258186258192,
+      0.6179355829355833,
+      0.5809274059274065,
+      0.8742607392607393,
+      0.5879355829355835,
+      0.7350784400784405,
+      0.5725940725940735
+    ]
+  },
+  "performance": {
+    "mean_accuracy": 0.7999999999999999,
+    "std_accuracy": 0.16329931618554522,
+    "cv_scores": [
+      0.6666666666666666,
+      1.0,
+      0.6666666666666666,
+      0.6666666666666666,
+      1.0
+    ],
+    "n_estimators": 5
+  },
+  "timestamp": "2025-07-17T11:20:01.187634"
+}
