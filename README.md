@@ -99,6 +99,19 @@ python scripts/create_visualizations.py
 ```
 Creates plots and charts for result interpretation.
 
+#### 5. Run Batch Experiments
+```bash
+cd experiments_organized
+./run_all_experiments.sh [dataset_path]
+```
+Executes all possible experiment combinations systematically:
+- All noise conditions (clean, gaussian, poisson, salt&pepper, etc.)
+- All land cover areas (assatigue, popolar, sunset)
+- All feature methods (RGB stats, WST, hybrid)
+- All k-best values (2, 5, 10, 20)
+
+The script generates organized JSON reports and logs for comprehensive analysis.
+
 ## 📊 Features
 
 ### Experimental Infrastructure
