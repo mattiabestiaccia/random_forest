@@ -70,13 +70,39 @@ pip install -r requirements.txt
 
 #### 1. Train a Model
 ```bash
-python scripts/train_and_save_model.py
+python scripts/train_and_save_model.py dataset_path area_name feature_method k_features output_dir [options]
 ```
+
+**Required Arguments:**
+- `dataset_path`: Path to the dataset directory
+- `area_name`: Land cover area (`assatigue`, `popolar`, `sunset`)
+- `feature_method`: Feature extraction method (`advanced_stats`, `wst`, `hybrid`)
+- `k_features`: Number of features to select (`2`, `5`, `10`, `20`)
+- `output_dir`: Output directory for model and results
+
+**Optional Arguments:**
+- `--n_estimators`: Number of trees in the forest (default: 50)
+- `--test_size`: Test set size fraction (default: 0.2)
+- `--random_state`: Random seed for reproducibility (default: 42)
+- `--cv_folds`: Number of cross-validation folds (default: 5)
+
+**Examples:**
+```bash
+# Basic usage with advanced statistics
+python scripts/train_and_save_model.py /path/to/dataset popolar advanced_stats 5 ./output
+
+# Using WST features with custom parameters
+python scripts/train_and_save_model.py /path/to/dataset assatigue wst 10 ./output --n_estimators 100 --test_size 0.3
+
+# Hybrid features with all parameters
+python scripts/train_and_save_model.py /path/to/dataset sunset hybrid 20 ./output --n_estimators 200 --test_size 0.25 --random_state 123 --cv_folds 10
+```
+
 This script will:
-- Load the dataset
-- Extract features (RGB + WST)
+- Load the dataset from the specified path
+- Extract features using the chosen method
 - Train a Random Forest classifier
-- Save the trained model
+- Save the trained model and all artifacts
 
 #### 2. Run Inference
 ```bash
@@ -102,15 +128,38 @@ Creates plots and charts for result interpretation.
 #### 5. Run Batch Experiments
 ```bash
 cd experiments_organized
-./run_all_experiments.sh [dataset_path]
+./run_all_experiments.sh [base_dataset_dir]
 ```
-Executes all possible experiment combinations systematically:
-- All noise conditions (clean, gaussian, poisson, salt&pepper, etc.)
-- All land cover areas (assatigue, popolar, sunset)
-- All feature methods (RGB stats, WST, hybrid)
-- All k-best values (2, 5, 10, 20)
 
-The script generates organized JSON reports and logs for comprehensive analysis.
+**Arguments:**
+- `base_dataset_dir`: Base directory containing different dataset versions (optional, defaults to `/home/brusc/Projects/random_forest/dataset_rgb`)
+
+**What it does:**
+Executes all possible experiment combinations systematically:
+- **Dataset types**: mini, small, original, augmented
+- **Noise conditions**: clean, gaussian30, gaussian50, poisson60, salt_pepper25, speckle55, uniform40
+- **Land cover areas**: assatigue, popolar, sunset
+- **Feature methods**: advanced_stats, wst, hybrid
+- **K-best values**: 2, 5, 10, 20
+
+**Example:**
+```bash
+# Use default dataset directory
+cd experiments_organized
+./run_all_experiments.sh
+
+# Use custom dataset directory
+cd experiments_organized
+./run_all_experiments.sh /custom/path/to/datasets
+```
+
+The script generates:
+- Organized JSON reports in structured directories
+- Detailed experiment logs
+- Summary reports with success/failure statistics
+- CSV files with all results for analysis
+
+**Note:** This script requires the `rgb_rf_generalized.py` script to be present in the experiments_organized directory.
 
 ## 📊 Features
 
