@@ -20,6 +20,13 @@ This project focuses on classifying land cover types from aerial imagery using m
 
 ```
 random_forest/
+├── 📁 analysis/     # Noise robustness analysis
+│   ├── comparison/         # Camparative analysis of different scenarios
+│   ├── detailed/         # Single graphs of different scenarios
+│   ├── analysis_summary.md         # Executive summary with key findings from the analysis
+│   ├── comprehensive_report.md         # Complete statistical analysis report
+│   ├── experiments_summary.csv        # Complete export of analysis results
+│   ├── qualitative_analysis.md         # In-depth qualitative interpretation of the experimental results
 ├── 📁 experiments_organized/     # Organized experiment results
 │   ├── rgb_clean_kbest/         # Clean dataset experiments
 │   ├── rgb_gaussian30_kbest/    # Gaussian noise experiments
@@ -211,7 +218,7 @@ The project now includes a comprehensive analysis of 324 experiments with profes
 source venv_rf/bin/activate
 
 # Run complete analysis
-python create_complete_english_analysis.py
+python create_complete_analysis.py
 ```
 
 This generates:
@@ -248,7 +255,7 @@ analysis/
 ├── comprehensive_report.md         # Complete statistical analysis
 ├── qualitative_analysis.md         # In-depth qualitative interpretation
 ├── analysis_summary.md            # Executive summary with key findings
-├── experiments_summary_english.csv # Complete dataset export
+├── experiments_summary.csv # Complete dataset export
 ├── comparisons/                    # High-level comparison plots (4 plots)
 └── detailed/                      # Detailed analysis plots (33+ plots)
 ```
