@@ -20,32 +20,31 @@ This project focuses on classifying land cover types from aerial imagery using m
 
 ```
 random_forest/
-├── 📁 analysis/     # Noise robustness analysis
-│   ├── comparison/         # Camparative analysis of different scenarios
-│   ├── detailed/         # Single graphs of different scenarios
-│   ├── analysis_summary.md         # Executive summary with key findings from the analysis
-│   ├── comprehensive_report.md         # Complete statistical analysis report
-│   ├── experiments_summary.csv        # Complete export of analysis results
-│   ├── qualitative_analysis.md         # In-depth qualitative interpretation of the experimental results
-├── 📁 experiments_organized/     # Organized experiment results
-│   ├── rgb_clean_kbest/         # Clean dataset experiments
-│   ├── rgb_gaussian30_kbest/    # Gaussian noise experiments
-│   ├── rgb_gaussian50_kbest/    # Higher Gaussian noise
-│   ├── rgb_poisson60_kbest/     # Poisson noise experiments
-│   └── rgb_salt_pepper25_kbest/ # Salt & pepper noise
-├── 📁 inference_k5_popolar_results/ # Inference results
-├── 📁 scripts/                  # Python scripts and utilities
-│   ├── 🐍 train_and_save_model.py   # Model training script
-│   ├── 🐍 inference_on_dataset.py   # Inference script
-│   ├── 🐍 add_noise.py              # Noise generation utilities
-│   ├── 🐍 analyze_experiments.py    # Results analysis
-│   ├── 🐍 create_visualizations.py  # Visualization generation
-│   ├── 🐍 fixed_analysis.py         # Fixed analysis pipeline
-│   ├── 🐍 simple_analysis.py        # Simplified analysis
-│   └── 🔧 generate_noise_datasets.sh # Dataset generation script
-├── 📓 Poplar.ipynb              # Main analysis notebook
-└── 📋 requirements.txt          # Python dependencies
-```
+├── 📁 analysis/                     # Analisi della robustezza al rumore
+│   ├── comparison/                  # Analisi comparativa dei diversi scenari
+│   ├── detailed/                    # Grafici singoli dei diversi scenari
+│   ├── analysis_summary.md          # Executive summary con i risultati chiave dell'analisi
+│   ├── comprehensive_report.md      # Report statistico completo
+│   ├── experiments_summary.csv      # Esportazione completa dei risultati dell'analisi
+│   ├── qualitative_analysis.md      # Interpretazione qualitativa approfondita dei risultati sperimentali
+├── 📁 experiments_organized/         # Risultati degli esperimenti organizzati
+│   ├── rgb_clean_kbest/             # Esperimenti su dataset pulito
+│   ├── rgb_gaussian30_kbest/        # Esperimenti con rumore gaussiano
+│   ├── rgb_gaussian50_kbest/        # Esperimenti con rumore gaussiano più intenso
+│   ├── rgb_poisson60_kbest/         # Esperimenti con rumore di Poisson
+│   └── rgb_salt_pepper25_kbest/     # Esperimenti con rumore sale & pepe
+├── 📁 inference_k5_popolar_results/  # Risultati di inferenza
+├── 📁 scripts/                      # Script Python e utility
+│   ├── 🐍 train_and_save_model.py       # Script di addestramento del modello
+│   ├── 🐍 inference_on_dataset.py       # Script di inferenza
+│   ├── 🐍 add_noise.py                  # Utility per la generazione del rumore
+│   ├── 🐍 analyze_experiments.py        # Analisi dei risultati
+│   ├── 🐍 create_visualizations.py      # Generazione delle visualizzazioni
+│   ├── 🐍 fixed_analysis.py             # Pipeline di analisi fissa
+│   ├── 🐍 simple_analysis.py            # Analisi semplificata
+│   └── 🔧 generate_noise_datasets.sh    # Script per la generazione dei dataset con rumore
+├── 📓 Poplar.ipynb                  # Notebook principale di analisi
+└── 📋 requirements.txt              # Dipendenze Python
 
 ## 🚀 Quick Start
 
