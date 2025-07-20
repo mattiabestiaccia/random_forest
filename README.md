@@ -200,9 +200,36 @@ The experiments were generated using the `run_all_experiments.sh` script, which 
 - **Noise Conditions**: Clean, Gaussian, Poisson, Salt & Pepper
 - **Cross-validation**: Stratified K-fold validation
 
-## 📈 Results
+## 📈 Results & Analysis
 
-The project includes comprehensive experimental results organized by:
+### Complete Analysis Suite
+
+The project now includes a comprehensive analysis of 324 experiments with professional reports and visualizations. Use the complete analysis script:
+
+```bash
+# Activate virtual environment
+source venv_rf/bin/activate
+
+# Run complete analysis
+python create_complete_english_analysis.py
+```
+
+This generates:
+- **Statistical reports**: Comprehensive analysis with performance metrics
+- **Qualitative analysis**: In-depth interpretation of robustness findings  
+- **Executive summary**: Key findings and recommendations
+- **Data export**: Complete CSV dataset (186KB)
+- **Visualizations**: 37 high-quality plots (6.6MB)
+
+### Key Findings from Analysis
+
+- **🏆 Best Method**: WST achieves highest accuracy (0.913 average)
+- **🔊 Noise Impact**: 11.4% performance loss from clean to Gaussian σ=50
+- **📊 Dataset Effect**: 7.4% improvement from mini to original size
+- **🛡️ Robustness**: WST shows lowest degradation under noise
+- **⚖️ Feature Selection**: k=10-20 provides optimal performance
+
+### Experimental Results Structure
 
 ```
 experiments_organized/
@@ -214,21 +241,25 @@ experiments_organized/
                     └── {method}_k{k}_{size}_report.json
 ```
 
-### Experiment Generation Script
+### Analysis Outputs
 
-The comprehensive experiment results were generated using `experiments_organized/run_all_experiments.sh`, which:
+```
+analysis/
+├── comprehensive_report.md         # Complete statistical analysis
+├── qualitative_analysis.md         # In-depth qualitative interpretation
+├── analysis_summary.md            # Executive summary with key findings
+├── experiments_summary_english.csv # Complete dataset export
+├── comparisons/                    # High-level comparison plots (4 plots)
+└── detailed/                      # Detailed analysis plots (33+ plots)
+```
 
-- Systematically runs all parameter combinations
-- Generates detailed logs for each experiment
-- Creates organized JSON reports with performance metrics
-- Provides batch processing capabilities for large-scale analysis
+### Professional Visualizations
 
-### Key Findings
-
-- **Hybrid approach** (RGB + WST) consistently outperforms individual methods
-- **WST features** provide excellent noise robustness
-- **Feature selection** with k=10-20 offers optimal performance
-- **Original dataset size** balances accuracy and computational efficiency
+The analysis includes publication-ready plots:
+- **Comparison plots**: Accuracy vs method/noise/dataset (averaged across dimensions)
+- **Detailed plots**: Individual condition analysis (geographic-only averaging)
+- **Statistical plots**: Performance distributions and confidence intervals
+- **Clean formatting**: Professional styling suitable for research publications
 
 ## 🔬 Technical Details
 
