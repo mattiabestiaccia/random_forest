@@ -344,7 +344,7 @@ def parse_arguments():
     return parser.parse_args()
 
 def extract_wst_features(rgb_image):
-    """Extract Wavelet Scattering Transform features from RGB image"""
+    """Extract Wavelet Scattering Transform features from RGB image using mean and std of coefficients"""
     if Scattering2D is None:
         raise ImportError("kymatio not available. Cannot extract WST features.")
     
@@ -367,8 +367,12 @@ def extract_wst_features(rgb_image):
         # Compute scattering coefficients
         scattering_coeffs = scattering(channel)
         
-        # Flatten and take mean across spatial dimensions
-        channel_features = np.mean(scattering_coeffs, axis=(-2, -1))
+        # Calculate mean and std across spatial dimensions for each coefficient
+        coeffs_mean = np.mean(scattering_coeffs, axis=(-2, -1))
+        coeffs_std = np.std(scattering_coeffs, axis=(-2, -1))
+        
+        # Combine mean and std features for this channel
+        channel_features = np.concatenate([coeffs_mean, coeffs_std])
         all_features.extend(channel_features)
     
     return np.array(all_features)
@@ -402,8 +406,19 @@ def get_feature_names(feature_method):
         ]
         return [f"{c}_{stat}" for c in ['R', 'G', 'B'] for stat in stat_names]
     elif feature_method == 'wst':
-        # WST feature names (simplified)
-        return [f"wst_{i}" for i in range(200)]  # Approximate number of WST features
+        # WST feature names - now includes mean and std for each coefficient per channel
+        # With J=2, L=8, we get approximately 81 coefficients per channel
+        # For 3 channels (RGB) and 2 statistics (mean, std): 3 * 81 * 2 = 486 features
+        wst_names = []
+        channels = ['R', 'G', 'B']
+        stats = ['mean', 'std']
+        
+        for channel in channels:
+            for stat in stats:
+                for i in range(81):  # Approximate number of scattering coefficients
+                    wst_names.append(f"{channel}_wst_{stat}_{i}")
+        
+        return wst_names
     elif feature_method == 'hybrid':
         advanced_names = get_feature_names('advanced_stats')
         wst_names = get_feature_names('wst')
