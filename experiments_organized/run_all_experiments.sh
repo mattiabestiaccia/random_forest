@@ -16,8 +16,8 @@
 
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON_SCRIPT="$SCRIPT_DIR/rgb_rf_generalized.py"
-OUTPUT_BASE_DIR="$SCRIPT_DIR/rgb__kbest"
+PYTHON_SCRIPT="/home/brusc/Projects/random_forest/scripts/train_and_save_model.py"
+OUTPUT_BASE_DIR="$SCRIPT_DIR/rgb_poisson100_kbest"
 LOG_DIR="$OUTPUT_BASE_DIR/experiment_logs"
 RESULTS_DIR="$OUTPUT_BASE_DIR/all_results"
 
@@ -26,7 +26,7 @@ mkdir -p "$LOG_DIR"
 mkdir -p "$RESULTS_DIR"
 
 # Default base dataset directory
-BASE_DATASET_DIR="${1:-/home/brusc/Projects/random_forest/dataset_rgb}"
+BASE_DATASET_DIR="${1:-/home/brusc/Projects/random_forest/datasets}"
 
 # Check if Python script exists
 if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -75,6 +75,30 @@ log_message() {
     esac
 }
 
+# Function to check if experiment is already completed
+is_experiment_completed() {
+    local dataset_type=$1
+    local area=$2
+    local feature_method=$3
+    local k_features=$4
+    
+    # Create the structured output directory path: area/dataset_type/k{features}/feature_method/
+    local output_dir="$OUTPUT_BASE_DIR/$area/$dataset_type/k${k_features}/$feature_method"
+    
+    # Check if experiment output directory exists and contains expected files
+    if [ -d "$output_dir" ]; then
+        # Look for completion indicators: model files, report files, etc.
+        local model_files=$(find "$output_dir" -name "*.pkl" -o -name "*.joblib" 2>/dev/null | wc -l)
+        local report_files=$(find "$output_dir" -name "*_report.json" 2>/dev/null | wc -l)
+        
+        if [ $model_files -gt 0 ] || [ $report_files -gt 0 ]; then
+            return 0  # Experiment is completed
+        fi
+    fi
+    
+    return 1  # Experiment is not completed
+}
+
 # Function to run a single experiment
 run_experiment() {
     local dataset_type=$1
@@ -86,14 +110,26 @@ run_experiment() {
     local log_file="$LOG_DIR/${experiment_name}.log"
     local error_file="$LOG_DIR/${experiment_name}.error"
     
+    # Check if experiment is already completed
+    if is_experiment_completed "$dataset_type" "$area" "$feature_method" "$k_features"; then
+        log_message "EXPERIMENT" "Skipping completed: $experiment_name"
+        return 0
+    fi
+    
     log_message "EXPERIMENT" "Starting: $experiment_name"
     
-    # Run the experiment (change to output directory so experiments are created there)
-    if (cd "$OUTPUT_BASE_DIR" && python3 "$PYTHON_SCRIPT" "$dataset_type" "$area" "$feature_method" "$k_features" "$BASE_DATASET_DIR") > "$log_file" 2> "$error_file"; then
-        log_message "INFO" "Completed: $experiment_name"
+    # Create the structured output directory path: area/dataset_type/k{features}/feature_method/
+    local structured_output_dir="$OUTPUT_BASE_DIR/$area/$dataset_type/k${k_features}/$feature_method"
+    
+    # Create the output directory structure
+    mkdir -p "$structured_output_dir"
+    
+    # Run the experiment with the structured output directory
+    if (cd "$OUTPUT_BASE_DIR" && python3 "$PYTHON_SCRIPT" "$BASE_DATASET_DIR/$dataset_type" "$area" "$feature_method" "$k_features" "$structured_output_dir") > "$log_file" 2> "$error_file"; then
+        log_message "EXPERIMENT" "Completed: $experiment_name"
         return 0
     else
-        log_message "ERROR" "Failed: $experiment_name (see $error_file)"
+        log_message "EXPERIMENT" "Failed: $experiment_name (see $error_file)"
         return 1
     fi
 }
@@ -190,33 +226,56 @@ main() {
     
     local current_experiment=0
     local failed_experiments=0
+    local skipped_experiments=0
+    local successful_experiments=0
     
     # Run all experiments
     for dataset_type in "${DATASET_TYPES[@]}"; do
+        log_message "INFO" "Starting dataset type: $dataset_type"
         for area in "${AREAS[@]}"; do
+            log_message "INFO" "Starting area: $area"
             for feature_method in "${FEATURE_METHODS[@]}"; do
+                log_message "INFO" "Starting feature method: $feature_method"
                 for k_features in "${K_VALUES[@]}"; do
                     current_experiment=$((current_experiment + 1))
+                    local experiment_name="${dataset_type}_${area}_${feature_method}_k${k_features}"
                     
                     echo ""
-                    log_message "INFO" "Progress: $current_experiment/$total_experiments"
+                    log_message "INFO" "Progress: $current_experiment/$total_experiments - $experiment_name"
                     
-                    if ! run_experiment "$dataset_type" "$area" "$feature_method" "$k_features"; then
-                        failed_experiments=$((failed_experiments + 1))
+                    # Check if already completed before running
+                    if is_experiment_completed "$dataset_type" "$area" "$feature_method" "$k_features"; then
+                        log_message "INFO" "Experiment already completed, skipping: $experiment_name"
+                        skipped_experiments=$((skipped_experiments + 1))
+                        successful_experiments=$((successful_experiments + 1))
+                    else
+                        if run_experiment "$dataset_type" "$area" "$feature_method" "$k_features"; then
+                            successful_experiments=$((successful_experiments + 1))
+                            log_message "INFO" "Successfully completed experiment: $experiment_name"
+                        else
+                            failed_experiments=$((failed_experiments + 1))
+                            log_message "ERROR" "Failed experiment: $experiment_name"
+                        fi
                     fi
                     
                     # Brief pause between experiments
                     sleep 1
                 done
+                log_message "INFO" "Completed feature method: $feature_method"
             done
+            log_message "INFO" "Completed area: $area"
         done
+        log_message "INFO" "Completed dataset type: $dataset_type"
     done
     
     # Generate summary
     echo ""
     log_message "INFO" "All experiments completed!"
-    log_message "INFO" "Successful: $((current_experiment - failed_experiments))/$current_experiment"
-    log_message "INFO" "Failed: $failed_experiments/$current_experiment"
+    log_message "INFO" "Total experiments: $current_experiment"
+    log_message "INFO" "Successful: $successful_experiments"
+    log_message "INFO" "Failed: $failed_experiments"
+    log_message "INFO" "Skipped (already completed): $skipped_experiments"
+    log_message "INFO" "Success rate: $(( successful_experiments * 100 / current_experiment ))%"
     
     generate_summary
     

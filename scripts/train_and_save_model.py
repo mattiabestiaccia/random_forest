@@ -153,6 +153,12 @@ def select_features_kbest(X, y, feature_names, k=5):
     X_selected = selector.fit_transform(X_scaled, y)
     
     selected_indices = selector.get_support(indices=True)
+    
+    # Ensure we have enough feature names
+    if len(feature_names) < X.shape[1]:
+        # Pad with generic names if needed
+        feature_names = feature_names + [f"feature_{i}" for i in range(len(feature_names), X.shape[1])]
+    
     selected_features = [feature_names[i] for i in selected_indices]
     feature_scores = selector.scores_[selected_indices]
     
@@ -409,6 +415,20 @@ def main():
     # Parse command line arguments
     args = parse_arguments()
     
+    # Determine n_estimators based on dataset type if not specified
+    dataset_type = os.path.basename(args.dataset_path)
+    if args.n_estimators == 50:  # Default value, user didn't specify
+        if 'mini' in dataset_type:
+            n_estimators = 3
+        elif 'small' in dataset_type:
+            n_estimators = 10
+        elif 'original' in dataset_type:
+            n_estimators = 50
+        else:
+            n_estimators = 50  # Default fallback
+    else:
+        n_estimators = args.n_estimators
+    
     # Create config from arguments
     config = {
         'dataset_path': args.dataset_path,
@@ -416,7 +436,7 @@ def main():
         'feature_method': args.feature_method,
         'k_features': args.k_features,
         'output_dir': args.output_dir,
-        'n_estimators': args.n_estimators,
+        'n_estimators': n_estimators,
         'test_size': args.test_size,
         'random_state': args.random_state,
         'cv_folds': args.cv_folds

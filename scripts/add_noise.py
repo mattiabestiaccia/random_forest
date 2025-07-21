@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script to add different types of noise to images in the dataset_rgb directory.
+Script to add different types of noise to images in the dataset directory.
 Creates new folders with noisy versions of the images.
 """
 
@@ -103,7 +103,8 @@ def process_image(input_path, output_path, noise_type, intensity):
 
 def create_output_directory(base_path, noise_type, intensity):
     """Create output directory with naming convention."""
-    output_dir = f"{base_path}_{noise_type}_{intensity}"
+    parent_dir = base_path.parent / f"datasets_{noise_type}_{intensity}"
+    output_dir = parent_dir / f"dataset_rgb_{noise_type}_{intensity}"
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     return output_dir
 
@@ -119,7 +120,7 @@ def copy_directory_structure(source_dir, dest_dir):
             Path(dest_path).mkdir(parents=True, exist_ok=True)
 
 def main():
-    parser = argparse.ArgumentParser(description='Add noise to images in dataset_rgb directory')
+    parser = argparse.ArgumentParser(description='Add noise to images in datasets directory')
     parser.add_argument('--noise-type', '-t', 
                       choices=['gaussian', 'salt_and_pepper', 'speckle', 'poisson', 'uniform'],
                       required=True,
@@ -129,7 +130,7 @@ def main():
                       required=True,
                       help='Noise intensity (0-100)')
     parser.add_argument('--input-dir', '-d',
-                      default='/home/brusc/Projects/random_forest/dataset_rgb',
+                      default='/home/brusc/Projects/random_forest/datasets',
                       help='Input directory containing images')
     parser.add_argument('--seed', '-s',
                       type=int,
@@ -154,7 +155,7 @@ def main():
         return
     
     # Create output directory
-    output_dir = create_output_directory(input_dir.parent / f"dataset_rgb", args.noise_type, args.intensity)
+    output_dir = create_output_directory(input_dir, args.noise_type, args.intensity)
     print(f"Output directory: {output_dir}")
     
     # Copy directory structure
