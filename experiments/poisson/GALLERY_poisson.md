@@ -14,19 +14,19 @@ This document presents a comprehensive gallery of all visualizations generated f
 ## 🔍 High-Level Comparisons
 
 ### Overall Performance Summary
-![Accuracy Heatmap Summary](experiments/poisson/poisson_analysis/comparisons/accuracy_heatmap_poisson_summary.png)
+![Accuracy Heatmap Summary](./poisson_analysis/comparisons/accuracy_heatmap_poisson_summary.png)
 *Comprehensive heatmap showing accuracy across all Poisson noise experimental conditions*
 
 ### Method Comparison
-![Accuracy vs Method Boxplot](experiments/poisson/poisson_analysis/comparisons/accuracy_vs_method_boxplot_poisson.png)
+![Accuracy vs Method Boxplot](./poisson_analysis/comparisons/accuracy_vs_method_boxplot_poisson.png)
 *Statistical comparison of feature extraction methods (WST, Advanced Stats, Hybrid) under Poisson noise*
 
 ### Dataset Size Impact
-![Accuracy vs Dataset Size](experiments/poisson/poisson_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![Accuracy vs Dataset Size](./poisson_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
 *Overall performance improvement with dataset size under Poisson noise conditions*
 
 ### Noise Robustness Overview
-![Accuracy vs Noise Level](experiments/poisson/poisson_analysis/comparisons/accuracy_vs_poisson_noise_overall.png)
+![Accuracy vs Noise Level](./poisson_analysis/comparisons/accuracy_vs_poisson_noise_overall.png)
 *Performance degradation under different Poisson noise intensities (λ=40, λ=60)*
 
 ---
@@ -36,49 +36,49 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Clean Dataset Conditions
 
 #### K=2 Features
-![Clean K2](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_clean_k2.png)
+![Clean K2](./poisson_analysis/detailed/accuracy_vs_dataset_clean_k2.png)
 *Performance vs dataset size with minimal feature selection (k=2)*
 
 #### K=5 Features
-![Clean K5](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_clean_k5.png)
+![Clean K5](./poisson_analysis/detailed/accuracy_vs_dataset_clean_k5.png)
 *Performance vs dataset size with small feature selection (k=5)*
 
 #### K=10 Features
-![Clean K10](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_clean_k10.png)
+![Clean K10](./poisson_analysis/detailed/accuracy_vs_dataset_clean_k10.png)
 *Performance vs dataset size with medium feature selection (k=10)*
 
 #### K=20 Features
-![Clean K20](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_clean_k20.png)
+![Clean K20](./poisson_analysis/detailed/accuracy_vs_dataset_clean_k20.png)
 *Performance vs dataset size with large feature selection (k=20)*
 
 ### Poisson Noise Conditions
 
 #### K=2 Features
-![Poisson40 K2](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k2.png)
+![Poisson40 K2](./poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k2.png)
 *Performance vs dataset size under Poisson noise (λ=40) with k=2 features*
 
-![Poisson60 K2](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k2.png)
+![Poisson60 K2](./poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k2.png)
 *Performance vs dataset size under Poisson noise (λ=60) with k=2 features*
 
 #### K=5 Features
-![Poisson40 K5](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k5.png)
+![Poisson40 K5](./poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k5.png)
 *Performance vs dataset size under Poisson noise (λ=40) with k=5 features*
 
-![Poisson60 K5](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k5.png)
+![Poisson60 K5](./poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k5.png)
 *Performance vs dataset size under Poisson noise (λ=60) with k=5 features*
 
 #### K=10 Features
-![Poisson40 K10](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k10.png)
+![Poisson40 K10](./poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k10.png)
 *Performance vs dataset size under Poisson noise (λ=40) with k=10 features*
 
-![Poisson60 K10](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k10.png)
+![Poisson60 K10](./poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k10.png)
 *Performance vs dataset size under Poisson noise (λ=60) with k=10 features*
 
 #### K=20 Features
-![Poisson40 K20](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k20.png)
+![Poisson40 K20](./poisson_analysis/detailed/accuracy_vs_dataset_poisson40_k20.png)
 *Performance vs dataset size under Poisson noise (λ=40) with k=20 features*
 
-![Poisson60 K20](experiments/poisson/poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k20.png)
+![Poisson60 K20](./poisson_analysis/detailed/accuracy_vs_dataset_poisson60_k20.png)
 *Performance vs dataset size under Poisson noise (λ=60) with k=20 features*
 
 ---
@@ -88,38 +88,38 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Clean Dataset Conditions
 
 #### Mini Dataset
-![Clean Mini](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_clean_mini.png)
+![Clean Mini](./poisson_analysis/detailed/accuracy_vs_k_clean_mini.png)
 *Feature selection impact on mini dataset (clean conditions)*
 
 #### Small Dataset
-![Clean Small](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_clean_small.png)
+![Clean Small](./poisson_analysis/detailed/accuracy_vs_k_clean_small.png)
 *Feature selection impact on small dataset (clean conditions)*
 
 #### Original Dataset
-![Clean Original](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_clean_original.png)
+![Clean Original](./poisson_analysis/detailed/accuracy_vs_k_clean_original.png)
 *Feature selection impact on original dataset (clean conditions)*
 
 ### Poisson Noise Conditions
 
 #### Mini Dataset
-![Poisson40 Mini](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_poisson40_mini.png)
+![Poisson40 Mini](./poisson_analysis/detailed/accuracy_vs_k_poisson40_mini.png)
 *Feature selection impact on mini dataset under Poisson noise (λ=40)*
 
-![Poisson60 Mini](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_poisson60_mini.png)
+![Poisson60 Mini](./poisson_analysis/detailed/accuracy_vs_k_poisson60_mini.png)
 *Feature selection impact on mini dataset under Poisson noise (λ=60)*
 
 #### Small Dataset
-![Poisson40 Small](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_poisson40_small.png)
+![Poisson40 Small](./poisson_analysis/detailed/accuracy_vs_k_poisson40_small.png)
 *Feature selection impact on small dataset under Poisson noise (λ=40)*
 
-![Poisson60 Small](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_poisson60_small.png)
+![Poisson60 Small](./poisson_analysis/detailed/accuracy_vs_k_poisson60_small.png)
 *Feature selection impact on small dataset under Poisson noise (λ=60)*
 
 #### Original Dataset
-![Poisson40 Original](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_poisson40_original.png)
+![Poisson40 Original](./poisson_analysis/detailed/accuracy_vs_k_poisson40_original.png)
 *Feature selection impact on original dataset under Poisson noise (λ=40)*
 
-![Poisson60 Original](experiments/poisson/poisson_analysis/detailed/accuracy_vs_k_poisson60_original.png)
+![Poisson60 Original](./poisson_analysis/detailed/accuracy_vs_k_poisson60_original.png)
 *Feature selection impact on original dataset under Poisson noise (λ=60)*
 
 ---
@@ -129,55 +129,55 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Mini Dataset
 
 #### K=2 Features
-![Noise Mini K2](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_mini_k2.png)
+![Noise Mini K2](./poisson_analysis/detailed/accuracy_vs_poisson_mini_k2.png)
 *Poisson noise robustness on mini dataset with k=2 features*
 
 #### K=5 Features
-![Noise Mini K5](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_mini_k5.png)
+![Noise Mini K5](./poisson_analysis/detailed/accuracy_vs_poisson_mini_k5.png)
 *Poisson noise robustness on mini dataset with k=5 features*
 
 #### K=10 Features
-![Noise Mini K10](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_mini_k10.png)
+![Noise Mini K10](./poisson_analysis/detailed/accuracy_vs_poisson_mini_k10.png)
 *Poisson noise robustness on mini dataset with k=10 features*
 
 #### K=20 Features
-![Noise Mini K20](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_mini_k20.png)
+![Noise Mini K20](./poisson_analysis/detailed/accuracy_vs_poisson_mini_k20.png)
 *Poisson noise robustness on mini dataset with k=20 features*
 
 ### Small Dataset
 
 #### K=2 Features
-![Noise Small K2](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_small_k2.png)
+![Noise Small K2](./poisson_analysis/detailed/accuracy_vs_poisson_small_k2.png)
 *Poisson noise robustness on small dataset with k=2 features*
 
 #### K=5 Features
-![Noise Small K5](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_small_k5.png)
+![Noise Small K5](./poisson_analysis/detailed/accuracy_vs_poisson_small_k5.png)
 *Poisson noise robustness on small dataset with k=5 features*
 
 #### K=10 Features
-![Noise Small K10](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_small_k10.png)
+![Noise Small K10](./poisson_analysis/detailed/accuracy_vs_poisson_small_k10.png)
 *Poisson noise robustness on small dataset with k=10 features*
 
 #### K=20 Features
-![Noise Small K20](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_small_k20.png)
+![Noise Small K20](./poisson_analysis/detailed/accuracy_vs_poisson_small_k20.png)
 *Poisson noise robustness on small dataset with k=20 features*
 
 ### Original Dataset
 
 #### K=2 Features
-![Noise Original K2](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_original_k2.png)
+![Noise Original K2](./poisson_analysis/detailed/accuracy_vs_poisson_original_k2.png)
 *Poisson noise robustness on original dataset with k=2 features*
 
 #### K=5 Features
-![Noise Original K5](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_original_k5.png)
+![Noise Original K5](./poisson_analysis/detailed/accuracy_vs_poisson_original_k5.png)
 *Poisson noise robustness on original dataset with k=5 features*
 
 #### K=10 Features
-![Noise Original K10](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_original_k10.png)
+![Noise Original K10](./poisson_analysis/detailed/accuracy_vs_poisson_original_k10.png)
 *Poisson noise robustness on original dataset with k=10 features*
 
 #### K=20 Features
-![Noise Original K20](experiments/poisson/poisson_analysis/detailed/accuracy_vs_poisson_original_k20.png)
+![Noise Original K20](./poisson_analysis/detailed/accuracy_vs_poisson_original_k20.png)
 *Poisson noise robustness on original dataset with k=20 features*
 
 ---
