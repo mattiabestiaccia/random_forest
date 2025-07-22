@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/original
+Area: sunset
+Feature Method: wst
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst
+N Estimators: 50
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 40 images from sunset/garden
+Loading 40 images from sunset/low_veg
+Loading 40 images from sunset/trees
+Loaded 120 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (120, 486)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['R_wst_std_0', 'G_wst_std_0', 'B_wst_mean_0', 'B_wst_mean_1', 'B_wst_mean_2', 'B_wst_mean_3', 'B_wst_mean_5', 'B_wst_mean_6', 'B_wst_mean_7', 'B_wst_mean_8']
+Feature scores: [0.75276198 0.62303932 0.66951545 0.5464798  0.55791961 0.5134647
+ 0.66412066 0.57708532 0.60606972 0.6517747 ]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/original
+Feature method: wst
+Total images: 120
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 486
+Selected features: 10
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9833 ± 0.0333
+
+Top 10 selected features:
+  1. R_wst_std_0: 0.7528
+  2. G_wst_std_0: 0.6230
+  3. B_wst_mean_0: 0.6695
+  4. B_wst_mean_1: 0.5465
+  5. B_wst_mean_2: 0.5579
+  6. B_wst_mean_3: 0.5135
+  7. B_wst_mean_5: 0.6641
+  8. B_wst_mean_6: 0.5771
+  9. B_wst_mean_7: 0.6061
+  10. B_wst_mean_8: 0.6518
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/sunset/original/k10/wst
+================================================================================

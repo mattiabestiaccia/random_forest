@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/original
+Area: assatigue
+Feature Method: wst
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst
+N Estimators: 50
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 40 images from assatigue/low_veg
+Loading 36 images from assatigue/trees
+Loading 40 images from assatigue/water
+Loaded 116 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (116, 486)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_wst_mean_0', 'R_wst_std_0', 'G_wst_mean_0', 'G_wst_std_0', 'B_wst_mean_0', 'B_wst_mean_1', 'B_wst_mean_2', 'B_wst_mean_3', 'B_wst_mean_4', 'B_wst_mean_5', 'B_wst_mean_6', 'B_wst_mean_7', 'B_wst_mean_8', 'B_wst_mean_13', 'B_wst_mean_42', 'B_wst_mean_46', 'B_wst_mean_53', 'B_wst_mean_59', 'B_wst_mean_76', 'B_wst_std_0']
+Feature scores: [0.61513982 0.82070804 0.64422917 0.85721912 0.65782557 0.4979554
+ 0.44183865 0.43045577 0.53877756 0.47992536 0.46720385 0.47867597
+ 0.51553375 0.39420876 0.38008251 0.38852114 0.41972182 0.37066751
+ 0.39084046 0.36522087]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/original
+Feature method: wst
+Total images: 116
+Classes: ['low_veg', 'water', 'trees']
+Original features: 486
+Selected features: 20
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.8333
+CV Accuracy: 0.9054 ± 0.0500
+
+Top 20 selected features:
+  1. R_wst_mean_0: 0.6151
+  2. R_wst_std_0: 0.8207
+  3. G_wst_mean_0: 0.6442
+  4. G_wst_std_0: 0.8572
+  5. B_wst_mean_0: 0.6578
+  6. B_wst_mean_1: 0.4980
+  7. B_wst_mean_2: 0.4418
+  8. B_wst_mean_3: 0.4305
+  9. B_wst_mean_4: 0.5388
+  10. B_wst_mean_5: 0.4799
+  11. B_wst_mean_6: 0.4672
+  12. B_wst_mean_7: 0.4787
+  13. B_wst_mean_8: 0.5155
+  14. B_wst_mean_13: 0.3942
+  15. B_wst_mean_42: 0.3801
+  16. B_wst_mean_46: 0.3885
+  17. B_wst_mean_53: 0.4197
+  18. B_wst_mean_59: 0.3707
+  19. B_wst_mean_76: 0.3908
+  20. B_wst_std_0: 0.3652
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/original/k20/wst
+================================================================================

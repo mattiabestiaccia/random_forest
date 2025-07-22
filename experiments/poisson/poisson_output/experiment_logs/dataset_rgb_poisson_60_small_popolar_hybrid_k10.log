@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/small
+Area: popolar
+Feature Method: hybrid
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid
+N Estimators: 10
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 15 images from popolar/low_veg
+Loading 15 images from popolar/trees
+Loading 15 images from popolar/water
+Loaded 45 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (45, 540)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['R_std', 'R_mad', 'G_std', 'G_var', 'G_mad', 'B_cv', 'B_p10', 'R_wst_std_0', 'G_wst_std_0', 'B_wst_mean_48']
+Feature scores: [0.95836815 0.96921391 1.04222177 1.03111066 1.05931171 1.07065499
+ 0.95432398 0.98102303 0.99313943 0.95568068]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/small
+Feature method: hybrid
+Total images: 45
+Classes: ['low_veg', 'trees', 'water']
+Original features: 540
+Selected features: 10
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9111 ± 0.0831
+
+Top 10 selected features:
+  1. R_std: 0.9584
+  2. R_mad: 0.9692
+  3. G_std: 1.0422
+  4. G_var: 1.0311
+  5. G_mad: 1.0593
+  6. B_cv: 1.0707
+  7. B_p10: 0.9543
+  8. R_wst_std_0: 0.9810
+  9. G_wst_std_0: 0.9931
+  10. B_wst_mean_48: 0.9557
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/small/k10/hybrid
+================================================================================

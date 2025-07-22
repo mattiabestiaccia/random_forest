@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_25/mini
+Area: assatigue
+Feature Method: wst
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst
+N Estimators: 3
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 5 images from assatigue/low_veg
+Loading 5 images from assatigue/trees
+Loading 5 images from assatigue/water
+Loaded 15 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['R_wst_mean_2', 'R_wst_mean_6', 'R_wst_mean_12', 'R_wst_mean_13', 'R_wst_mean_14', 'R_wst_mean_15', 'R_wst_std_62', 'G_wst_mean_3', 'G_wst_std_71', 'B_wst_mean_0']
+Feature scores: [0.81537185 0.95267344 0.80918137 0.83418137 0.84092741 0.85981629
+ 0.84092741 0.83203852 0.85518667 0.82584804]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_25/mini
+Feature method: wst
+Total images: 15
+Classes: ['low_veg', 'trees', 'water']
+Original features: 486
+Selected features: 10
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.6667
+CV Accuracy: 0.9333 ± 0.1333
+
+Top 10 selected features:
+  1. R_wst_mean_2: 0.8154
+  2. R_wst_mean_6: 0.9527
+  3. R_wst_mean_12: 0.8092
+  4. R_wst_mean_13: 0.8342
+  5. R_wst_mean_14: 0.8409
+  6. R_wst_mean_15: 0.8598
+  7. R_wst_std_62: 0.8409
+  8. G_wst_mean_3: 0.8320
+  9. G_wst_std_71: 0.8552
+  10. B_wst_mean_0: 0.8258
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/mini/k10/wst
+================================================================================

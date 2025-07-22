@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_55/original
+Area: assatigue
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats
+N Estimators: 50
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 40 images from assatigue/low_veg
+Loading 36 images from assatigue/trees
+Loading 40 images from assatigue/water
+Loaded 116 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (116, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_p25', 'R_p50', 'R_p90', 'G_mean', 'G_skew', 'G_cv', 'G_p25', 'G_p50', 'G_p75', 'G_iqr', 'G_grad_mean', 'B_mean', 'B_skew', 'B_kurt', 'B_cv', 'B_p10', 'B_p25', 'B_p50', 'B_p90', 'B_grad_mean']
+Feature scores: [0.68742489 0.64812577 0.6483552  0.64242573 0.6873009  0.658464
+ 0.73876536 0.68111362 0.66979642 0.65480114 0.66071776 0.67084716
+ 0.74054615 0.63621812 0.75993798 0.73481681 0.76294924 0.73373052
+ 0.6396693  0.72987858]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_55/original
+Feature method: advanced_stats
+Total images: 116
+Classes: ['low_veg', 'water', 'trees']
+Original features: 54
+Selected features: 20
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.7917
+CV Accuracy: 0.8457 ± 0.0675
+
+Top 20 selected features:
+  1. R_p25: 0.6874
+  2. R_p50: 0.6481
+  3. R_p90: 0.6484
+  4. G_mean: 0.6424
+  5. G_skew: 0.6873
+  6. G_cv: 0.6585
+  7. G_p25: 0.7388
+  8. G_p50: 0.6811
+  9. G_p75: 0.6698
+  10. G_iqr: 0.6548
+  11. G_grad_mean: 0.6607
+  12. B_mean: 0.6708
+  13. B_skew: 0.7405
+  14. B_kurt: 0.6362
+  15. B_cv: 0.7599
+  16. B_p10: 0.7348
+  17. B_p25: 0.7629
+  18. B_p50: 0.7337
+  19. B_p90: 0.6397
+  20. B_grad_mean: 0.7299
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/assatigue/original/k20/advanced_stats
+================================================================================

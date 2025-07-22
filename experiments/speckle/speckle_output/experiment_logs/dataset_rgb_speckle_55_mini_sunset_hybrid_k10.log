@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_55/mini
+Area: sunset
+Feature Method: hybrid
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (15, 540)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['B_range', 'B_kurt', 'R_wst_std_0', 'R_wst_std_5', 'B_wst_std_2', 'B_wst_std_5', 'B_wst_std_6', 'B_wst_std_7', 'B_wst_std_9', 'B_wst_std_67']
+Feature scores: [1.02415011 0.77584804 0.83537185 0.86608373 0.76066286 0.65949883
+ 0.66743534 0.67180042 0.81973693 0.65854645]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_55/mini
+Feature method: hybrid
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 540
+Selected features: 10
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 1.0000 ± 0.0000
+
+Top 10 selected features:
+  1. B_range: 1.0242
+  2. B_kurt: 0.7758
+  3. R_wst_std_0: 0.8354
+  4. R_wst_std_5: 0.8661
+  5. B_wst_std_2: 0.7607
+  6. B_wst_std_5: 0.6595
+  7. B_wst_std_6: 0.6674
+  8. B_wst_std_7: 0.6718
+  9. B_wst_std_9: 0.8197
+  10. B_wst_std_67: 0.6585
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/sunset/mini/k10/hybrid
+================================================================================

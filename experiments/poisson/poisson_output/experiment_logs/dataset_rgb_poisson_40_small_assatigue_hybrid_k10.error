@@ -1,0 +1,4 @@
+Loading assatigue/low_veg:   0%|          | 0/15 [00:00<?, ?it/s]Loading assatigue/low_veg: 100%|██████████| 15/15 [00:00<00:00, 689.54it/s]
+Loading assatigue/trees:   0%|          | 0/15 [00:00<?, ?it/s]Loading assatigue/trees: 100%|██████████| 15/15 [00:00<00:00, 1136.59it/s]
+Loading assatigue/water:   0%|          | 0/15 [00:00<?, ?it/s]Loading assatigue/water: 100%|██████████| 15/15 [00:00<00:00, 1132.96it/s]
+Extracting features:   0%|          | 0/45 [00:00<?, ?it/s]Extracting features:   2%|▏         | 1/45 [00:01<00:50,  1.16s/it]Extracting features:   4%|▍         | 2/45 [03:02<1:16:45, 107.10s/it]Extracting features:  91%|█████████ | 41/45 [03:47<00:17,  4.29s/it]  Extracting features: 100%|██████████| 45/45 [00:52<00:00,  1.16s/it]

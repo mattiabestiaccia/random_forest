@@ -1,0 +1,56 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Area: popolar
+Feature Method: wst
+K Features: 5
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst
+N Estimators: 3
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 5 images from popolar/low_veg
+Loading 5 images from popolar/trees
+Loading 5 images from popolar/water
+Loaded 15 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=5)...
+Selected features: ['R_wst_mean_71', 'B_wst_mean_74', 'B_wst_mean_78', 'B_wst_mean_80', 'B_wst_std_70']
+Feature scores: [0.9335705  0.9335705  0.97245939 0.92801495 0.93703852]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Feature method: wst
+Total images: 15
+Classes: ['low_veg', 'trees', 'water']
+Original features: 486
+Selected features: 5
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 1.0000 ± 0.0000
+
+Top 5 selected features:
+  1. R_wst_mean_71: 0.9336
+  2. B_wst_mean_74: 0.9336
+  3. B_wst_mean_78: 0.9725
+  4. B_wst_mean_80: 0.9280
+  5. B_wst_std_70: 0.9370
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k5/wst
+================================================================================

@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_30/mini
+Area: popolar
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats
+N Estimators: 3
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 5 images from popolar/low_veg
+Loading 5 images from popolar/trees
+Loading 5 images from popolar/water
+Loaded 15 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (15, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_mean', 'R_skew', 'R_cv', 'R_p10', 'R_p25', 'R_p50', 'R_p75', 'R_p90', 'G_var', 'G_p90', 'G_iqr', 'G_mad', 'B_mean', 'B_skew', 'B_cv', 'B_p10', 'B_p25', 'B_p50', 'B_p75', 'B_p90']
+Feature scores: [0.83015781 0.83626892 0.68716598 0.87092741 0.72836293 0.77515781
+ 0.79126892 1.38867392 0.66277685 1.06652866 0.64762219 0.69277685
+ 0.90648296 0.87074222 0.91134828 1.07378455 0.85822899 0.90703852
+ 0.85296444 1.24118955]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_30/mini
+Feature method: advanced_stats
+Total images: 15
+Classes: ['low_veg', 'trees', 'water']
+Original features: 54
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.8667 ± 0.1633
+
+Top 20 selected features:
+  1. R_mean: 0.8302
+  2. R_skew: 0.8363
+  3. R_cv: 0.6872
+  4. R_p10: 0.8709
+  5. R_p25: 0.7284
+  6. R_p50: 0.7752
+  7. R_p75: 0.7913
+  8. R_p90: 1.3887
+  9. G_var: 0.6628
+  10. G_p90: 1.0665
+  11. G_iqr: 0.6476
+  12. G_mad: 0.6928
+  13. B_mean: 0.9065
+  14. B_skew: 0.8707
+  15. B_cv: 0.9113
+  16. B_p10: 1.0738
+  17. B_p25: 0.8582
+  18. B_p50: 0.9070
+  19. B_p75: 0.8530
+  20. B_p90: 1.2412
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/popolar/mini/k20/advanced_stats
+================================================================================

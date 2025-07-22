@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_10/mini
+Area: sunset
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (15, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_std', 'R_var', 'R_range', 'R_iqr', 'R_mad', 'R_grad_mean', 'G_std', 'G_var', 'G_range', 'G_iqr', 'G_grad_mean', 'B_mean', 'B_std', 'B_var', 'B_min', 'B_skew', 'B_p75', 'B_iqr', 'B_mad', 'B_grad_mean']
+Feature scores: [0.71926074 0.80259407 0.68092741 0.70629778 0.85314963 1.0793401
+ 0.51807026 0.52695915 0.56092741 0.61203852 1.03489566 0.53862341
+ 0.62870518 0.71981629 1.55293318 0.55925833 0.53764698 0.73648296
+ 0.7493401  0.86537185]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_10/mini
+Feature method: advanced_stats
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 54
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.8000 ± 0.1633
+
+Top 20 selected features:
+  1. R_std: 0.7193
+  2. R_var: 0.8026
+  3. R_range: 0.6809
+  4. R_iqr: 0.7063
+  5. R_mad: 0.8531
+  6. R_grad_mean: 1.0793
+  7. G_std: 0.5181
+  8. G_var: 0.5270
+  9. G_range: 0.5609
+  10. G_iqr: 0.6120
+  11. G_grad_mean: 1.0349
+  12. B_mean: 0.5386
+  13. B_std: 0.6287
+  14. B_var: 0.7198
+  15. B_min: 1.5529
+  16. B_skew: 0.5593
+  17. B_p75: 0.5376
+  18. B_iqr: 0.7365
+  19. B_mad: 0.7493
+  20. B_grad_mean: 0.8654
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/sunset/mini/k20/advanced_stats
+================================================================================

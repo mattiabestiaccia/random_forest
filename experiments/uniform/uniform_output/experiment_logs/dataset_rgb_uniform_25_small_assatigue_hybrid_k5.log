@@ -1,0 +1,56 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_25/small
+Area: assatigue
+Feature Method: hybrid
+K Features: 5
+Output: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid
+N Estimators: 10
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 15 images from assatigue/low_veg
+Loading 15 images from assatigue/trees
+Loading 15 images from assatigue/water
+Loaded 45 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (45, 540)
+Applying SelectKBest feature selection (k=5)...
+Selected features: ['R_min', 'R_iqr', 'R_mad', 'G_min', 'G_range']
+Feature scores: [1.0053316  0.97048511 0.97123467 0.96652801 0.96597813]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_25/small
+Feature method: hybrid
+Total images: 45
+Classes: ['low_veg', 'trees', 'water']
+Original features: 540
+Selected features: 5
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9778 ± 0.0444
+
+Top 5 selected features:
+  1. R_min: 1.0053
+  2. R_iqr: 0.9705
+  3. R_mad: 0.9712
+  4. G_min: 0.9665
+  5. G_range: 0.9660
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_25/assatigue/small/k5/hybrid
+================================================================================

@@ -1,0 +1,56 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/mini
+Area: sunset
+Feature Method: wst
+K Features: 5
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=5)...
+Selected features: ['R_wst_mean_9', 'R_wst_std_0', 'R_wst_std_11', 'G_wst_mean_10', 'B_wst_std_12']
+Feature scores: [0.90426074 0.96600677 1.02870518 0.88759407 0.88203852]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/mini
+Feature method: wst
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 486
+Selected features: 5
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 1.0000 ± 0.0000
+
+Top 5 selected features:
+  1. R_wst_mean_9: 0.9043
+  2. R_wst_std_0: 0.9660
+  3. R_wst_std_11: 1.0287
+  4. G_wst_mean_10: 0.8876
+  5. B_wst_std_12: 0.8820
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k5/wst
+================================================================================

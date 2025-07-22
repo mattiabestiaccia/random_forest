@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_40/original
+Area: popolar
+Feature Method: wst
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst
+N Estimators: 50
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 41 images from popolar/low_veg
+Loading 40 images from popolar/trees
+Loading 40 images from popolar/water
+Loaded 121 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (121, 486)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_wst_mean_0', 'R_wst_mean_9', 'R_wst_mean_10', 'R_wst_mean_11', 'R_wst_mean_15', 'R_wst_mean_16', 'R_wst_std_0', 'R_wst_std_14', 'R_wst_std_15', 'R_wst_std_16', 'G_wst_mean_9', 'G_wst_mean_10', 'G_wst_mean_11', 'G_wst_mean_14', 'G_wst_mean_15', 'G_wst_mean_16', 'G_wst_std_0', 'G_wst_std_16', 'B_wst_mean_0', 'B_wst_std_0']
+Feature scores: [0.83162548 0.76158849 0.72793828 0.69545203 0.73304118 0.79301023
+ 0.98113452 0.71752797 0.7421781  0.71923411 0.81699801 0.73106385
+ 0.71360603 0.71559262 0.7599059  0.88455604 0.98424993 0.71527898
+ 0.89360244 0.8644783 ]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_40/original
+Feature method: wst
+Total images: 121
+Classes: ['low_veg', 'trees', 'water']
+Original features: 486
+Selected features: 20
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.9200
+CV Accuracy: 0.9667 ± 0.0312
+
+Top 20 selected features:
+  1. R_wst_mean_0: 0.8316
+  2. R_wst_mean_9: 0.7616
+  3. R_wst_mean_10: 0.7279
+  4. R_wst_mean_11: 0.6955
+  5. R_wst_mean_15: 0.7330
+  6. R_wst_mean_16: 0.7930
+  7. R_wst_std_0: 0.9811
+  8. R_wst_std_14: 0.7175
+  9. R_wst_std_15: 0.7422
+  10. R_wst_std_16: 0.7192
+  11. G_wst_mean_9: 0.8170
+  12. G_wst_mean_10: 0.7311
+  13. G_wst_mean_11: 0.7136
+  14. G_wst_mean_14: 0.7156
+  15. G_wst_mean_15: 0.7599
+  16. G_wst_mean_16: 0.8846
+  17. G_wst_std_0: 0.9842
+  18. G_wst_std_16: 0.7153
+  19. B_wst_mean_0: 0.8936
+  20. B_wst_std_0: 0.8645
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_40/popolar/original/k20/wst
+================================================================================

@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_55/original
+Area: popolar
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats
+N Estimators: 50
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 41 images from popolar/low_veg
+Loading 40 images from popolar/trees
+Loading 40 images from popolar/water
+Loaded 121 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (121, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_mean', 'R_skew', 'R_cv', 'R_p10', 'R_p25', 'R_p50', 'R_p75', 'R_grad_mean', 'G_cv', 'B_mean', 'B_var', 'B_skew', 'B_cv', 'B_p10', 'B_p25', 'B_p50', 'B_p75', 'B_p90', 'B_iqr', 'B_grad_mean']
+Feature scores: [0.879405   0.93049586 0.95027877 0.90552913 0.95575189 0.87333611
+ 0.84744564 0.85293625 0.68409577 0.88973948 0.68054105 0.95298337
+ 0.97945313 0.93731702 0.95813241 0.93063341 0.86392335 0.71109565
+ 0.71562518 0.89593324]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_55/original
+Feature method: advanced_stats
+Total images: 121
+Classes: ['low_veg', 'trees', 'water']
+Original features: 54
+Selected features: 20
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.9200
+CV Accuracy: 0.9340 ± 0.0330
+
+Top 20 selected features:
+  1. R_mean: 0.8794
+  2. R_skew: 0.9305
+  3. R_cv: 0.9503
+  4. R_p10: 0.9055
+  5. R_p25: 0.9558
+  6. R_p50: 0.8733
+  7. R_p75: 0.8474
+  8. R_grad_mean: 0.8529
+  9. G_cv: 0.6841
+  10. B_mean: 0.8897
+  11. B_var: 0.6805
+  12. B_skew: 0.9530
+  13. B_cv: 0.9795
+  14. B_p10: 0.9373
+  15. B_p25: 0.9581
+  16. B_p50: 0.9306
+  17. B_p75: 0.8639
+  18. B_p90: 0.7111
+  19. B_iqr: 0.7156
+  20. B_grad_mean: 0.8959
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_55/popolar/original/k20/advanced_stats
+================================================================================

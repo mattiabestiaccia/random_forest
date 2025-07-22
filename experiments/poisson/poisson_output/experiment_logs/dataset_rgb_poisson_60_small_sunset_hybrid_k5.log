@@ -1,0 +1,56 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/small
+Area: sunset
+Feature Method: hybrid
+K Features: 5
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid
+N Estimators: 10
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 15 images from sunset/garden
+Loading 15 images from sunset/low_veg
+Loading 15 images from sunset/trees
+Loaded 45 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (45, 540)
+Applying SelectKBest feature selection (k=5)...
+Selected features: ['R_wst_mean_10', 'G_wst_mean_11', 'B_wst_mean_9', 'B_wst_mean_12', 'B_wst_mean_13']
+Feature scores: [0.87475527 0.9012741  0.87647676 0.89648311 0.93843252]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/small
+Feature method: hybrid
+Total images: 45
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 540
+Selected features: 5
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9333 ± 0.0544
+
+Top 5 selected features:
+  1. R_wst_mean_10: 0.8748
+  2. G_wst_mean_11: 0.9013
+  3. B_wst_mean_9: 0.8765
+  4. B_wst_mean_12: 0.8965
+  5. B_wst_mean_13: 0.9384
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/small/k5/hybrid
+================================================================================

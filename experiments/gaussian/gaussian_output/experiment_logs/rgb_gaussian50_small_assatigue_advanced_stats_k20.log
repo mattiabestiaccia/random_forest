@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/small
+Area: assatigue
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats
+N Estimators: 10
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 15 images from assatigue/low_veg
+Loading 15 images from assatigue/trees
+Loading 15 images from assatigue/water
+Loaded 45 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (45, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_mean', 'R_skew', 'R_cv', 'R_p25', 'R_p50', 'R_p75', 'R_iqr', 'G_mean', 'G_skew', 'G_cv', 'G_p25', 'G_p50', 'G_p75', 'B_mean', 'B_skew', 'B_cv', 'B_p25', 'B_p50', 'B_p75', 'B_grad_mean']
+Feature scores: [0.69979672 0.66275969 0.69708067 0.67467327 0.68316533 0.61730113
+ 0.54357533 0.69764505 0.68807715 0.68238851 0.6208453  0.69961154
+ 0.61031701 0.65135757 0.69385316 0.65823588 0.66690431 0.66601365
+ 0.65059919 0.52595764]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/small
+Feature method: advanced_stats
+Total images: 45
+Classes: ['low_veg', 'trees', 'water']
+Original features: 54
+Selected features: 20
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.7778
+CV Accuracy: 0.8667 ± 0.0831
+
+Top 20 selected features:
+  1. R_mean: 0.6998
+  2. R_skew: 0.6628
+  3. R_cv: 0.6971
+  4. R_p25: 0.6747
+  5. R_p50: 0.6832
+  6. R_p75: 0.6173
+  7. R_iqr: 0.5436
+  8. G_mean: 0.6976
+  9. G_skew: 0.6881
+  10. G_cv: 0.6824
+  11. G_p25: 0.6208
+  12. G_p50: 0.6996
+  13. G_p75: 0.6103
+  14. B_mean: 0.6514
+  15. B_skew: 0.6939
+  16. B_cv: 0.6582
+  17. B_p25: 0.6669
+  18. B_p50: 0.6660
+  19. B_p75: 0.6506
+  20. B_grad_mean: 0.5260
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/assatigue/small/k20/advanced_stats
+================================================================================

@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/mini
+Area: sunset
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (15, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_std', 'R_var', 'R_max', 'R_iqr', 'R_mad', 'R_grad_mean', 'G_std', 'G_max', 'G_range', 'G_grad_mean', 'B_mean', 'B_std', 'B_var', 'B_skew', 'B_kurt', 'B_p10', 'B_p50', 'B_p75', 'B_mad', 'B_grad_mean']
+Feature scores: [0.5914036  0.65418137 0.55656159 0.51626892 0.58084804 0.69187979
+ 0.53807026 0.55891201 0.53473693 0.74687979 0.51306786 0.58346709
+ 0.62854645 0.60947404 0.51875328 0.55174511 0.5232819  0.51700725
+ 0.59894328 0.64918137]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/mini
+Feature method: advanced_stats
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 54
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.6667
+CV Accuracy: 0.8000 ± 0.1633
+
+Top 20 selected features:
+  1. R_std: 0.5914
+  2. R_var: 0.6542
+  3. R_max: 0.5566
+  4. R_iqr: 0.5163
+  5. R_mad: 0.5808
+  6. R_grad_mean: 0.6919
+  7. G_std: 0.5381
+  8. G_max: 0.5589
+  9. G_range: 0.5347
+  10. G_grad_mean: 0.7469
+  11. B_mean: 0.5131
+  12. B_std: 0.5835
+  13. B_var: 0.6285
+  14. B_skew: 0.6095
+  15. B_kurt: 0.5188
+  16. B_p10: 0.5517
+  17. B_p50: 0.5233
+  18. B_p75: 0.5170
+  19. B_mad: 0.5989
+  20. B_grad_mean: 0.6492
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/advanced_stats
+================================================================================

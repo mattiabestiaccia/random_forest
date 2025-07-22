@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_15/small
+Area: sunset
+Feature Method: wst
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst
+N Estimators: 10
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 15 images from sunset/garden
+Loading 15 images from sunset/low_veg
+Loading 15 images from sunset/trees
+Loaded 45 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (45, 486)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['R_wst_mean_10', 'R_wst_mean_11', 'R_wst_mean_12', 'G_wst_mean_10', 'B_wst_mean_9', 'B_wst_mean_10', 'B_wst_mean_11', 'B_wst_mean_12', 'B_wst_mean_13', 'B_wst_mean_14']
+Feature scores: [0.8551755  0.80354403 0.83341311 0.81867062 0.81645108 0.88498535
+ 0.88871551 0.90777139 0.96593718 0.89330987]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_15/small
+Feature method: wst
+Total images: 45
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 486
+Selected features: 10
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9111 ± 0.0444
+
+Top 10 selected features:
+  1. R_wst_mean_10: 0.8552
+  2. R_wst_mean_11: 0.8035
+  3. R_wst_mean_12: 0.8334
+  4. G_wst_mean_10: 0.8187
+  5. B_wst_mean_9: 0.8165
+  6. B_wst_mean_10: 0.8850
+  7. B_wst_mean_11: 0.8887
+  8. B_wst_mean_12: 0.9078
+  9. B_wst_mean_13: 0.9659
+  10. B_wst_mean_14: 0.8933
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_15/sunset/small/k10/wst
+================================================================================

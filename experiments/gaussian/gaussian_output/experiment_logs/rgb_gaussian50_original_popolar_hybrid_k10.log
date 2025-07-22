@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/original
+Area: popolar
+Feature Method: hybrid
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid
+N Estimators: 50
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 41 images from popolar/low_veg
+Loading 40 images from popolar/trees
+Loading 40 images from popolar/water
+Loaded 121 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (121, 540)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['R_cv', 'R_p25', 'B_mean', 'B_skew', 'B_cv', 'B_p25', 'B_p50', 'R_wst_std_0', 'G_wst_std_0', 'B_wst_mean_0']
+Feature scores: [0.87925858 0.88228888 0.8740109  0.88482904 0.88383194 0.90001343
+ 0.88370408 0.92731197 0.93908338 0.88555427]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_50/original
+Feature method: hybrid
+Total images: 121
+Classes: ['low_veg', 'trees', 'water']
+Original features: 540
+Selected features: 10
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.9600
+CV Accuracy: 0.9340 ± 0.0423
+
+Top 10 selected features:
+  1. R_cv: 0.8793
+  2. R_p25: 0.8823
+  3. B_mean: 0.8740
+  4. B_skew: 0.8848
+  5. B_cv: 0.8838
+  6. B_p25: 0.9000
+  7. B_p50: 0.8837
+  8. R_wst_std_0: 0.9273
+  9. G_wst_std_0: 0.9391
+  10. B_wst_mean_0: 0.8856
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian50/popolar/original/k10/hybrid
+================================================================================

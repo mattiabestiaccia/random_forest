@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/small
+Area: assatigue
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats
+N Estimators: 10
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 15 images from assatigue/low_veg
+Loading 15 images from assatigue/trees
+Loading 15 images from assatigue/water
+Loaded 45 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (45, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_mean', 'R_std', 'R_var', 'R_min', 'R_cv', 'R_p50', 'R_iqr', 'R_mad', 'G_std', 'G_var', 'G_min', 'G_cv', 'G_p10', 'G_iqr', 'G_mad', 'B_min', 'B_skew', 'B_cv', 'B_p10', 'B_p25']
+Feature scores: [0.72884434 0.91610159 0.91185917 0.72474221 0.87056999 0.74416794
+ 0.80271999 0.93001558 0.85092947 0.84582923 0.73998277 0.89677188
+ 0.76675495 0.88458188 0.88980585 0.78764779 0.75346696 0.84780544
+ 0.82100539 0.77097012]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/small
+Feature method: advanced_stats
+Total images: 45
+Classes: ['low_veg', 'trees', 'water']
+Original features: 54
+Selected features: 20
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.8889
+CV Accuracy: 0.9111 ± 0.0831
+
+Top 20 selected features:
+  1. R_mean: 0.7288
+  2. R_std: 0.9161
+  3. R_var: 0.9119
+  4. R_min: 0.7247
+  5. R_cv: 0.8706
+  6. R_p50: 0.7442
+  7. R_iqr: 0.8027
+  8. R_mad: 0.9300
+  9. G_std: 0.8509
+  10. G_var: 0.8458
+  11. G_min: 0.7400
+  12. G_cv: 0.8968
+  13. G_p10: 0.7668
+  14. G_iqr: 0.8846
+  15. G_mad: 0.8898
+  16. B_min: 0.7876
+  17. B_skew: 0.7535
+  18. B_cv: 0.8478
+  19. B_p10: 0.8210
+  20. B_p25: 0.7710
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/assatigue/small/k20/advanced_stats
+================================================================================

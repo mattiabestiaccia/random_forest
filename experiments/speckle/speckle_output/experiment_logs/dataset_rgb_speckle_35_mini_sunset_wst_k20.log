@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Area: sunset
+Feature Method: wst
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_wst_std_0', 'R_wst_std_1', 'R_wst_std_2', 'R_wst_std_5', 'R_wst_std_44', 'R_wst_std_70', 'B_wst_mean_12', 'B_wst_mean_14', 'B_wst_mean_16', 'B_wst_std_2', 'B_wst_std_3', 'B_wst_std_6', 'B_wst_std_7', 'B_wst_std_9', 'B_wst_std_10', 'B_wst_std_11', 'B_wst_std_12', 'B_wst_std_14', 'B_wst_std_39', 'B_wst_std_60']
+Feature scores: [0.78537185 0.63325545 0.67941706 0.74767103 0.68655992 0.6343377
+ 0.6214036  0.64584804 0.6529909  0.64613905 0.6729909  0.67854645
+ 0.71965756 0.61029249 0.6529909  0.6495782  0.70695915 0.65579273
+ 0.64058349 0.6129909 ]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Feature method: wst
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 486
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.6000 ± 0.2494
+
+Top 20 selected features:
+  1. R_wst_std_0: 0.7854
+  2. R_wst_std_1: 0.6333
+  3. R_wst_std_2: 0.6794
+  4. R_wst_std_5: 0.7477
+  5. R_wst_std_44: 0.6866
+  6. R_wst_std_70: 0.6343
+  7. B_wst_mean_12: 0.6214
+  8. B_wst_mean_14: 0.6458
+  9. B_wst_mean_16: 0.6530
+  10. B_wst_std_2: 0.6461
+  11. B_wst_std_3: 0.6730
+  12. B_wst_std_6: 0.6785
+  13. B_wst_std_7: 0.7197
+  14. B_wst_std_9: 0.6103
+  15. B_wst_std_10: 0.6530
+  16. B_wst_std_11: 0.6496
+  17. B_wst_std_12: 0.7070
+  18. B_wst_std_14: 0.6558
+  19. B_wst_std_39: 0.6406
+  20. B_wst_std_60: 0.6130
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/mini/k20/wst
+================================================================================

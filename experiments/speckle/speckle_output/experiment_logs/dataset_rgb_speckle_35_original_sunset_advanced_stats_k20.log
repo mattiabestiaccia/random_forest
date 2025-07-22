@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/original
+Area: sunset
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats
+N Estimators: 50
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 40 images from sunset/garden
+Loading 40 images from sunset/low_veg
+Loading 40 images from sunset/trees
+Loaded 120 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (120, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_std', 'R_var', 'R_p90', 'R_mad', 'G_cv', 'B_mean', 'B_std', 'B_var', 'B_range', 'B_skew', 'B_kurt', 'B_cv', 'B_p10', 'B_p25', 'B_p50', 'B_p75', 'B_p90', 'B_iqr', 'B_mad', 'B_grad_mean']
+Feature scores: [0.49691403 0.49227386 0.52481556 0.46792607 0.55663643 0.66924709
+ 0.60415161 0.6021555  0.4628478  0.53735688 0.5620454  0.79918527
+ 0.68746108 0.66450451 0.6046164  0.65028536 0.5587245  0.55880648
+ 0.65615984 0.56548901]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/original
+Feature method: advanced_stats
+Total images: 120
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 54
+Selected features: 20
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9833 ± 0.0204
+
+Top 20 selected features:
+  1. R_std: 0.4969
+  2. R_var: 0.4923
+  3. R_p90: 0.5248
+  4. R_mad: 0.4679
+  5. G_cv: 0.5566
+  6. B_mean: 0.6692
+  7. B_std: 0.6042
+  8. B_var: 0.6022
+  9. B_range: 0.4628
+  10. B_skew: 0.5374
+  11. B_kurt: 0.5620
+  12. B_cv: 0.7992
+  13. B_p10: 0.6875
+  14. B_p25: 0.6645
+  15. B_p50: 0.6046
+  16. B_p75: 0.6503
+  17. B_p90: 0.5587
+  18. B_iqr: 0.5588
+  19. B_mad: 0.6562
+  20. B_grad_mean: 0.5655
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/sunset/original/k20/advanced_stats
+================================================================================

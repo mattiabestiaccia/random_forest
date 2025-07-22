@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_30/mini
+Area: sunset
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (15, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_std', 'R_var', 'R_kurt', 'R_iqr', 'R_mad', 'G_std', 'G_var', 'G_mad', 'B_mean', 'B_std', 'B_var', 'B_skew', 'B_kurt', 'B_cv', 'B_p25', 'B_p50', 'B_p75', 'B_p90', 'B_mad', 'B_grad_mean']
+Feature scores: [0.43264217 0.46161043 0.39652866 0.57576868 0.51557868 0.44042476
+ 0.44217079 0.48076868 0.44777685 0.52430884 0.55430884 0.4917427
+ 0.41055389 0.50459984 1.06124487 0.5075123  0.52811836 0.44097551
+ 0.53208662 0.49319773]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_gaussian_30/mini
+Feature method: advanced_stats
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 54
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.6667 ± 0.2108
+
+Top 20 selected features:
+  1. R_std: 0.4326
+  2. R_var: 0.4616
+  3. R_kurt: 0.3965
+  4. R_iqr: 0.5758
+  5. R_mad: 0.5156
+  6. G_std: 0.4404
+  7. G_var: 0.4422
+  8. G_mad: 0.4808
+  9. B_mean: 0.4478
+  10. B_std: 0.5243
+  11. B_var: 0.5543
+  12. B_skew: 0.4917
+  13. B_kurt: 0.4106
+  14. B_cv: 0.5046
+  15. B_p25: 1.0612
+  16. B_p50: 0.5075
+  17. B_p75: 0.5281
+  18. B_p90: 0.4410
+  19. B_mad: 0.5321
+  20. B_grad_mean: 0.4932
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/gaussian_output/rgb_gaussian30/sunset/mini/k20/advanced_stats
+================================================================================

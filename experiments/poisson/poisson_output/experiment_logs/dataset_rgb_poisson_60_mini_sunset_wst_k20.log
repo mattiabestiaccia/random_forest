@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/mini
+Area: sunset
+Feature Method: wst
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst
+N Estimators: 3
+================================================================================
+Loading images from sunset area...
+Found classes in sunset: ['garden', 'low_veg', 'trees']
+Loading 5 images from sunset/garden
+Loading 5 images from sunset/low_veg
+Loading 5 images from sunset/trees
+Loaded 15 images with 3 classes
+Classes: [np.str_('garden'), np.str_('low_veg'), np.str_('trees')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_wst_mean_9', 'R_wst_mean_10', 'R_wst_mean_11', 'R_wst_mean_13', 'R_wst_std_0', 'R_wst_std_10', 'R_wst_std_11', 'R_wst_std_12', 'R_wst_std_13', 'G_wst_mean_9', 'G_wst_mean_10', 'G_wst_mean_11', 'G_wst_mean_13', 'G_wst_std_10', 'G_wst_std_11', 'G_wst_std_12', 'G_wst_std_13', 'B_wst_mean_14', 'B_wst_std_12', 'B_wst_std_14']
+Feature scores: [0.90981629 0.83203852 0.81870518 0.80955174 0.92711788 0.79314963
+ 1.04259407 0.93963111 0.87852    0.7814036  0.87807026 0.84981629
+ 0.81682447 0.80600677 0.85267344 0.77677397 0.82801495 0.79314963
+ 0.78203852 0.79579273]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: sunset
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/mini
+Feature method: wst
+Total images: 15
+Classes: ['garden', 'low_veg', 'trees']
+Original features: 486
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9333 ± 0.1333
+
+Top 20 selected features:
+  1. R_wst_mean_9: 0.9098
+  2. R_wst_mean_10: 0.8320
+  3. R_wst_mean_11: 0.8187
+  4. R_wst_mean_13: 0.8096
+  5. R_wst_std_0: 0.9271
+  6. R_wst_std_10: 0.7931
+  7. R_wst_std_11: 1.0426
+  8. R_wst_std_12: 0.9396
+  9. R_wst_std_13: 0.8785
+  10. G_wst_mean_9: 0.7814
+  11. G_wst_mean_10: 0.8781
+  12. G_wst_mean_11: 0.8498
+  13. G_wst_mean_13: 0.8168
+  14. G_wst_std_10: 0.8060
+  15. G_wst_std_11: 0.8527
+  16. G_wst_std_12: 0.7768
+  17. G_wst_std_13: 0.8280
+  18. B_wst_mean_14: 0.7931
+  19. B_wst_std_12: 0.7820
+  20. B_wst_std_14: 0.7958
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/sunset/mini/k20/wst
+================================================================================

@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Area: popolar
+Feature Method: wst
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst
+N Estimators: 3
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 5 images from popolar/low_veg
+Loading 5 images from popolar/trees
+Loading 5 images from popolar/water
+Loaded 15 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_wst_mean_44', 'R_wst_mean_45', 'R_wst_mean_71', 'B_wst_mean_0', 'B_wst_mean_6', 'B_wst_mean_8', 'B_wst_mean_21', 'B_wst_mean_29', 'B_wst_mean_47', 'B_wst_mean_63', 'B_wst_mean_66', 'B_wst_mean_70', 'B_wst_mean_73', 'B_wst_mean_74', 'B_wst_mean_75', 'B_wst_mean_77', 'B_wst_mean_78', 'B_wst_mean_79', 'B_wst_mean_80', 'B_wst_std_78']
+Feature scores: [0.90912606 0.97801495 0.92801495 0.97407555 0.89960225 0.90912606
+ 0.97579273 0.86960225 0.87807026 0.87023717 0.86626892 0.91677397
+ 0.96733119 0.86690384 0.86690384 0.90912606 0.90579273 0.92801495
+ 0.95023717 0.85515781]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Feature method: wst
+Total images: 15
+Classes: ['low_veg', 'trees', 'water']
+Original features: 486
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 1.0000 ± 0.0000
+
+Top 20 selected features:
+  1. R_wst_mean_44: 0.9091
+  2. R_wst_mean_45: 0.9780
+  3. R_wst_mean_71: 0.9280
+  4. B_wst_mean_0: 0.9741
+  5. B_wst_mean_6: 0.8996
+  6. B_wst_mean_8: 0.9091
+  7. B_wst_mean_21: 0.9758
+  8. B_wst_mean_29: 0.8696
+  9. B_wst_mean_47: 0.8781
+  10. B_wst_mean_63: 0.8702
+  11. B_wst_mean_66: 0.8663
+  12. B_wst_mean_70: 0.9168
+  13. B_wst_mean_73: 0.9673
+  14. B_wst_mean_74: 0.8669
+  15. B_wst_mean_75: 0.8669
+  16. B_wst_mean_77: 0.9091
+  17. B_wst_mean_78: 0.9058
+  18. B_wst_mean_79: 0.9280
+  19. B_wst_mean_80: 0.9502
+  20. B_wst_std_78: 0.8552
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/mini/k20/wst
+================================================================================

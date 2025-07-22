@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Area: assatigue
+Feature Method: wst
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst
+N Estimators: 3
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 5 images from assatigue/low_veg
+Loading 5 images from assatigue/trees
+Loading 5 images from assatigue/water
+Loaded 15 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting wst features...
+Feature matrix shape: (15, 486)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['B_wst_mean_2', 'B_wst_mean_18', 'B_wst_mean_20', 'B_wst_mean_21', 'B_wst_mean_30', 'B_wst_mean_31', 'B_wst_mean_40', 'B_wst_mean_48', 'B_wst_std_37', 'B_wst_std_76']
+Feature scores: [0.8864036  0.88537185 0.89195915 0.86870518 1.00648296 0.88426074
+ 0.8814036  0.88426074 0.87307026 0.87740889]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/mini
+Feature method: wst
+Total images: 15
+Classes: ['low_veg', 'trees', 'water']
+Original features: 486
+Selected features: 10
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.8000 ± 0.2667
+
+Top 10 selected features:
+  1. B_wst_mean_2: 0.8864
+  2. B_wst_mean_18: 0.8854
+  3. B_wst_mean_20: 0.8920
+  4. B_wst_mean_21: 0.8687
+  5. B_wst_mean_30: 1.0065
+  6. B_wst_mean_31: 0.8843
+  7. B_wst_mean_40: 0.8814
+  8. B_wst_mean_48: 0.8843
+  9. B_wst_std_37: 0.8731
+  10. B_wst_std_76: 0.8774
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/mini/k10/wst
+================================================================================

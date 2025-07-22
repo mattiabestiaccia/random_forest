@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_10/mini
+Area: popolar
+Feature Method: hybrid
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid
+N Estimators: 3
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 5 images from popolar/low_veg
+Loading 5 images from popolar/trees
+Loading 5 images from popolar/water
+Loaded 15 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (15, 540)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_min', 'R_max', 'R_p10', 'R_p25', 'R_iqr', 'R_mad', 'R_grad_mean', 'G_min', 'G_max', 'G_range', 'G_mad', 'B_mean', 'B_min', 'B_max', 'B_p10', 'B_p25', 'B_p50', 'R_wst_mean_0', 'G_wst_std_0', 'B_wst_mean_0']
+Feature scores: [1.50029249 1.16071336 0.90426074 0.840634   1.00648296 0.93489566
+ 0.83973693 0.96759407 1.08544881 0.98426074 0.85426074 0.90148296
+ 1.3614036  1.27668979 1.01267344 0.97711788 0.86071336 0.90515781
+ 0.83711788 0.89814963]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_uniform_10/mini
+Feature method: hybrid
+Total images: 15
+Classes: ['low_veg', 'trees', 'water']
+Original features: 540
+Selected features: 20
+N estimators: 3
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.6667
+CV Accuracy: 1.0000 ± 0.0000
+
+Top 20 selected features:
+  1. R_min: 1.5003
+  2. R_max: 1.1607
+  3. R_p10: 0.9043
+  4. R_p25: 0.8406
+  5. R_iqr: 1.0065
+  6. R_mad: 0.9349
+  7. R_grad_mean: 0.8397
+  8. G_min: 0.9676
+  9. G_max: 1.0854
+  10. G_range: 0.9843
+  11. G_mad: 0.8543
+  12. B_mean: 0.9015
+  13. B_min: 1.3614
+  14. B_max: 1.2767
+  15. B_p10: 1.0127
+  16. B_p25: 0.9771
+  17. B_p50: 0.8607
+  18. R_wst_mean_0: 0.9052
+  19. G_wst_std_0: 0.8371
+  20. B_wst_mean_0: 0.8981
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/uniform_output/dataset_rgb_uniform_10/popolar/mini/k20/hybrid
+================================================================================

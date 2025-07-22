@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/original
+Area: popolar
+Feature Method: hybrid
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid
+N Estimators: 50
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 41 images from popolar/low_veg
+Loading 40 images from popolar/trees
+Loading 40 images from popolar/water
+Loaded 121 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (121, 540)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['R_cv', 'R_p10', 'R_p25', 'B_skew', 'B_cv', 'B_p10', 'B_p25', 'R_wst_std_0', 'G_wst_std_0', 'B_wst_mean_7']
+Feature scores: [0.99495038 0.96503324 0.9429663  0.94540572 1.05107655 0.97868268
+ 0.96390311 1.02997577 1.03931677 0.94403998]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/original
+Feature method: hybrid
+Total images: 121
+Classes: ['low_veg', 'trees', 'water']
+Original features: 540
+Selected features: 10
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.9600
+CV Accuracy: 0.9670 ± 0.0311
+
+Top 10 selected features:
+  1. R_cv: 0.9950
+  2. R_p10: 0.9650
+  3. R_p25: 0.9430
+  4. B_skew: 0.9454
+  5. B_cv: 1.0511
+  6. B_p10: 0.9787
+  7. B_p25: 0.9639
+  8. R_wst_std_0: 1.0300
+  9. G_wst_std_0: 1.0393
+  10. B_wst_mean_7: 0.9440
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/popolar/original/k10/hybrid
+================================================================================

@@ -1,0 +1,62 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/small
+Area: assatigue
+Feature Method: hybrid
+K Features: 10
+Output: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid
+N Estimators: 10
+================================================================================
+Loading images from assatigue area...
+Found classes in assatigue: ['low_veg', 'trees', 'water']
+Loading 15 images from assatigue/low_veg
+Loading 15 images from assatigue/trees
+Loading 15 images from assatigue/water
+Loaded 45 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting hybrid features...
+Feature matrix shape: (45, 540)
+Applying SelectKBest feature selection (k=10)...
+Selected features: ['G_skew', 'G_cv', 'G_p10', 'B_skew', 'B_cv', 'B_grad_mean', 'R_wst_std_0', 'G_wst_mean_23', 'G_wst_mean_29', 'G_wst_std_0']
+Feature scores: [0.87070477 0.8428052  0.80032478 0.84198928 0.87121221 0.80778614
+ 0.94857017 0.81138625 0.80799778 0.90259423]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: assatigue
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_speckle_35/small
+Feature method: hybrid
+Total images: 45
+Classes: ['low_veg', 'trees', 'water']
+Original features: 540
+Selected features: 10
+N estimators: 10
+
+PERFORMANCE RESULTS:
+Test Accuracy: 0.7778
+CV Accuracy: 0.8889 ± 0.0703
+
+Top 10 selected features:
+  1. G_skew: 0.8707
+  2. G_cv: 0.8428
+  3. G_p10: 0.8003
+  4. B_skew: 0.8420
+  5. B_cv: 0.8712
+  6. B_grad_mean: 0.8078
+  7. R_wst_std_0: 0.9486
+  8. G_wst_mean_23: 0.8114
+  9. G_wst_mean_29: 0.8080
+  10. G_wst_std_0: 0.9026
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized/speckle_output/dataset_rgb_speckle_35/assatigue/small/k10/hybrid
+================================================================================

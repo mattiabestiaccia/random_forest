@@ -1,0 +1,74 @@
+================================================================================
+CONFIGURABLE RANDOM FOREST TRAINING SCRIPT
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/original
+Area: popolar
+Feature Method: advanced_stats
+K Features: 20
+Output: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats
+N Estimators: 50
+================================================================================
+Loading images from popolar area...
+Found classes in popolar: ['low_veg', 'trees', 'water']
+Loading 41 images from popolar/low_veg
+Loading 40 images from popolar/trees
+Loading 40 images from popolar/water
+Loaded 121 images with 3 classes
+Classes: [np.str_('low_veg'), np.str_('trees'), np.str_('water')]
+Image shape: (3, 128, 128)
+Extracting advanced_stats features...
+Feature matrix shape: (121, 54)
+Applying SelectKBest feature selection (k=20)...
+Selected features: ['R_std', 'R_var', 'R_min', 'R_range', 'R_cv', 'R_p10', 'R_p25', 'R_iqr', 'R_mad', 'G_std', 'G_var', 'G_min', 'G_cv', 'G_iqr', 'G_mad', 'B_mean', 'B_min', 'B_cv', 'B_p10', 'B_p25']
+Feature scores: [1.05655216 1.05655216 0.97373144 0.88515135 1.02570725 0.94339984
+ 0.94518002 0.89283105 0.99468675 1.0805191  1.07776428 0.87789889
+ 0.93554414 0.92357987 1.06831312 0.89894375 0.96859146 1.08321303
+ 0.9843844  0.98373307]
+Training final Random Forest model...
+Saving model and artifacts...
+Saved trained model: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats/trained_model.joblib
+Saved scaler: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats/scaler.joblib
+Saved feature selector: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats/feature_selector.joblib
+Saved feature information: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats/feature_names.json
+Saved experiment report: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats/experiment_report_with_model.json
+Saved usage instructions: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats/model_usage_instructions.md
+
+================================================================================
+TRAINING COMPLETED SUCCESSFULLY
+================================================================================
+Area: popolar
+Dataset: /home/brusc/Projects/random_forest/datasets/dataset_rgb_poisson_60/original
+Feature method: advanced_stats
+Total images: 121
+Classes: ['low_veg', 'trees', 'water']
+Original features: 54
+Selected features: 20
+N estimators: 50
+
+PERFORMANCE RESULTS:
+Test Accuracy: 1.0000
+CV Accuracy: 0.9833 ± 0.0204
+
+Top 20 selected features:
+  1. R_std: 1.0566
+  2. R_var: 1.0566
+  3. R_min: 0.9737
+  4. R_range: 0.8852
+  5. R_cv: 1.0257
+  6. R_p10: 0.9434
+  7. R_p25: 0.9452
+  8. R_iqr: 0.8928
+  9. R_mad: 0.9947
+  10. G_std: 1.0805
+  11. G_var: 1.0778
+  12. G_min: 0.8779
+  13. G_cv: 0.9355
+  14. G_iqr: 0.9236
+  15. G_mad: 1.0683
+  16. B_mean: 0.8989
+  17. B_min: 0.9686
+  18. B_cv: 1.0832
+  19. B_p10: 0.9844
+  20. B_p25: 0.9837
+
+Model and artifacts saved to: /home/brusc/Projects/random_forest/experiments_organized_2/poisson_output/dataset_rgb_poisson_60/popolar/original/k20/advanced_stats
+================================================================================
