@@ -18,11 +18,12 @@ This document presents a comprehensive gallery of all visualizations generated f
 *Comprehensive heatmap showing accuracy across all experimental conditions*
 
 ### Method Comparison
-![Accuracy vs Method Boxplot](experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_method_boxplot.png)
+<img src="experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_method_boxplot.png" alt="Accuracy vs Method Boxplot" />
+
 *Statistical comparison of feature extraction methods (WST, Advanced Stats, Hybrid)*
 
 ### Dataset Size Impact
-![Accuracy vs Dataset Size](experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![Accuracy vs Dataset Size](https://raw.githubusercontent.com/mattiabestiaccia/random_forest/main/experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
 *Overall performance improvement with dataset size (Mini → Small → Original)*
 
 ### Noise Robustness Overview
