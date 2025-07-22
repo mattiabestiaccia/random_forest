@@ -14,7 +14,7 @@ This document presents a comprehensive gallery of all visualizations generated f
 ## 🔍 High-Level Comparisons
 
 ### Overall Performance Summary
-![Accuracy Heatmap Summary](experiments/gaussian/gaussian_analysis/comparisons/accuracy_heatmap_summary.png)
+![Accuracy Heatmap Summary](experiments/gaussian/gaussian_analysis/comparisons/accuracy_heatmap_summary.png)![alt text](experiments/gaussian/gaussian_analysis/comparisons/accuracy_heatmap_summary.png)
 *Comprehensive heatmap showing accuracy across all experimental conditions*
 
 ### Method Comparison
