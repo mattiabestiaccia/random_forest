@@ -14,11 +14,11 @@ This document presents a comprehensive gallery of all visualizations generated f
 ## 🔍 High-Level Comparisons
 
 ### Overall Performance Summary
-![Accuracy Heatmap Summary](experiments/speckle/speckle_analysis/comparisons/accuracy_heatmap_summary.png)
+![Accuracy Heatmap Summary](experiments/speckle/speckle_analysis/comparisons/accuracy_heatmap_speckle_summary.png)
 *Comprehensive heatmap showing accuracy across all Speckle noise experimental conditions*
 
 ### Method Comparison
-![Accuracy vs Method Boxplot](experiments/speckle/speckle_analysis/comparisons/accuracy_vs_method_boxplot.png)
+![Accuracy vs Method Boxplot](experiments/speckle/speckle_analysis/comparisons/accuracy_vs_method_boxplot_speckle.png)
 *Statistical comparison of feature extraction methods (WST, Advanced Stats, Hybrid) under Speckle noise*
 
 ### Dataset Size Impact
@@ -26,8 +26,8 @@ This document presents a comprehensive gallery of all visualizations generated f
 *Overall performance improvement with dataset size under Speckle noise conditions*
 
 ### Noise Robustness Overview
-![Accuracy vs Noise Level](experiments/speckle/speckle_analysis/comparisons/accuracy_vs_noise_overall.png)
-*Performance degradation under different Speckle noise variances*
+![Accuracy vs Noise Level](experiments/speckle/speckle_analysis/comparisons/accuracy_vs_speckle_noise_overall.png)
+*Performance degradation under different Speckle noise variances (σ²=0.15, σ²=0.35, σ²=0.55)*
 
 ---
 
@@ -54,20 +54,44 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Speckle Noise Conditions
 
 #### K=2 Features
-![Speckle K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle_k2.png)
-*Performance vs dataset size under Speckle noise with k=2 features*
+![Speckle15 K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle15_k2.png)
+*Performance vs dataset size under Speckle noise (σ²=0.15) with k=2 features*
+
+![Speckle35 K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle35_k2.png)
+*Performance vs dataset size under Speckle noise (σ²=0.35) with k=2 features*
+
+![Speckle55 K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle55_k2.png)
+*Performance vs dataset size under Speckle noise (σ²=0.55) with k=2 features*
 
 #### K=5 Features
-![Speckle K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle_k5.png)
-*Performance vs dataset size under Speckle noise with k=5 features*
+![Speckle15 K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle15_k5.png)
+*Performance vs dataset size under Speckle noise (σ²=0.15) with k=5 features*
+
+![Speckle35 K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle35_k5.png)
+*Performance vs dataset size under Speckle noise (σ²=0.35) with k=5 features*
+
+![Speckle55 K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle55_k5.png)
+*Performance vs dataset size under Speckle noise (σ²=0.55) with k=5 features*
 
 #### K=10 Features
-![Speckle K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle_k10.png)
-*Performance vs dataset size under Speckle noise with k=10 features*
+![Speckle15 K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle15_k10.png)
+*Performance vs dataset size under Speckle noise (σ²=0.15) with k=10 features*
+
+![Speckle35 K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle35_k10.png)
+*Performance vs dataset size under Speckle noise (σ²=0.35) with k=10 features*
+
+![Speckle55 K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle55_k10.png)
+*Performance vs dataset size under Speckle noise (σ²=0.55) with k=10 features*
 
 #### K=20 Features
-![Speckle K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle_k20.png)
-*Performance vs dataset size under Speckle noise with k=20 features*
+![Speckle15 K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle15_k20.png)
+*Performance vs dataset size under Speckle noise (σ²=0.15) with k=20 features*
+
+![Speckle35 K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle35_k20.png)
+*Performance vs dataset size under Speckle noise (σ²=0.35) with k=20 features*
+
+![Speckle55 K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_dataset_speckle55_k20.png)
+*Performance vs dataset size under Speckle noise (σ²=0.55) with k=20 features*
 
 ---
 
@@ -90,16 +114,34 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Speckle Noise Conditions
 
 #### Mini Dataset
-![Speckle Mini](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle_mini.png)
-*Feature selection impact on mini dataset under Speckle noise*
+![Speckle15 Mini](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle15_mini.png)
+*Feature selection impact on mini dataset under Speckle noise (σ²=0.15)*
+
+![Speckle35 Mini](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle35_mini.png)
+*Feature selection impact on mini dataset under Speckle noise (σ²=0.35)*
+
+![Speckle55 Mini](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle55_mini.png)
+*Feature selection impact on mini dataset under Speckle noise (σ²=0.55)*
 
 #### Small Dataset
-![Speckle Small](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle_small.png)
-*Feature selection impact on small dataset under Speckle noise*
+![Speckle15 Small](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle15_small.png)
+*Feature selection impact on small dataset under Speckle noise (σ²=0.15)*
+
+![Speckle35 Small](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle35_small.png)
+*Feature selection impact on small dataset under Speckle noise (σ²=0.35)*
+
+![Speckle55 Small](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle55_small.png)
+*Feature selection impact on small dataset under Speckle noise (σ²=0.55)*
 
 #### Original Dataset
-![Speckle Original](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle_original.png)
-*Feature selection impact on original dataset under Speckle noise*
+![Speckle15 Original](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle15_original.png)
+*Feature selection impact on original dataset under Speckle noise (σ²=0.15)*
+
+![Speckle35 Original](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle35_original.png)
+*Feature selection impact on original dataset under Speckle noise (σ²=0.35)*
+
+![Speckle55 Original](experiments/speckle/speckle_analysis/detailed/accuracy_vs_k_speckle55_original.png)
+*Feature selection impact on original dataset under Speckle noise (σ²=0.55)*
 
 ---
 
@@ -108,62 +150,62 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Mini Dataset
 
 #### K=2 Features
-![Noise Mini K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_mini_k2.png)
+![Noise Mini K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_mini_k2.png)
 *Speckle noise robustness on mini dataset with k=2 features*
 
 #### K=5 Features
-![Noise Mini K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_mini_k5.png)
+![Noise Mini K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_mini_k5.png)
 *Speckle noise robustness on mini dataset with k=5 features*
 
 #### K=10 Features
-![Noise Mini K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_mini_k10.png)
+![Noise Mini K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_mini_k10.png)
 *Speckle noise robustness on mini dataset with k=10 features*
 
 #### K=20 Features
-![Noise Mini K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_mini_k20.png)
+![Noise Mini K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_mini_k20.png)
 *Speckle noise robustness on mini dataset with k=20 features*
 
 ### Small Dataset
 
 #### K=2 Features
-![Noise Small K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_small_k2.png)
+![Noise Small K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_small_k2.png)
 *Speckle noise robustness on small dataset with k=2 features*
 
 #### K=5 Features
-![Noise Small K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_small_k5.png)
+![Noise Small K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_small_k5.png)
 *Speckle noise robustness on small dataset with k=5 features*
 
 #### K=10 Features
-![Noise Small K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_small_k10.png)
+![Noise Small K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_small_k10.png)
 *Speckle noise robustness on small dataset with k=10 features*
 
 #### K=20 Features
-![Noise Small K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_small_k20.png)
+![Noise Small K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_small_k20.png)
 *Speckle noise robustness on small dataset with k=20 features*
 
 ### Original Dataset
 
 #### K=2 Features
-![Noise Original K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_original_k2.png)
+![Noise Original K2](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_original_k2.png)
 *Speckle noise robustness on original dataset with k=2 features*
 
 #### K=5 Features
-![Noise Original K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_original_k5.png)
+![Noise Original K5](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_original_k5.png)
 *Speckle noise robustness on original dataset with k=5 features*
 
 #### K=10 Features
-![Noise Original K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_original_k10.png)
+![Noise Original K10](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_original_k10.png)
 *Speckle noise robustness on original dataset with k=10 features*
 
 #### K=20 Features
-![Noise Original K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_noise_original_k20.png)
+![Noise Original K20](experiments/speckle/speckle_analysis/detailed/accuracy_vs_speckle_original_k20.png)
 *Speckle noise robustness on original dataset with k=20 features*
 
 ---
 
 ## 📊 Summary Statistics
 
-- **Noise Type**: Speckle (multiplicative) noise
+- **Noise Type**: Speckle (multiplicative) noise (σ²=0.15, σ²=0.35, σ²=0.55)
 - **Total Visualizations**: 37 plots
 - **High-Level Comparisons**: 4 plots
 - **Detailed Analysis**: 33 plots
@@ -180,4 +222,4 @@ This document presents a comprehensive gallery of all visualizations generated f
 
 ---
 
-*Generated from comprehensive analysis of Speckle noise Random Forest experiments comparing WST, Advanced Stats, and Hybrid feature extraction methods across different noise variances and dataset sizes.*
+*Generated from comprehensive analysis of Speckle noise Random Forest experiments comparing WST, Advanced Stats, and Hybrid feature extraction methods across different noise variances (σ²=0.15, σ²=0.35, σ²=0.55) and dataset sizes.*

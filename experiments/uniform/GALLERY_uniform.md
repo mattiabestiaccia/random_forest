@@ -14,11 +14,11 @@ This document presents a comprehensive gallery of all visualizations generated f
 ## 🔍 High-Level Comparisons
 
 ### Overall Performance Summary
-![Accuracy Heatmap Summary](experiments/uniform/uniform_analysis/comparisons/accuracy_heatmap_summary.png)
+![Accuracy Heatmap Summary](experiments/uniform/uniform_analysis/comparisons/accuracy_heatmap_uniform_summary.png)
 *Comprehensive heatmap showing accuracy across all Uniform noise experimental conditions*
 
 ### Method Comparison
-![Accuracy vs Method Boxplot](experiments/uniform/uniform_analysis/comparisons/accuracy_vs_method_boxplot.png)
+![Accuracy vs Method Boxplot](experiments/uniform/uniform_analysis/comparisons/accuracy_vs_method_boxplot_uniform.png)
 *Statistical comparison of feature extraction methods (WST, Advanced Stats, Hybrid) under Uniform noise*
 
 ### Dataset Size Impact
@@ -26,8 +26,8 @@ This document presents a comprehensive gallery of all visualizations generated f
 *Overall performance improvement with dataset size under Uniform noise conditions*
 
 ### Noise Robustness Overview
-![Accuracy vs Noise Level](experiments/uniform/uniform_analysis/comparisons/accuracy_vs_noise_overall.png)
-*Performance degradation under different Uniform noise ranges*
+![Accuracy vs Noise Level](experiments/uniform/uniform_analysis/comparisons/accuracy_vs_uniform_noise_overall.png)
+*Performance degradation under different Uniform noise ranges (±10, ±25, ±40)*
 
 ---
 
@@ -54,20 +54,44 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Uniform Noise Conditions
 
 #### K=2 Features
-![Uniform K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform_k2.png)
-*Performance vs dataset size under Uniform noise with k=2 features*
+![Uniform10 K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform10_k2.png)
+*Performance vs dataset size under Uniform noise (±10) with k=2 features*
+
+![Uniform25 K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform25_k2.png)
+*Performance vs dataset size under Uniform noise (±25) with k=2 features*
+
+![Uniform40 K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform40_k2.png)
+*Performance vs dataset size under Uniform noise (±40) with k=2 features*
 
 #### K=5 Features
-![Uniform K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform_k5.png)
-*Performance vs dataset size under Uniform noise with k=5 features*
+![Uniform10 K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform10_k5.png)
+*Performance vs dataset size under Uniform noise (±10) with k=5 features*
+
+![Uniform25 K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform25_k5.png)
+*Performance vs dataset size under Uniform noise (±25) with k=5 features*
+
+![Uniform40 K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform40_k5.png)
+*Performance vs dataset size under Uniform noise (±40) with k=5 features*
 
 #### K=10 Features
-![Uniform K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform_k10.png)
-*Performance vs dataset size under Uniform noise with k=10 features*
+![Uniform10 K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform10_k10.png)
+*Performance vs dataset size under Uniform noise (±10) with k=10 features*
+
+![Uniform25 K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform25_k10.png)
+*Performance vs dataset size under Uniform noise (±25) with k=10 features*
+
+![Uniform40 K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform40_k10.png)
+*Performance vs dataset size under Uniform noise (±40) with k=10 features*
 
 #### K=20 Features
-![Uniform K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform_k20.png)
-*Performance vs dataset size under Uniform noise with k=20 features*
+![Uniform10 K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform10_k20.png)
+*Performance vs dataset size under Uniform noise (±10) with k=20 features*
+
+![Uniform25 K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform25_k20.png)
+*Performance vs dataset size under Uniform noise (±25) with k=20 features*
+
+![Uniform40 K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_dataset_uniform40_k20.png)
+*Performance vs dataset size under Uniform noise (±40) with k=20 features*
 
 ---
 
@@ -90,16 +114,34 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Uniform Noise Conditions
 
 #### Mini Dataset
-![Uniform Mini](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform_mini.png)
-*Feature selection impact on mini dataset under Uniform noise*
+![Uniform10 Mini](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform10_mini.png)
+*Feature selection impact on mini dataset under Uniform noise (±10)*
+
+![Uniform25 Mini](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform25_mini.png)
+*Feature selection impact on mini dataset under Uniform noise (±25)*
+
+![Uniform40 Mini](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform40_mini.png)
+*Feature selection impact on mini dataset under Uniform noise (±40)*
 
 #### Small Dataset
-![Uniform Small](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform_small.png)
-*Feature selection impact on small dataset under Uniform noise*
+![Uniform10 Small](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform10_small.png)
+*Feature selection impact on small dataset under Uniform noise (±10)*
+
+![Uniform25 Small](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform25_small.png)
+*Feature selection impact on small dataset under Uniform noise (±25)*
+
+![Uniform40 Small](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform40_small.png)
+*Feature selection impact on small dataset under Uniform noise (±40)*
 
 #### Original Dataset
-![Uniform Original](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform_original.png)
-*Feature selection impact on original dataset under Uniform noise*
+![Uniform10 Original](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform10_original.png)
+*Feature selection impact on original dataset under Uniform noise (±10)*
+
+![Uniform25 Original](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform25_original.png)
+*Feature selection impact on original dataset under Uniform noise (±25)*
+
+![Uniform40 Original](experiments/uniform/uniform_analysis/detailed/accuracy_vs_k_uniform40_original.png)
+*Feature selection impact on original dataset under Uniform noise (±40)*
 
 ---
 
@@ -108,62 +150,62 @@ This document presents a comprehensive gallery of all visualizations generated f
 ### Mini Dataset
 
 #### K=2 Features
-![Noise Mini K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_mini_k2.png)
+![Noise Mini K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_mini_k2.png)
 *Uniform noise robustness on mini dataset with k=2 features*
 
 #### K=5 Features
-![Noise Mini K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_mini_k5.png)
+![Noise Mini K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_mini_k5.png)
 *Uniform noise robustness on mini dataset with k=5 features*
 
 #### K=10 Features
-![Noise Mini K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_mini_k10.png)
+![Noise Mini K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_mini_k10.png)
 *Uniform noise robustness on mini dataset with k=10 features*
 
 #### K=20 Features
-![Noise Mini K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_mini_k20.png)
+![Noise Mini K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_mini_k20.png)
 *Uniform noise robustness on mini dataset with k=20 features*
 
 ### Small Dataset
 
 #### K=2 Features
-![Noise Small K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_small_k2.png)
+![Noise Small K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_small_k2.png)
 *Uniform noise robustness on small dataset with k=2 features*
 
 #### K=5 Features
-![Noise Small K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_small_k5.png)
+![Noise Small K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_small_k5.png)
 *Uniform noise robustness on small dataset with k=5 features*
 
 #### K=10 Features
-![Noise Small K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_small_k10.png)
+![Noise Small K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_small_k10.png)
 *Uniform noise robustness on small dataset with k=10 features*
 
 #### K=20 Features
-![Noise Small K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_small_k20.png)
+![Noise Small K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_small_k20.png)
 *Uniform noise robustness on small dataset with k=20 features*
 
 ### Original Dataset
 
 #### K=2 Features
-![Noise Original K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_original_k2.png)
+![Noise Original K2](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_original_k2.png)
 *Uniform noise robustness on original dataset with k=2 features*
 
 #### K=5 Features
-![Noise Original K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_original_k5.png)
+![Noise Original K5](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_original_k5.png)
 *Uniform noise robustness on original dataset with k=5 features*
 
 #### K=10 Features
-![Noise Original K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_original_k10.png)
+![Noise Original K10](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_original_k10.png)
 *Uniform noise robustness on original dataset with k=10 features*
 
 #### K=20 Features
-![Noise Original K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_noise_original_k20.png)
+![Noise Original K20](experiments/uniform/uniform_analysis/detailed/accuracy_vs_uniform_original_k20.png)
 *Uniform noise robustness on original dataset with k=20 features*
 
 ---
 
 ## 📊 Summary Statistics
 
-- **Noise Type**: Uniform (additive) noise
+- **Noise Type**: Uniform (additive) noise (±10, ±25, ±40)
 - **Total Visualizations**: 37 plots
 - **High-Level Comparisons**: 4 plots
 - **Detailed Analysis**: 33 plots
@@ -180,4 +222,4 @@ This document presents a comprehensive gallery of all visualizations generated f
 
 ---
 
-*Generated from comprehensive analysis of Uniform noise Random Forest experiments comparing WST, Advanced Stats, and Hybrid feature extraction methods across different noise ranges and dataset sizes.*
+*Generated from comprehensive analysis of Uniform noise Random Forest experiments comparing WST, Advanced Stats, and Hybrid feature extraction methods across different noise ranges (±10, ±25, ±40) and dataset sizes.*
