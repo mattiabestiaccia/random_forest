@@ -1,4 +1,0 @@
-Loading popolar/low_veg:   0%|          | 0/5 [00:00<?, ?it/s]Loading popolar/low_veg: 100%|██████████| 5/5 [00:00<00:00, 362.39it/s]
-Loading popolar/trees:   0%|          | 0/5 [00:00<?, ?it/s]Loading popolar/trees: 100%|██████████| 5/5 [00:00<00:00, 967.72it/s]
-Loading popolar/water:   0%|          | 0/5 [00:00<?, ?it/s]Loading popolar/water: 100%|██████████| 5/5 [00:00<00:00, 1047.63it/s]
-Extracting features:   0%|          | 0/15 [00:00<?, ?it/s]Extracting features:  60%|██████    | 9/15 [00:00<00:00, 82.03it/s]Extracting features: 100%|██████████| 15/15 [00:00<00:00, 83.02it/s]

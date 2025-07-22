@@ -96,9 +96,8 @@ class SpeckleExperimentAnalyzer:
                                 except (json.JSONDecodeError, KeyError) as e:
                                     print(f"Error loading {json_file}: {e}")
         
-        # Add clean experiments from existing gaussian analysis path
-        clean_base_dir = Path("/home/brusc/Projects/random_forest/experiments_organized")
-        clean_dir = clean_base_dir / "rgb_clean_kbest"
+        # Add clean experiments from rgb_clean directory
+        clean_dir = Path("/home/brusc/Projects/random_forest/experiments/rgb_clean")
         if clean_dir.exists():
             for area in self.areas:
                 area_dir = clean_dir / area

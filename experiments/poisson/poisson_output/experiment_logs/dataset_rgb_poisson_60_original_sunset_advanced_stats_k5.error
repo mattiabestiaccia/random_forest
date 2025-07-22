@@ -1,4 +1,0 @@
-Loading sunset/garden:   0%|          | 0/40 [00:00<?, ?it/s]Loading sunset/garden: 100%|██████████| 40/40 [00:00<00:00, 1082.48it/s]
-Loading sunset/low_veg:   0%|          | 0/40 [00:00<?, ?it/s]Loading sunset/low_veg: 100%|██████████| 40/40 [00:00<00:00, 1352.23it/s]
-Loading sunset/trees:   0%|          | 0/40 [00:00<?, ?it/s]Loading sunset/trees: 100%|██████████| 40/40 [00:00<00:00, 1290.22it/s]
-Extracting features:   0%|          | 0/120 [00:00<?, ?it/s]Extracting features:   8%|▊         | 9/120 [00:00<00:01, 84.19it/s]Extracting features: 100%|██████████| 120/120 [-1:57:02<00:00, -0.67it/s]

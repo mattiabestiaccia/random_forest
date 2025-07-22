@@ -16,7 +16,7 @@ from typing import Dict, List
 import statistics
 
 class GaussianExperimentAnalyzer:
-    def __init__(self, base_dir: str = "/home/brusc/Projects/random_forest/experiments_organized/gaussian_output"):
+    def __init__(self, base_dir: str = "/home/brusc/Projects/random_forest/experiments"):
         self.base_dir = Path(base_dir)
         self.results = []
         self.noise_conditions = ['clean', 'gaussian30', 'gaussian50']
