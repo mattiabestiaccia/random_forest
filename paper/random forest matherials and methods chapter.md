@@ -95,7 +95,11 @@ Hybrid Feature Extraction: This approach combines both statistical and transform
 
 The Random Forest implementation employs an adaptive parameterization strategy that automatically adjusts the number of estimators based on dataset size to optimize the computational efficiency-accuracy trade-off. For mini datasets (~15 images), n_estimators is set to 3 to prevent overfitting; small datasets utilize 10 estimators; while original full-size datasets employ 50 estimators to capture complex decision boundaries. Additional fixed hyperparameters include max_features='sqrt' to control overfitting, min_samples_split=5 and min_samples_leaf=2 to ensure meaningful splits and leaf nodes, and random_state=42 for reproducibility. The evaluation strategy employs stratified k-fold cross-validation (k=5) to ensure balanced class representation across folds. The system implements both holdout validation (80/20 train-test split) and cross-validation assessment, providing comprehensive performance metrics including accuracy, precision, recall, F1-score, and confusion matrices. Feature importance analysis is conducted using mutual information scores to identify the most discriminative features for each classification task. Performance evaluations demonstrate that the Random Forest classifier provides a favorable trade-off between predictive accuracy and computational demands. This balance is particularly advantageous in field applications or edge-computing environments, where processing resources may be constrained. Additionally, the interpretability of the model is further augmented by the ability to extract and analyze feature importances through mutual information calculation. This function offers detailed insight into which features—whether statistical measures or scattering coefficients—are most influential in the classification decisions for each target class. Such interpretability is crucial in scientific applications where transparency of the decision-making process is required. In summary, the Random Forest model presented here offers a compelling combination of efficiency, adaptability, and interpretability. It is particularly well-suited for use cases characterized by limited data availability, the need for rapid inference, or the requirement for transparent and explainable models. Its integration with both statistical and WST-based feature extractors further extends its applicability to domains where both distributional and structural information play central roles, resulting in a versatile and robust component within the broader classification pipeline.
 
-### Gaussian Noise
+##### Gaussian Noise
+![alt text](../experiments/gaussian/gaussian_analysis/comparisons/accuracy_heatmap_summary.png)
+![alt text](../experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![alt text](../experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_method_boxplot.png)
+![alt text](../experiments/gaussian/gaussian_analysis/comparisons/accuracy_vs_noise_overall.png)
 
 | Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
 |---|---|---|---|---|---|---|
@@ -280,7 +284,11 @@ The Random Forest implementation employs an adaptive parameterization strategy t
 | gaussian50 | small | 20 | hybrid | 88.89% | 8.70% | R_mean, R_skew, R_cv... |
 | gaussian50 | small | 20 | wst | 88.15% | 8.51% | R_mean, G_mean, B_mean... |
 
-### Poisson Noise
+##### Poisson Noise
+![alt text](../experiments/poisson/poisson_analysis/comparisons/accuracy_heatmap_poisson_summary.png)
+![alt text](../experiments/poisson/poisson_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![alt text](../experiments/poisson/poisson_analysis/comparisons/accuracy_vs_method_boxplot_poisson.png)
+![alt text](../experiments/poisson/poisson_analysis/comparisons/accuracy_vs_poisson_noise_overall.png)
 
 | Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
 |---|---|---|---|---|---|---|
@@ -465,7 +473,11 @@ The Random Forest implementation employs an adaptive parameterization strategy t
 | poisson60 | small | 20 | hybrid | 93.33% | 6.59% | R_std, R_var, R_min... |
 | poisson60 | small | 20 | wst | 90.37% | 7.36% | R_wst_mean_0, R_wst_mean_77, R_wst_std_0... |
 
-### Salt and Pepper Noise
+##### Salt and Pepper Noise
+![alt text](../experiments/s&p/saltpepper_analysis/comparisons/accuracy_heatmap_saltpepper_summary.png)
+![alt text](../experiments/s&p/saltpepper_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![alt text](../experiments/s&p/saltpepper_analysis/comparisons/accuracy_vs_method_boxplot_saltpepper.png)
+![alt text](../experiments/s&p/saltpepper_analysis/comparisons/accuracy_vs_saltpepper_noise_overall.png)
 
 | Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
 |---|---|---|---|---|---|---|
@@ -710,7 +722,11 @@ The Random Forest implementation employs an adaptive parameterization strategy t
 | saltpepper5 | small | 20 | hybrid | 98.52% | 2.96% | R_p10, R_iqr, R_mad... |
 | saltpepper5 | small | 20 | wst | 93.33% | 3.30% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_10... |
 
-### Speckle Noise
+##### Speckle Noise
+![alt text](../experiments/speckle/speckle_analysis/comparisons/accuracy_heatmap_speckle_summary.png)
+![alt text](../experiments/speckle/speckle_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![alt text](../experiments/speckle/speckle_analysis/comparisons/accuracy_vs_method_boxplot_speckle.png)
+![alt text](../experiments/speckle/speckle_analysis/comparisons/accuracy_vs_speckle_noise_overall.png)
 
 | Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
 |---|---|---|---|---|---|---|
@@ -955,7 +971,11 @@ The Random Forest implementation employs an adaptive parameterization strategy t
 | speckle55 | small | 20 | hybrid | 92.59% | 7.41% | G_skew, G_cv, G_p10... |
 | speckle55 | small | 20 | wst | 92.59% | 8.09% | R_wst_mean_14, R_wst_std_0, R_wst_std_51... |
 
-### Uniform Noise
+##### Uniform Noise
+![alt text](../experiments/uniform/uniform_analysis/comparisons/accuracy_heatmap_uniform_summary.png)
+![alt text](../experiments/uniform/uniform_analysis/comparisons/accuracy_vs_dataset_size_overall.png)
+![alt text](../experiments/uniform/uniform_analysis/comparisons/accuracy_vs_method_boxplot_uniform.png)
+![alt text](../experiments/uniform/uniform_analysis/comparisons/accuracy_vs_uniform_noise_overall.png)
 
 | Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
 |---|---|---|---|---|---|---|
