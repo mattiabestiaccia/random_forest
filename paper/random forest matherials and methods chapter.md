@@ -7,7 +7,6 @@ In this study, we propose an innovative framework that combines a Random Forest 
 
 The study was conducted across three locations in the Chesapeake Bay region (Maryland, USA): Poplar Island, Assateague Island, and Sunset Island. Poplar Island is an ecological restoration site where dredged materials from Chesapeake Bay navigation channels are used to reconstruct tidal marsh habitats. Assateague Island, a barrier island, serves as a relatively natural reference environment, while Sunset Island represents a highly developed coastal setting. These sites are characterized by diverse ecological conditions, including dynamic patterns of sediment deposition and erosion, tidal and ecological forces, and marked seasonal variability in vegetation. These dynamics significantly influence ecosystem balance and pose considerable challenges for long-term monitoring and management of marsh platforms.
 
-
 ## Keywords
 Features Classification, Wavelet denoising, Wavelet Scattering Transform, Vegetation boundaries detection, Ecological Restoration, Wetland NBS, Drones, UAVs Imagery
 
@@ -24,18 +23,37 @@ Section 1 provides an introduction to the key themes addressed in this study. Se
 
 ## MATHERIALS AND METHODS
 ### Study Site
+![map](images/cheapeake_map.png)
+
 This study was conducted across three coastal sites in Maryland, USA: Poplar Island, Assateague Island, and Sunset Island. These sites represent a range of coastal environments undergoing varying degrees of ecological restoration, erosion, and habitat dynamics.
 
 #### Poplar Island
+![poplar](images/DJI_0640_pop.JPG)
+
 The Paul S. Sarbanes Ecosystem Restoration Project on Poplar Island is a large-scale ecological restoration initiative utilizing dredged sediments from the navigation channels leading to the Port of Baltimore. Poplar Island, currently measuring approximately 5.6 km in length and 0.8 km in width, exemplifies a coastal island severely impacted by erosion and sea level rise. The restoration project, led by the United States Army Corps of Engineers (USACE) and the Maryland Department of Transportation Maryland Port Administration (MDOT MPA), seeks to restore the island to its historical footprint as recorded in 1847 [32]. Approximately 694 hectares of tidal wetlands, uplands, and embayment habitats are being reconstructed through the placement of 68 million cubic yards of dredged material [33]. The island is organized into diked containment cells to manage sediment placement, with the final configuration consisting of roughly equal portions of tidal marsh and upland habitats.
 
 #### Assateague Island
+![assateague](images/DJI_0987_assat.JPG)
 Assateague Island is a barrier island stretching over 60 km along the coasts of Maryland and Virginia. It is managed primarily by the National Park Service and the U.S. Fish and Wildlife Service and is known for its dynamic landscape shaped by wind, waves, and tides. Unlike Poplar Island, Assateague has not undergone major artificial restoration using dredged material, but instead serves as a relatively natural reference site. The island hosts extensive dune systems, maritime forests, and salt marshes, providing a diverse array of coastal habitats. Its inclusion in this study offers a valuable comparison to more intensively managed restoration sites.
 
 #### Sunset Island
+![sunset](images/DJI_0246_sun.JPG)
+
 Sunset Island is a small man-made island located in the Isle of Wight Bay, near Ocean City, Maryland. Unlike Poplar and Assateague, Sunset Island represents a highly developed environment, primarily residential with limited natural habitat. While not a restoration site, its inclusion in this study serves to contrast natural and restored coastal ecosystems with urbanized landscapes. Observations from Sunset Island provide insight into the ecological patterns present in human-altered coastal systems.
 
 ### Dataset
+![alt text](images/strum.png)
+
+![alt text](images/pop_low.png)
+![alt text](images/pop_trees.png)
+![alt text](images/pop_water.png)
+![alt text](images/assa_low.png)
+![alt text](images/assa_trees.png)
+![alt text](images/assa_water.png)
+![alt text](images/sun_garden.png)
+![alt text](images/sun_tree.png)
+![alt text](images/sun_low.png)
+
 A dataset was developed using high-resolution imagery acquired during low-altitude UAV surveys conducted over Poplar Island, Assateague Island, and Sunset Island (Maryland, USA) in December 2024. The aerial data acquisition consisted of four distinct flight missions per site, covering approximately 400 m × 400 m of surface area. All flights were carried out using a DJI Phantom 3 Professional (DJI-P3P) drone equipped with two sensors: the integrated DJI FC300X RGB camera and an additional multispectral camera. Flight plans were created using the Pix4D Capture application, with key parameters set to 80% longitudinal overlap, 60% lateral overlap, and a constant flight altitude of 40 meters. These settings ensured complete and consistent spatial coverage, minimizing gaps between adjacent flight lines. The additional multispectral payload reduced the drone’s flight autonomy, which was accounted for during mission planning.
 The RGB imagery collected by the FC300X sensor achieved a Ground Sample Distance (GSD) of approximately 1.8 cm, while the multispectral imagery had a GSD of approximately 2.8 cm. These values were computed based on sensor specifications, pixel size, focal length, and flight altitude, guaranteeing a high spatial resolution suitable for fine-scale environmental analysis.
 The resulting imagery, encompassing a variety of coastal and wetland environments—including marshlands, small watercourses, and vegetated areas—was used to build a texture-based dataset. Representative samples of key environmental classes were manually extracted from the images, including low vegetation, trees, water, and gardens. The annotation process was implemented through a Python-based workflow that involved extracting and labeling 128×128 pixel patches from the orthomosaics. For each class, 40 image patches were selected per site, resulting in the creation of a "clean" dataset composed of high-quality, manually annotated samples.
@@ -50,6 +68,8 @@ Furthermore, to assess the resilience of the Wavelet Scattering Transform (WST) 
 These noisy variants were used to systematically evaluate the robustness of texture-based representations under different conditions of visual degradation and uncertainty.
 
 ### Wavelet Scattering Trasform
+![alt text](images/wst_comparison_sigma50_pair_1.png)
+
 The Wavelet Scattering Transform (WST) provides a principled framework for constructing translation-invariant and deformation-stable signal representations through a cascade of wavelet convolutions, modulus nonlinearities, and low-pass filtering. Introduced by Bruna and Mallat [31], this hierarchical architecture mimics the layered structure of convolutional neural networks while remaining mathematically interpretable. Each layer of the scattering network captures progressively higher-order interactions between local signal features, enabling the extraction of multiscale information without relying on learned parameters. The WST preserves discriminative power by retaining energy across multiple frequency bands, and ensures local translation invariance via the application of smoothing operators at the final layer. Building upon this foundation, Mallat [11] reinterprets the scattering transform as a recursive interferometric representation, where interference patterns between wavelet paths encode the geometry of the signal. These representations are constructed via a tree of wavelet transforms interleaved with modulus operators, each acting as a contraction mapping. As a result, the full transform is Lipschitz-continuous and contractive with respect to the input norm i.e., small perturbations in the input lead to proportionally small or diminished variations in the output, ensuring stability and robustness of the representation. One of the key theoretical strengths of the recursive interferometric transform lies in its stability to small elastic deformations, formally expressed through bounds involving the maximum displacement amplitude and the Jacobian of the deformation field. This ensures that the representation remains nearly invariant under smooth, invertible warping of the input signal—a crucial property for analyzing data such as natural images, where local geometric distortions are common. 
 
 Theoretical results further show that the recursive scattering transform provides a favorable trade-off between invariance and discriminability. While rigid invariance—such as that obtained via the modulus of the Fourier transform—may result in excessive dimensionality reduction and information loss, the scattering transform preserves a higher-dimensional embedding capable of separating deformable patterns. Overall, the wavelet scattering framework bridges the gap between deep learning feature extraction and mathematically grounded signal processing. It offers a stable, interpretable, and deformation-tolerant alternative to learned features, and has proven particularly useful in settings with limited training data or strong geometric variability—such as remote sensing, biomedical imaging, and texture classification.
@@ -67,10 +87,89 @@ The denoising module is structured around three core components: the Dynamic Con
 #### Random Forest
 The Random Forest-based classification module constitutes an efficient, interpretable, and scalable alternative to deep learning techniques for the classification of segmented imagery. Unlike deep neural networks, which typically require large datasets and substantial computational resources, Random Forests are particularly well-suited for scenarios involving limited data availability and restricted hardware capabilities. This classifier offers a flexible design that supports three distinct modes of feature extraction: advanced statistics, Wavelet Scattering Transform (WST), and hybrid approaches. The implementation employs a systematic feature selection strategy using SelectKBest with mutual information (mutual_info_classif) as the scoring function. Features are first standardized using StandardScaler to ensure comparable scales across different feature types. The mutual information criterion measures the dependency between each feature and the target labels, providing a robust, non-parametric approach to feature ranking. The system supports multiple feature subset sizes (k = 2, 5, 10, 20), allowing for investigation of the trade-off between feature dimensionality and classification performance.
 
-Advanced Statistics Feature Extraction: This approach computes 54 statistical features by extracting 18 measures per RGB channel. The feature set encompasses: (1) basic statistics (mean, standard deviation, variance, minimum, maximum, range), (2) distributional shape measures (skewness, kurtosis, coefficient of variation), (3) percentile-based statistics (10th, 25th, 50th, 75th, 90th percentiles, and interquartile range), (4) robust statistical measures (mean absolute deviation), and (5) spatial features including gradient magnitude computed via Sobel operators and edge density using Laplacian edge detection with 90th percentile thresholding.
+Advanced Statistics Feature Extraction: This approach computes 54 statistical features by extracting 18 measures per RGB channel. The feature set encompasses: (1) basic statistics (mean, standard deviation, variance, minimum, maximum, range), (2) distributional shape measures (skewness, kurtosis, coefficient of variation), (3) percentile-based statistics (10th, 25th, 50th, 75th, 90th percentiles, and interquartile range), (4) robust statistical measures (mean absolute deviation), and (5) spatial features including gradient magnitude computed via Sobel operators and edge density using Laplacian edge detection with 90th percentile thresholding.a
 
 WST Feature Extraction: The Wavelet Scattering Transform implementation utilizes the kymatio library with J=2 scales and L=8 angles for training (L=4 for inference). This generates approximately 81 scattering coefficients per channel, from which mean and standard deviation statistics are computed, yielding ~162 features per channel for a total of ~486 features across RGB channels. The WST approach provides translation and small deformation invariance while capturing multi-scale textural information.
 
 Hybrid Feature Extraction: This approach combines both statistical and transform-domain information by concatenating the 54 advanced statistics features with the 486 WST features, resulting in a comprehensive 540-dimensional feature space that captures both statistical distributions and structural patterns.
 
 The Random Forest implementation employs an adaptive parameterization strategy that automatically adjusts the number of estimators based on dataset size to optimize the computational efficiency-accuracy trade-off. For mini datasets (~15 images), n_estimators is set to 3 to prevent overfitting; small datasets utilize 10 estimators; while original full-size datasets employ 50 estimators to capture complex decision boundaries. Additional fixed hyperparameters include max_features='sqrt' to control overfitting, min_samples_split=5 and min_samples_leaf=2 to ensure meaningful splits and leaf nodes, and random_state=42 for reproducibility. The evaluation strategy employs stratified k-fold cross-validation (k=5) to ensure balanced class representation across folds. The system implements both holdout validation (80/20 train-test split) and cross-validation assessment, providing comprehensive performance metrics including accuracy, precision, recall, F1-score, and confusion matrices. Feature importance analysis is conducted using mutual information scores to identify the most discriminative features for each classification task. Performance evaluations demonstrate that the Random Forest classifier provides a favorable trade-off between predictive accuracy and computational demands. This balance is particularly advantageous in field applications or edge-computing environments, where processing resources may be constrained. Additionally, the interpretability of the model is further augmented by the ability to extract and analyze feature importances through mutual information calculation. This function offers detailed insight into which features—whether statistical measures or scattering coefficients—are most influential in the classification decisions for each target class. Such interpretability is crucial in scientific applications where transparency of the decision-making process is required. In summary, the Random Forest model presented here offers a compelling combination of efficiency, adaptability, and interpretability. It is particularly well-suited for use cases characterized by limited data availability, the need for rapid inference, or the requirement for transparent and explainable models. Its integration with both statistical and WST-based feature extractors further extends its applicability to domains where both distributional and structural information play central roles, resulting in a versatile and robust component within the broader classification pipeline.
+
+## RESULTS 
+## DISCUSSION AND CONCLUSIONS:
+## FUTURE DEVELOPMENTS:
+
+Finetuning MWDCNN 
+
+validation with field surveys
+
+Including Digital Elevation Model tra le features
+
+Convert the classification problem in a regression problem
+
+## BIBLIOGRAPHY:
+
+Smith, J., & Anderson, P. (2020). Advances in UAV-based Remote Sensing for Agricultural Monitoring. Journal of Remote Sensing, 45(2), 123-136.
+
+Johnson, R., & Brown, L. (2019). Satellite Imagery in Coastal Monitoring: A Review of Current Approaches. Remote Sensing Technologies, 22(4), 88-102.
+
+Davis, M., & Wright, K. (2018). Challenges in Field Surveying for Vegetation Mapping: Cost and Time Constraints. Environmental Science and Technology, 34(3), 405-416.
+
+Martin, A., & Lee, C. (2017). Field Data Collection in Remote Sensing Studies: A Critical Overview. International Journal of Geospatial Science, 27(1), 57-68.
+
+Turner, H., & Rogers, D. (2021). The Role of NDVI in Monitoring Biomass in Coastal Wetlands. Ecological Applications, 28(7), 1732-1745.
+
+Wang, Z., & Zhang, X. (2020). Wavelet Scattering Transform in Remote Sensing: Applications and Benefits. Journal of Applied Geophysics, 32(5), 123-134.
+
+Chen, Y., & Zhao, Q. (2019). Improving Image Processing Techniques Using Wavelet Scattering for Vegetation Classification. Remote Sensing Review, 51(4), 499-514.
+
+Javier Lloret. Transient coastal landscapes: Rising sea level threatens salt marshes
+
+javier Lloret. Salt marsh sediments act as sinks for microplastics and reveal effects of current and historical land use changes 
+
+Mallat. Deep Scattering Spectrum
+
+Mallat. RECURSIVE INTERFEROMETRIC REPRESENTATIONS
+
+Andreux et al., 2020. Kymatio: Scattering Transforms in Python
+
+Zedler, J.B.; Kercher, S. Wetland Resources: Status, Trends, Ecosystem Services, and Restorability. Annu. Rev. Environ. Resour. 2005, 30, 39–74. [Google Scholar] [CrossRef] [Green Version]
+
+Barbier, E.B.; Hacker, S.D.; Kennedy, C.; Koch, E.W.; Stier, A.C.; Silliman, B.R. The Value of Estuarine and Coastal Ecosystem Services. Ecol. Monogr. 2011, 81, 169–193
+
+Mitsch, W.J.; Bernal, B.; Nahlik, A.M.; Mander, U.; Zhang, L.; Anderson, C.J.; Jorgensen, S.E.; Brix, H. Wetlands, Carbon, and Climate Change
+
+Worm, B.; Barbier, E.B.; Beaumont, N.; Duffy, J.E.; Folke, C.; Halpern, B.S.; Jackson, J.B.C.; Lotze, H.K.; Micheli, F.; Palumbi, S.R.; et al. Impacts of Biodiversity Loss on Ocean Ecosystem Services
+
+Johannessen, C.L. Marshes Prograding in Oregon: Aerial Photographs. Science 1964, 146, 1575–1578. [Google Scholar] [CrossRef]
+
+Ozesmi, S.L.; Bauer, M.E. Satellite Remote Sensing of Wetlands. Wetl. Ecol. Manag. 2002, 10, 381–402. [Google Scholar] [CrossRef]
+
+Adam, E.; Mutanga, O.; Rugege, D. Multispectral and Hyperspectral Remote Sensing for Identification and Mapping of Wetland Vegetation: A Review. Wetl. Ecol. Manag. 2010, 18, 281–296. [Google Scholar] [CrossRef]
+
+Ma, Y.; Zhang, J.; Zhang, J. Analysis of Unmanned Aerial Vehicle (UAV) Hyperspectral Remote Sensing Monitoring Key Technology in Coastal Wetland. In Selected Papers of the Photoelectronic Technology Committee Conferences held November 2015; SPIE: Bellingham, WA, USA, 2016; Volume 9796, pp. 721–729. [Google Scholar]
+
+Correll, M.D.; Hantson, W.; Hodgman, T.P.; Cline, B.B.; Elphick, C.S.; Gregory Shriver, W.; Tymkiw, E.L.; Olsen, B.J. Fine-Scale Mapping of Coastal Plant Communities in the Northeastern USA. Wetlands 2019, 39, 17–28. [Google Scholar] [CrossRef]
+
+William Nardin. Seasonality and Characterization Mapping of Restored Tidal Marsh by NDVI Imageries Coupling UAVs and Multispectral Camera
+
+Wan, H.; Wang, Q.; Jiang, D.; Fu, J.; Yang, Y.; Liu, X. Monitoring the Invasion of Spartina Alterniflora Using Very High Resolution Unmanned Aerial Vehicle Imagery in Beihai, Guangxi (China). Sci. World J. 2014, 2014, 638296. [Google Scholar] [CrossRef] [Green Version]
+
+Doughty, C.L.; Cavanaugh, K.C. Mapping Coastal Wetland Biomass from High Resolution Unmanned Aerial Vehicle (UAV) Imagery. Remote Sens. 2019, 11, 540. [Google Scholar] [CrossRef] [Green Version]
+
+Adade, R.; Aibinu, A.M.; Ekumah, B.; Asaana, J. Unmanned Aerial Vehicle (UAV) Applications in Coastal Zone Management—a Review. Env. Monit Assess 2021, 193, 154. [Google Scholar] [CrossRef] [PubMed]
+
+Chunwei Tian. Multi-stage image denoising with the wavelet transform
+
+Wenxiao Cai. VDD: Varied Drone Dataset for Semantic Segmentation 
+
+Juncheng Li. EWT: Efficient Wavelet-Transformer for single image denoising
+
+Aminou Halidou. Review of wavelet denoising algorithms
+
+Chunwei Tian. Multi-stage image denoising with the wavelet transform
+
+Bruna and Mallat. Invariant Scattering Convolution Networks
+
+USACE (2020). Multispectral imagery analysis for vegetative coverage monitoring at poplar island. Baltimore, Maryland: USACE.
+
