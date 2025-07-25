@@ -234,7 +234,7 @@ class ModelInference:
         
         return features
     
-    def extract_wst_features(self, rgb_image, J=2, L=4):
+    def extract_wst_features(self, rgb_image, J=2, L=8):
         """Extract Wavelet Scattering Transform features from each RGB channel"""
         num_channels, height, width = rgb_image.shape
         
@@ -276,12 +276,12 @@ class ModelInference:
         elif self.feature_method == 'wst':
             # WST + basic features
             basic_features = self.extract_basic_features(rgb_image)
-            wst_features = self.extract_wst_features(rgb_image, J=2, L=4)
+            wst_features = self.extract_wst_features(rgb_image, J=2, L=8)
             return np.hstack([basic_features, wst_features])
         elif self.feature_method == 'hybrid':
             # Hybrid: Advanced stats + WST
             advanced_features = self.extract_advanced_features(rgb_image)
-            wst_features = self.extract_wst_features(rgb_image, J=2, L=4)
+            wst_features = self.extract_wst_features(rgb_image, J=2, L=8)
             return np.hstack([advanced_features, wst_features])
         else:
             raise ValueError(f"Unknown feature method: {self.feature_method}")

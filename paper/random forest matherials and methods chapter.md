@@ -89,13 +89,1118 @@ The Random Forest-based classification module constitutes an efficient, interpre
 
 Advanced Statistics Feature Extraction: This approach computes 54 statistical features by extracting 18 measures per RGB channel. The feature set encompasses: (1) basic statistics (mean, standard deviation, variance, minimum, maximum, range), (2) distributional shape measures (skewness, kurtosis, coefficient of variation), (3) percentile-based statistics (10th, 25th, 50th, 75th, 90th percentiles, and interquartile range), (4) robust statistical measures (mean absolute deviation), and (5) spatial features including gradient magnitude computed via Sobel operators and edge density using Laplacian edge detection with 90th percentile thresholding.a
 
-WST Feature Extraction: The Wavelet Scattering Transform implementation utilizes the kymatio library with J=2 scales and L=8 angles for training (L=4 for inference). This generates approximately 81 scattering coefficients per channel, from which mean and standard deviation statistics are computed, yielding ~162 features per channel for a total of ~486 features across RGB channels. The WST approach provides translation and small deformation invariance while capturing multi-scale textural information.
+WST Feature Extraction: The Wavelet Scattering Transform implementation utilizes the kymatio library with J=2 scales and L=8 angles for training. This generates approximately 81 scattering coefficients per channel, from which mean and standard deviation statistics are computed, yielding ~162 features per channel for a total of ~486 features across RGB channels. The WST approach provides translation and small deformation invariance while capturing multi-scale textural information.
 
 Hybrid Feature Extraction: This approach combines both statistical and transform-domain information by concatenating the 54 advanced statistics features with the 486 WST features, resulting in a comprehensive 540-dimensional feature space that captures both statistical distributions and structural patterns.
 
 The Random Forest implementation employs an adaptive parameterization strategy that automatically adjusts the number of estimators based on dataset size to optimize the computational efficiency-accuracy trade-off. For mini datasets (~15 images), n_estimators is set to 3 to prevent overfitting; small datasets utilize 10 estimators; while original full-size datasets employ 50 estimators to capture complex decision boundaries. Additional fixed hyperparameters include max_features='sqrt' to control overfitting, min_samples_split=5 and min_samples_leaf=2 to ensure meaningful splits and leaf nodes, and random_state=42 for reproducibility. The evaluation strategy employs stratified k-fold cross-validation (k=5) to ensure balanced class representation across folds. The system implements both holdout validation (80/20 train-test split) and cross-validation assessment, providing comprehensive performance metrics including accuracy, precision, recall, F1-score, and confusion matrices. Feature importance analysis is conducted using mutual information scores to identify the most discriminative features for each classification task. Performance evaluations demonstrate that the Random Forest classifier provides a favorable trade-off between predictive accuracy and computational demands. This balance is particularly advantageous in field applications or edge-computing environments, where processing resources may be constrained. Additionally, the interpretability of the model is further augmented by the ability to extract and analyze feature importances through mutual information calculation. This function offers detailed insight into which features—whether statistical measures or scattering coefficients—are most influential in the classification decisions for each target class. Such interpretability is crucial in scientific applications where transparency of the decision-making process is required. In summary, the Random Forest model presented here offers a compelling combination of efficiency, adaptability, and interpretability. It is particularly well-suited for use cases characterized by limited data availability, the need for rapid inference, or the requirement for transparent and explainable models. Its integration with both statistical and WST-based feature extractors further extends its applicability to domains where both distributional and structural information play central roles, resulting in a versatile and robust component within the broader classification pipeline.
 
-## RESULTS 
+### Gaussian Noise
+
+| Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
+|---|---|---|---|---|---|---|
+| clean | mini | 2 | advanced_stats | 97.78% | 4.44% | R_min, G_max, B_min... |
+| clean | mini | 2 | hybrid | 95.56% | 8.89% | R_min, G_mad, B_min... |
+| clean | mini | 2 | wst | 95.56% | 5.44% | R_WST19_mean, R_WST23_mean, R_WST0_std... |
+| clean | mini | 5 | advanced_stats | 97.78% | 4.44% | R_min, R_iqr, G_iqr... |
+| clean | mini | 5 | hybrid | 95.56% | 8.89% | R_min, R_mad, G_iqr... |
+| clean | mini | 5 | wst | 93.33% | 9.89% | R_WST3_mean, R_WST19_mean, R_WST22_mean... |
+| clean | mini | 10 | advanced_stats | 95.56% | 8.89% | R_min, R_iqr, R_grad_mean... |
+| clean | mini | 10 | hybrid | 97.78% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 10 | wst | 91.11% | 9.89% | R_WST1_mean, R_WST3_mean, R_WST9_mean... |
+| clean | mini | 20 | advanced_stats | 91.11% | 9.89% | R_var, R_min, R_range... |
+| clean | mini | 20 | hybrid | 95.56% | 5.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 20 | wst | 88.89% | 10.89% | R_WST1_mean, R_WST3_mean, R_WST7_mean... |
+| clean | original | 2 | advanced_stats | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | advanced_stats | 98.33% | 3.33% | R_var, B_cv |
+| clean | original | 2 | advanced_stats | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | hybrid | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | hybrid | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | hybrid | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | wst | 99.13% | 1.74% | G_std, R_WST3_mean |
+| clean | original | 2 | wst | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | wst | 92.53% | 4.11% | R_std, G_std |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_min, R_iqr, G_iqr... |
+| clean | original | 5 | advanced_stats | 97.50% | 5.00% | R_std, R_var, R_mad... |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | hybrid | 99.17% | 1.67% | R_min, R_iqr, G_min... |
+| clean | original | 5 | hybrid | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | wst | 98.26% | 2.13% | R_std, G_std, R_WST3_mean... |
+| clean | original | 5 | wst | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | wst | 98.37% | 2.00% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | advanced_stats | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| clean | original | 10 | advanced_stats | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | hybrid | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | hybrid | 96.67% | 3.12% | R_var, B_cv, R_WST0_std... |
+| clean | original | 10 | hybrid | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | wst | 94.17% | 4.25% | R_std, R_WST0_std, G_WST2_mean... |
+| clean | original | 10 | wst | 98.37% | 2.00% | R_std, G_std, B_mean... |
+| clean | original | 20 | advanced_stats | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| clean | original | 20 | advanced_stats | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 97.50% | 2.04% | R_std, R_var, R_mad... |
+| clean | original | 20 | hybrid | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 20 | wst | 94.17% | 5.65% | R_std, R_WST0_std, R_WST2_mean... |
+| clean | original | 20 | wst | 99.17% | 1.67% | R_mean, R_std, G_std... |
+| clean | small | 2 | advanced_stats | 98.52% | 2.96% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | hybrid | 97.04% | 4.32% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | wst | 92.59% | 8.91% | R_std, R_WST18_mean, R_WST0_std... |
+| clean | small | 5 | advanced_stats | 97.04% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | hybrid | 96.30% | 2.96% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | wst | 94.07% | 5.11% | R_std, G_std, R_WST3_mean... |
+| clean | small | 10 | advanced_stats | 94.81% | 6.07% | R_std, R_min, R_iqr... |
+| clean | small | 10 | hybrid | 94.07% | 5.64% | R_std, R_min, R_iqr... |
+| clean | small | 10 | wst | 94.07% | 5.64% | R_std, G_std, R_WST0_std... |
+| clean | small | 20 | advanced_stats | 94.81% | 6.59% | R_std, R_var, R_min... |
+| clean | small | 20 | hybrid | 95.56% | 4.79% | R_std, R_var, R_min... |
+| clean | small | 20 | wst | 91.85% | 7.90% | R_std, G_std, R_WST0_std... |
+| gaussian30 | mini | 2 | advanced_stats | 84.44% | 19.78% | G_p90, B_p10, B_p90... |
+| gaussian30 | mini | 2 | hybrid | 80.00% | 14.33% | R_p90, B_p10, G_p90... |
+| gaussian30 | mini | 2 | wst | 93.33% | 9.89% | R_WST0_std, B_WST8_mean, B_mean... |
+| gaussian30 | mini | 5 | advanced_stats | 80.00% | 21.36% | R_p10, G_p90, B_cv... |
+| gaussian30 | mini | 5 | hybrid | 88.89% | 18.78% | R_iqr, G_p90, B_skew... |
+| gaussian30 | mini | 5 | wst | 86.67% | 18.78% | G_std, B_mean, R_WST0_std... |
+| gaussian30 | mini | 10 | advanced_stats | 91.11% | 9.89% | R_p10, R_p90, R_iqr... |
+| gaussian30 | mini | 10 | hybrid | 91.11% | 9.89% | R_p90, G_std, G_p90... |
+| gaussian30 | mini | 10 | wst | 86.67% | 13.33% | R_mean, G_std, B_mean... |
+| gaussian30 | mini | 20 | advanced_stats | 82.22% | 23.22% | R_mean, R_p10, R_p25... |
+| gaussian30 | mini | 20 | hybrid | 86.67% | 13.33% | R_p10, R_p25, R_p90... |
+| gaussian30 | mini | 20 | wst | 77.78% | 18.78% | R_mean, G_mean, G_std... |
+| gaussian30 | original | 2 | advanced_stats | 87.93% | 5.06% | G_iqr, B_p10 |
+| gaussian30 | original | 2 | advanced_stats | 76.67% | 9.35% | B_p75, B_p90 |
+| gaussian30 | original | 2 | advanced_stats | 94.23% | 3.29% | B_cv, B_p10 |
+| gaussian30 | original | 2 | hybrid | 91.41% | 4.67% | R_WST0_std, G_WST0_std |
+| gaussian30 | original | 2 | hybrid | 93.33% | 4.25% | R_WST0_std, G_WST0_std |
+| gaussian30 | original | 2 | hybrid | 95.07% | 3.05% | R_WST0_std, G_WST0_std |
+| gaussian30 | original | 2 | wst | 91.41% | 4.67% | R_WST0_std, G_WST0_std |
+| gaussian30 | original | 2 | wst | 93.33% | 4.25% | R_WST0_std, G_WST0_std |
+| gaussian30 | original | 2 | wst | 95.07% | 3.05% | R_WST0_std, G_WST0_std |
+| gaussian30 | original | 5 | advanced_stats | 82.86% | 7.36% | G_p25, G_iqr, B_cv... |
+| gaussian30 | original | 5 | advanced_stats | 97.50% | 2.04% | R_iqr, G_iqr, B_mean... |
+| gaussian30 | original | 5 | advanced_stats | 93.43% | 4.11% | R_cv, R_p10, B_cv... |
+| gaussian30 | original | 5 | hybrid | 94.02% | 4.27% | G_iqr, B_cv, B_p10... |
+| gaussian30 | original | 5 | hybrid | 97.50% | 3.33% | B_mean, B_p75, R_WST0_std... |
+| gaussian30 | original | 5 | hybrid | 95.90% | 3.65% | R_p10, B_cv, B_p10... |
+| gaussian30 | original | 5 | wst | 91.41% | 3.77% | G_mean, B_mean, R_WST0_std... |
+| gaussian30 | original | 5 | wst | 97.50% | 3.33% | B_mean, R_WST0_std, G_WST0_std... |
+| gaussian30 | original | 5 | wst | 95.07% | 4.81% | R_mean, B_mean, R_WST0_std... |
+| gaussian30 | original | 10 | advanced_stats | 79.38% | 5.36% | G_mean, G_cv, G_p10... |
+| gaussian30 | original | 10 | advanced_stats | 98.33% | 2.04% | R_iqr, G_iqr, B_mean... |
+| gaussian30 | original | 10 | advanced_stats | 91.77% | 4.48% | R_cv, R_p10, R_p25... |
+| gaussian30 | original | 10 | hybrid | 93.15% | 4.29% | G_p25, G_iqr, B_mean... |
+| gaussian30 | original | 10 | hybrid | 98.33% | 3.33% | G_iqr, B_mean, B_cv... |
+| gaussian30 | original | 10 | hybrid | 94.23% | 4.21% | R_cv, R_p10, R_p25... |
+| gaussian30 | original | 10 | wst | 92.28% | 4.96% | R_mean, G_mean, B_mean... |
+| gaussian30 | original | 10 | wst | 97.50% | 3.33% | B_mean, R_WST0_std, G_WST0_std... |
+| gaussian30 | original | 10 | wst | 97.50% | 3.33% | R_mean, R_std, G_std... |
+| gaussian30 | original | 20 | advanced_stats | 82.90% | 8.57% | R_skew, R_p10, R_p25... |
+| gaussian30 | original | 20 | advanced_stats | 97.50% | 3.33% | R_std, R_var, R_iqr... |
+| gaussian30 | original | 20 | advanced_stats | 91.77% | 4.48% | R_mean, R_std, R_var... |
+| gaussian30 | original | 20 | hybrid | 93.15% | 5.09% | R_p10, R_p25, R_p90... |
+| gaussian30 | original | 20 | hybrid | 98.33% | 3.33% | R_iqr, G_iqr, B_mean... |
+| gaussian30 | original | 20 | hybrid | 95.87% | 4.56% | R_mean, R_skew, R_cv... |
+| gaussian30 | original | 20 | wst | 91.41% | 3.77% | R_mean, G_mean, G_std... |
+| gaussian30 | original | 20 | wst | 98.33% | 3.33% | B_mean, B_std, R_WST0_std... |
+| gaussian30 | original | 20 | wst | 96.70% | 3.11% | R_mean, R_std, G_mean... |
+| gaussian30 | small | 2 | advanced_stats | 82.22% | 8.90% | G_cv, G_p10, B_cv... |
+| gaussian30 | small | 2 | hybrid | 89.63% | 7.36% | R_WST0_std, G_WST0_std |
+| gaussian30 | small | 2 | wst | 89.63% | 7.36% | R_WST0_std, G_WST0_std |
+| gaussian30 | small | 5 | advanced_stats | 85.93% | 7.74% | R_mean, G_cv, G_p10... |
+| gaussian30 | small | 5 | hybrid | 89.63% | 9.90% | G_cv, G_p10, B_p90... |
+| gaussian30 | small | 5 | wst | 89.63% | 8.90% | R_mean, R_WST0_mean, R_WST0_std... |
+| gaussian30 | small | 10 | advanced_stats | 91.11% | 7.55% | R_mean, R_cv, R_p10... |
+| gaussian30 | small | 10 | hybrid | 88.15% | 9.08% | R_mean, R_p10, G_cv... |
+| gaussian30 | small | 10 | wst | 90.37% | 7.22% | R_mean, G_mean, G_std... |
+| gaussian30 | small | 20 | advanced_stats | 88.89% | 8.51% | R_mean, R_cv, R_p10... |
+| gaussian30 | small | 20 | hybrid | 91.85% | 8.51% | R_mean, R_cv, R_p10... |
+| gaussian30 | small | 20 | wst | 91.11% | 7.36% | R_mean, G_mean, G_std... |
+| gaussian50 | mini | 2 | advanced_stats | 53.33% | 17.20% | B_p10, B_p90, R_p10... |
+| gaussian50 | mini | 2 | hybrid | 48.89% | 19.20% | R_p90, B_p10, B_p25 |
+| gaussian50 | mini | 2 | wst | 84.44% | 16.33% | B_mean, R_WST0_std, R_WST0_mean... |
+| gaussian50 | mini | 5 | advanced_stats | 71.11% | 19.78% | R_p10, R_p90, B_p10... |
+| gaussian50 | mini | 5 | hybrid | 84.44% | 18.78% | R_p90, B_p10, B_p25... |
+| gaussian50 | mini | 5 | wst | 84.44% | 18.78% | G_std, B_mean, R_WST0_std... |
+| gaussian50 | mini | 10 | advanced_stats | 82.22% | 9.89% | R_p10, R_p25, R_p75... |
+| gaussian50 | mini | 10 | hybrid | 88.89% | 14.33% | R_p25, R_p75, G_p10... |
+| gaussian50 | mini | 10 | wst | 86.67% | 13.33% | R_mean, G_std, B_mean... |
+| gaussian50 | mini | 20 | advanced_stats | 80.00% | 26.67% | R_mean, R_skew, R_cv... |
+| gaussian50 | mini | 20 | hybrid | 84.44% | 23.22% | R_mean, R_skew, R_p10... |
+| gaussian50 | mini | 20 | wst | 84.44% | 21.65% | R_mean, G_mean, G_std... |
+| gaussian50 | original | 2 | advanced_stats | 74.13% | 4.78% | G_p25, B_p25 |
+| gaussian50 | original | 2 | advanced_stats | 67.50% | 4.86% | B_mean, B_p50 |
+| gaussian50 | original | 2 | advanced_stats | 88.50% | 5.25% | B_p25, B_p50 |
+| gaussian50 | original | 2 | hybrid | 87.93% | 8.42% | R_WST0_std, G_WST0_std |
+| gaussian50 | original | 2 | hybrid | 97.50% | 5.00% | R_WST0_std, B_WST3_mean |
+| gaussian50 | original | 2 | hybrid | 92.53% | 4.11% | R_WST0_std, G_WST0_std |
+| gaussian50 | original | 2 | wst | 87.93% | 8.42% | R_WST0_std, G_WST0_std |
+| gaussian50 | original | 2 | wst | 97.50% | 5.00% | R_WST0_std, B_WST3_mean |
+| gaussian50 | original | 2 | wst | 92.53% | 4.11% | R_WST0_std, G_WST0_std |
+| gaussian50 | original | 5 | advanced_stats | 73.26% | 4.33% | G_mean, G_p25, G_p50... |
+| gaussian50 | original | 5 | advanced_stats | 70.83% | 3.73% | B_mean, B_cv, B_p75... |
+| gaussian50 | original | 5 | advanced_stats | 90.17% | 5.95% | R_p25, B_skew, B_cv... |
+| gaussian50 | original | 5 | hybrid | 89.67% | 5.17% | G_mean, G_p25, B_p25... |
+| gaussian50 | original | 5 | hybrid | 98.33% | 3.33% | B_mean, B_iqr, R_WST0_std... |
+| gaussian50 | original | 5 | hybrid | 95.07% | 3.05% | R_p25, B_p25, R_WST0_std... |
+| gaussian50 | original | 5 | wst | 87.97% | 6.28% | G_mean, B_mean, R_WST0_std... |
+| gaussian50 | original | 5 | wst | 98.33% | 3.33% | B_mean, R_WST0_std, B_WST0_mean... |
+| gaussian50 | original | 5 | wst | 94.23% | 4.21% | B_mean, R_WST0_mean, R_WST0_std... |
+| gaussian50 | original | 10 | advanced_stats | 73.30% | 4.92% | R_cv, G_mean, G_cv... |
+| gaussian50 | original | 10 | advanced_stats | 69.17% | 4.25% | B_mean, B_var, B_skew... |
+| gaussian50 | original | 10 | advanced_stats | 91.00% | 6.38% | R_mean, R_skew, R_cv... |
+| gaussian50 | original | 10 | hybrid | 89.67% | 3.40% | G_mean, G_cv, G_p25... |
+| gaussian50 | original | 10 | hybrid | 97.50% | 5.00% | B_mean, B_cv, B_p75... |
+| gaussian50 | original | 10 | hybrid | 93.40% | 4.23% | R_cv, R_p25, B_mean... |
+| gaussian50 | original | 10 | wst | 89.67% | 7.03% | R_mean, G_mean, B_mean... |
+| gaussian50 | original | 10 | wst | 98.33% | 3.33% | B_mean, B_std, R_WST0_std... |
+| gaussian50 | original | 10 | wst | 95.03% | 1.68% | R_mean, R_std, G_std... |
+| gaussian50 | original | 20 | advanced_stats | 80.29% | 9.73% | R_mean, R_skew, R_cv... |
+| gaussian50 | original | 20 | advanced_stats | 90.00% | 5.00% | R_mean, R_skew, R_cv... |
+| gaussian50 | original | 20 | advanced_stats | 93.43% | 4.11% | R_mean, R_std, R_var... |
+| gaussian50 | original | 20 | hybrid | 89.67% | 5.85% | R_mean, R_skew, R_cv... |
+| gaussian50 | original | 20 | hybrid | 98.33% | 3.33% | B_mean, B_std, B_var... |
+| gaussian50 | original | 20 | hybrid | 94.23% | 4.21% | R_mean, R_skew, R_cv... |
+| gaussian50 | original | 20 | wst | 90.54% | 6.33% | R_mean, G_mean, B_mean... |
+| gaussian50 | original | 20 | wst | 98.33% | 3.33% | R_mean, B_mean, B_std... |
+| gaussian50 | original | 20 | wst | 95.90% | 3.65% | R_mean, R_std, G_mean... |
+| gaussian50 | small | 2 | advanced_stats | 79.26% | 11.77% | R_mean, G_mean, B_skew... |
+| gaussian50 | small | 2 | hybrid | 91.85% | 6.59% | R_WST0_std, G_WST0_std, R_p75... |
+| gaussian50 | small | 2 | wst | 91.85% | 6.59% | R_WST0_std, G_WST0_std, B_WST8_mean |
+| gaussian50 | small | 5 | advanced_stats | 79.26% | 9.90% | R_mean, R_cv, G_mean... |
+| gaussian50 | small | 5 | hybrid | 89.63% | 9.05% | R_mean, G_p50, R_WST0_std... |
+| gaussian50 | small | 5 | wst | 91.11% | 6.59% | R_mean, G_mean, R_WST0_std... |
+| gaussian50 | small | 10 | advanced_stats | 77.04% | 8.76% | R_mean, R_cv, R_p50... |
+| gaussian50 | small | 10 | hybrid | 89.63% | 8.08% | R_mean, R_cv, R_p50... |
+| gaussian50 | small | 10 | wst | 89.63% | 7.74% | R_mean, G_mean, B_mean... |
+| gaussian50 | small | 20 | advanced_stats | 82.22% | 8.51% | R_mean, R_skew, R_cv... |
+| gaussian50 | small | 20 | hybrid | 88.89% | 8.70% | R_mean, R_skew, R_cv... |
+| gaussian50 | small | 20 | wst | 88.15% | 8.51% | R_mean, G_mean, B_mean... |
+
+### Poisson Noise
+
+| Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
+|---|---|---|---|---|---|---|
+| clean | mini | 2 | advanced_stats | 97.78% | 4.44% | R_min, G_max, B_min... |
+| clean | mini | 2 | hybrid | 95.56% | 8.89% | R_min, G_mad, B_min... |
+| clean | mini | 2 | wst | 95.56% | 5.44% | R_WST19_mean, R_WST23_mean, R_WST0_std... |
+| clean | mini | 5 | advanced_stats | 97.78% | 4.44% | R_min, R_iqr, G_iqr... |
+| clean | mini | 5 | hybrid | 95.56% | 8.89% | R_min, R_mad, G_iqr... |
+| clean | mini | 5 | wst | 93.33% | 9.89% | R_WST3_mean, R_WST19_mean, R_WST22_mean... |
+| clean | mini | 10 | advanced_stats | 95.56% | 8.89% | R_min, R_iqr, R_grad_mean... |
+| clean | mini | 10 | hybrid | 97.78% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 10 | wst | 91.11% | 9.89% | R_WST1_mean, R_WST3_mean, R_WST9_mean... |
+| clean | mini | 20 | advanced_stats | 91.11% | 9.89% | R_var, R_min, R_range... |
+| clean | mini | 20 | hybrid | 95.56% | 5.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 20 | wst | 88.89% | 10.89% | R_WST1_mean, R_WST3_mean, R_WST7_mean... |
+| clean | original | 2 | advanced_stats | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | advanced_stats | 98.33% | 3.33% | R_var, B_cv |
+| clean | original | 2 | advanced_stats | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | hybrid | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | hybrid | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | hybrid | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | wst | 99.13% | 1.74% | G_std, R_WST3_mean |
+| clean | original | 2 | wst | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | wst | 92.53% | 4.11% | R_std, G_std |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_min, R_iqr, G_iqr... |
+| clean | original | 5 | advanced_stats | 97.50% | 5.00% | R_std, R_var, R_mad... |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | hybrid | 99.17% | 1.67% | R_min, R_iqr, G_min... |
+| clean | original | 5 | hybrid | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | wst | 98.26% | 2.13% | R_std, G_std, R_WST3_mean... |
+| clean | original | 5 | wst | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | wst | 98.37% | 2.00% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | advanced_stats | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| clean | original | 10 | advanced_stats | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | hybrid | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | hybrid | 96.67% | 3.12% | R_var, B_cv, R_WST0_std... |
+| clean | original | 10 | hybrid | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | wst | 94.17% | 4.25% | R_std, R_WST0_std, G_WST2_mean... |
+| clean | original | 10 | wst | 98.37% | 2.00% | R_std, G_std, B_mean... |
+| clean | original | 20 | advanced_stats | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| clean | original | 20 | advanced_stats | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 97.50% | 2.04% | R_std, R_var, R_mad... |
+| clean | original | 20 | hybrid | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 20 | wst | 94.17% | 5.65% | R_std, R_WST0_std, R_WST2_mean... |
+| clean | original | 20 | wst | 99.17% | 1.67% | R_mean, R_std, G_std... |
+| clean | small | 2 | advanced_stats | 98.52% | 2.96% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | hybrid | 97.04% | 4.32% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | wst | 92.59% | 8.91% | R_std, R_WST18_mean, R_WST0_std... |
+| clean | small | 5 | advanced_stats | 97.04% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | hybrid | 96.30% | 2.96% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | wst | 94.07% | 5.11% | R_std, G_std, R_WST3_mean... |
+| clean | small | 10 | advanced_stats | 94.81% | 6.07% | R_std, R_min, R_iqr... |
+| clean | small | 10 | hybrid | 94.07% | 5.64% | R_std, R_min, R_iqr... |
+| clean | small | 10 | wst | 94.07% | 5.64% | R_std, G_std, R_WST0_std... |
+| clean | small | 20 | advanced_stats | 94.81% | 6.59% | R_std, R_var, R_min... |
+| clean | small | 20 | hybrid | 95.56% | 4.79% | R_std, R_var, R_min... |
+| clean | small | 20 | wst | 91.85% | 7.90% | R_std, G_std, R_WST0_std... |
+| poisson40 | mini | 2 | advanced_stats | 55.56% | 8.89% | R_max, B_max, R_p10... |
+| poisson40 | mini | 2 | hybrid | 64.44% | 17.20% | R_min, R_max, B_max... |
+| poisson40 | mini | 2 | wst | 91.11% | 13.33% | B_wst_mean_67, B_wst_std_49, B_wst_mean_0... |
+| poisson40 | mini | 5 | advanced_stats | 71.11% | 24.64% | R_min, R_max, R_range... |
+| poisson40 | mini | 5 | hybrid | 88.89% | 15.33% | R_min, R_max, B_max... |
+| poisson40 | mini | 5 | wst | 91.11% | 10.89% | B_wst_mean_46, B_wst_mean_48, B_wst_mean_67... |
+| poisson40 | mini | 10 | advanced_stats | 84.44% | 18.20% | R_std, R_min, R_max... |
+| poisson40 | mini | 10 | hybrid | 93.33% | 9.89% | R_min, R_max, R_range... |
+| poisson40 | mini | 10 | wst | 91.11% | 14.33% | R_wst_mean_55, G_wst_std_58, B_wst_mean_22... |
+| poisson40 | mini | 20 | advanced_stats | 84.44% | 15.92% | R_std, R_var, R_min... |
+| poisson40 | mini | 20 | hybrid | 88.89% | 14.33% | R_max, R_range, B_max... |
+| poisson40 | mini | 20 | wst | 88.89% | 10.89% | R_wst_mean_55, G_wst_std_31, G_wst_std_58... |
+| poisson40 | original | 2 | advanced_stats | 94.82% | 1.76% | G_std, G_cv |
+| poisson40 | original | 2 | advanced_stats | 93.33% | 3.33% | B_skew, B_iqr |
+| poisson40 | original | 2 | advanced_stats | 100.00% | 0.00% | G_mad, B_cv |
+| poisson40 | original | 2 | hybrid | 93.08% | 5.91% | G_cv, G_wst_std_0 |
+| poisson40 | original | 2 | hybrid | 95.83% | 2.64% | B_skew, R_wst_std_0 |
+| poisson40 | original | 2 | hybrid | 100.00% | 0.00% | G_mad, B_cv |
+| poisson40 | original | 2 | wst | 90.51% | 6.40% | R_wst_std_0, G_wst_std_0 |
+| poisson40 | original | 2 | wst | 95.00% | 3.12% | R_wst_std_0, R_wst_std_12 |
+| poisson40 | original | 2 | wst | 96.67% | 4.86% | R_wst_std_0, G_wst_std_0 |
+| poisson40 | original | 5 | advanced_stats | 93.95% | 2.16% | G_std, G_var, G_cv... |
+| poisson40 | original | 5 | advanced_stats | 98.33% | 3.33% | R_std, R_var, G_iqr... |
+| poisson40 | original | 5 | advanced_stats | 99.17% | 1.67% | G_std, G_var, G_mad... |
+| poisson40 | original | 5 | hybrid | 91.38% | 4.76% | G_std, G_var, G_cv... |
+| poisson40 | original | 5 | hybrid | 98.33% | 2.04% | R_iqr, G_iqr, B_skew... |
+| poisson40 | original | 5 | hybrid | 99.17% | 1.67% | R_cv, G_std, G_var... |
+| poisson40 | original | 5 | wst | 91.38% | 7.28% | R_wst_std_0, G_wst_std_0, B_wst_mean_47... |
+| poisson40 | original | 5 | wst | 95.83% | 2.64% | R_wst_std_0, R_wst_std_12, G_wst_std_11... |
+| poisson40 | original | 5 | wst | 96.67% | 4.08% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| poisson40 | original | 10 | advanced_stats | 93.08% | 3.51% | R_std, R_var, R_cv... |
+| poisson40 | original | 10 | advanced_stats | 97.50% | 3.33% | R_std, R_var, R_iqr... |
+| poisson40 | original | 10 | advanced_stats | 98.33% | 2.04% | R_cv, R_p10, R_mad... |
+| poisson40 | original | 10 | hybrid | 93.95% | 4.45% | R_var, R_cv, G_std... |
+| poisson40 | original | 10 | hybrid | 99.17% | 1.67% | R_iqr, G_iqr, B_skew... |
+| poisson40 | original | 10 | hybrid | 97.50% | 3.33% | R_cv, G_std, G_var... |
+| poisson40 | original | 10 | wst | 92.28% | 6.30% | R_wst_mean_4, R_wst_std_0, G_wst_std_0... |
+| poisson40 | original | 10 | wst | 96.67% | 3.12% | R_wst_std_0, R_wst_std_11, R_wst_std_12... |
+| poisson40 | original | 10 | wst | 95.83% | 2.64% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| poisson40 | original | 20 | advanced_stats | 93.95% | 4.45% | R_std, R_var, R_min... |
+| poisson40 | original | 20 | advanced_stats | 97.50% | 3.33% | R_std, R_var, R_iqr... |
+| poisson40 | original | 20 | advanced_stats | 98.33% | 2.04% | R_std, R_var, R_min... |
+| poisson40 | original | 20 | hybrid | 95.65% | 4.76% | R_std, R_var, R_cv... |
+| poisson40 | original | 20 | hybrid | 97.50% | 3.33% | R_std, R_var, R_iqr... |
+| poisson40 | original | 20 | hybrid | 99.17% | 1.67% | R_std, R_var, R_min... |
+| poisson40 | original | 20 | wst | 91.38% | 4.76% | R_wst_mean_4, R_wst_mean_6, R_wst_mean_19... |
+| poisson40 | original | 20 | wst | 97.50% | 3.33% | R_wst_mean_13, R_wst_std_0, R_wst_std_9... |
+| poisson40 | original | 20 | wst | 96.67% | 3.12% | R_wst_mean_0, R_wst_mean_50, R_wst_mean_75... |
+| poisson40 | small | 2 | advanced_stats | 88.89% | 6.40% | R_std, G_cv, G_mad... |
+| poisson40 | small | 2 | hybrid | 91.11% | 5.54% | R_std, G_cv, G_mad... |
+| poisson40 | small | 2 | wst | 88.89% | 6.07% | R_wst_std_0, G_wst_std_0, B_wst_mean_38... |
+| poisson40 | small | 5 | advanced_stats | 90.37% | 9.62% | R_std, R_var, R_cv... |
+| poisson40 | small | 5 | hybrid | 92.59% | 6.60% | R_std, R_var, R_cv... |
+| poisson40 | small | 5 | wst | 88.89% | 7.36% | R_wst_mean_65, R_wst_std_0, R_wst_std_56... |
+| poisson40 | small | 10 | advanced_stats | 91.11% | 7.02% | R_std, R_var, R_min... |
+| poisson40 | small | 10 | hybrid | 90.37% | 5.93% | R_std, R_var, R_cv... |
+| poisson40 | small | 10 | wst | 92.59% | 6.07% | R_wst_mean_49, R_wst_mean_65, R_wst_std_0... |
+| poisson40 | small | 20 | advanced_stats | 91.11% | 9.36% | R_mean, R_std, R_var... |
+| poisson40 | small | 20 | hybrid | 92.59% | 7.12% | R_std, R_var, R_min... |
+| poisson40 | small | 20 | wst | 91.85% | 5.97% | R_wst_mean_0, R_wst_mean_5, R_wst_mean_22... |
+| poisson60 | mini | 2 | advanced_stats | 77.78% | 15.33% | R_max, G_iqr, R_min... |
+| poisson60 | mini | 2 | hybrid | 71.11% | 16.91% | R_max, B_min, R_min... |
+| poisson60 | mini | 2 | wst | 91.11% | 9.89% | B_wst_mean_48, B_wst_mean_52, B_wst_mean_0... |
+| poisson60 | mini | 5 | advanced_stats | 88.89% | 15.33% | R_max, R_cv, G_iqr... |
+| poisson60 | mini | 5 | hybrid | 91.11% | 14.33% | R_max, G_iqr, B_max... |
+| poisson60 | mini | 5 | wst | 91.11% | 9.89% | B_wst_mean_29, B_wst_mean_41, B_wst_mean_42... |
+| poisson60 | mini | 10 | advanced_stats | 88.89% | 15.33% | R_std, R_var, R_min... |
+| poisson60 | mini | 10 | hybrid | 91.11% | 14.33% | R_cv, G_iqr, B_min... |
+| poisson60 | mini | 10 | wst | 93.33% | 9.89% | B_wst_mean_22, B_wst_mean_23, B_wst_mean_30... |
+| poisson60 | mini | 20 | advanced_stats | 84.44% | 15.33% | R_std, R_var, R_min... |
+| poisson60 | mini | 20 | hybrid | 91.11% | 14.33% | R_min, R_max, R_mad... |
+| poisson60 | mini | 20 | wst | 93.33% | 9.89% | R_wst_std_40, B_wst_mean_18, B_wst_mean_19... |
+| poisson60 | original | 2 | advanced_stats | 93.12% | 2.08% | G_cv, G_mad |
+| poisson60 | original | 2 | advanced_stats | 94.17% | 2.04% | R_iqr, B_skew |
+| poisson60 | original | 2 | advanced_stats | 99.17% | 1.67% | G_std, B_cv |
+| poisson60 | original | 2 | hybrid | 93.12% | 4.41% | G_cv, R_wst_std_0 |
+| poisson60 | original | 2 | hybrid | 90.83% | 4.86% | R_iqr, R_wst_std_0 |
+| poisson60 | original | 2 | hybrid | 99.17% | 1.67% | G_std, B_cv |
+| poisson60 | original | 2 | wst | 89.64% | 4.46% | R_wst_std_0, G_wst_std_0 |
+| poisson60 | original | 2 | wst | 95.83% | 2.64% | R_wst_std_0, R_wst_std_12 |
+| poisson60 | original | 2 | wst | 93.33% | 5.65% | R_wst_std_0, G_wst_std_0 |
+| poisson60 | original | 5 | advanced_stats | 94.78% | 3.25% | R_cv, R_mad, G_cv... |
+| poisson60 | original | 5 | advanced_stats | 95.83% | 2.64% | R_std, R_var, R_iqr... |
+| poisson60 | original | 5 | advanced_stats | 99.17% | 1.67% | R_var, G_std, G_var... |
+| poisson60 | original | 5 | hybrid | 92.25% | 3.24% | R_mad, G_cv, G_mad... |
+| poisson60 | original | 5 | hybrid | 96.67% | 3.12% | R_iqr, B_skew, R_wst_std_0... |
+| poisson60 | original | 5 | hybrid | 99.17% | 1.67% | R_var, G_std, G_var... |
+| poisson60 | original | 5 | wst | 91.38% | 4.76% | R_wst_mean_3, R_wst_mean_4, R_wst_std_0... |
+| poisson60 | original | 5 | wst | 96.67% | 4.86% | R_wst_std_0, R_wst_std_12, G_wst_std_12... |
+| poisson60 | original | 5 | wst | 95.00% | 6.12% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| poisson60 | original | 10 | advanced_stats | 93.91% | 4.43% | R_std, R_var, R_cv... |
+| poisson60 | original | 10 | advanced_stats | 96.67% | 3.12% | R_std, R_var, R_range... |
+| poisson60 | original | 10 | advanced_stats | 99.17% | 1.67% | R_std, R_var, R_cv... |
+| poisson60 | original | 10 | hybrid | 92.25% | 3.24% | R_cv, R_mad, G_std... |
+| poisson60 | original | 10 | hybrid | 97.50% | 3.33% | R_std, R_var, R_iqr... |
+| poisson60 | original | 10 | hybrid | 99.17% | 1.67% | R_std, R_var, R_cv... |
+| poisson60 | original | 10 | wst | 91.38% | 6.15% | R_wst_mean_3, R_wst_mean_4, R_wst_mean_35... |
+| poisson60 | original | 10 | wst | 96.67% | 3.12% | R_wst_std_0, R_wst_std_9, R_wst_std_11... |
+| poisson60 | original | 10 | wst | 96.67% | 3.12% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| poisson60 | original | 20 | advanced_stats | 94.82% | 3.26% | R_std, R_var, R_min... |
+| poisson60 | original | 20 | advanced_stats | 97.50% | 3.33% | R_std, R_var, R_range... |
+| poisson60 | original | 20 | advanced_stats | 98.33% | 2.04% | R_std, R_var, R_min... |
+| poisson60 | original | 20 | hybrid | 93.12% | 4.41% | R_std, R_var, R_min... |
+| poisson60 | original | 20 | hybrid | 99.17% | 1.67% | R_std, R_var, R_iqr... |
+| poisson60 | original | 20 | hybrid | 98.33% | 2.04% | R_std, R_var, R_min... |
+| poisson60 | original | 20 | wst | 91.38% | 6.15% | R_wst_mean_3, R_wst_mean_4, R_wst_mean_35... |
+| poisson60 | original | 20 | wst | 97.50% | 3.33% | R_wst_mean_10, R_wst_mean_12, R_wst_mean_13... |
+| poisson60 | original | 20 | wst | 96.67% | 4.86% | R_wst_mean_0, R_wst_mean_49, R_wst_std_0... |
+| poisson60 | small | 2 | advanced_stats | 91.11% | 9.17% | R_std, R_mad, G_mad... |
+| poisson60 | small | 2 | hybrid | 95.56% | 5.73% | R_mad, G_iqr, G_mad... |
+| poisson60 | small | 2 | wst | 91.85% | 5.73% | R_wst_std_0, G_wst_std_0, G_wst_mean_11... |
+| poisson60 | small | 5 | advanced_stats | 88.89% | 8.21% | R_std, R_var, R_mad... |
+| poisson60 | small | 5 | hybrid | 91.11% | 6.40% | R_std, R_var, R_mad... |
+| poisson60 | small | 5 | wst | 90.37% | 7.47% | R_wst_mean_77, R_wst_std_0, G_wst_std_0... |
+| poisson60 | small | 10 | advanced_stats | 90.37% | 8.84% | R_std, R_var, R_cv... |
+| poisson60 | small | 10 | hybrid | 91.11% | 6.93% | R_std, R_var, R_cv... |
+| poisson60 | small | 10 | wst | 91.11% | 5.44% | R_wst_mean_77, R_wst_std_0, G_wst_mean_68... |
+| poisson60 | small | 20 | advanced_stats | 92.59% | 8.70% | R_mean, R_std, R_var... |
+| poisson60 | small | 20 | hybrid | 93.33% | 6.59% | R_std, R_var, R_min... |
+| poisson60 | small | 20 | wst | 90.37% | 7.36% | R_wst_mean_0, R_wst_mean_77, R_wst_std_0... |
+
+### Salt and Pepper Noise
+
+| Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
+|---|---|---|---|---|---|---|
+| clean | mini | 2 | advanced_stats | 100.00% | nan% | R_min, B_min, B_p10... |
+| clean | mini | 2 | hybrid | 100.00% | nan% | R_min, B_min, B_max... |
+| clean | mini | 2 | wst | 91.11% | 16.33% | R_wst_mean_52, R_wst_mean_69, G_wst_mean_15... |
+| clean | mini | 5 | advanced_stats | 86.67% | 15.33% | R_min, R_iqr, R_mad... |
+| clean | mini | 5 | hybrid | 93.33% | 14.83% | R_min, R_mad, G_mad... |
+| clean | mini | 5 | wst | 91.11% | 16.33% | R_wst_mean_62, R_wst_mean_68, R_wst_mean_71... |
+| clean | mini | 10 | advanced_stats | 86.67% | 14.83% | R_min, R_skew, R_iqr... |
+| clean | mini | 10 | hybrid | 95.56% | 16.33% | R_iqr, G_mad, B_min... |
+| clean | mini | 10 | wst | 91.11% | 16.33% | R_wst_mean_6, R_wst_mean_14, R_wst_mean_34... |
+| clean | mini | 20 | advanced_stats | 88.89% | 13.33% | R_std, R_var, R_min... |
+| clean | mini | 20 | hybrid | 93.33% | 14.83% | R_min, R_iqr, R_mad... |
+| clean | mini | 20 | wst | 86.67% | 18.78% | R_wst_mean_6, R_wst_mean_26, R_wst_mean_35... |
+| clean | original | 2 | advanced_stats | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | advanced_stats | 98.33% | 3.33% | R_var, B_cv |
+| clean | original | 2 | advanced_stats | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | hybrid | 100.00% | nan% | G_iqr, B_min |
+| clean | original | 2 | hybrid | 93.33% | 7.73% | R_wst_std_0, B_wst_mean_52 |
+| clean | original | 2 | hybrid | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | wst | 93.08% | 5.24% | R_wst_mean_60, R_wst_mean_61 |
+| clean | original | 2 | wst | 93.33% | 7.73% | R_wst_std_0, B_wst_mean_52 |
+| clean | original | 2 | wst | 95.03% | 4.09% | R_wst_mean_16, R_wst_std_0 |
+| clean | original | 5 | advanced_stats | 100.00% | nan% | R_min, R_iqr, G_iqr... |
+| clean | original | 5 | advanced_stats | 97.50% | 5.00% | R_std, R_var, R_mad... |
+| clean | original | 5 | advanced_stats | 100.00% | nan% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | hybrid | 99.17% | 1.67% | R_min, R_iqr, G_min... |
+| clean | original | 5 | hybrid | 93.33% | 7.26% | R_wst_std_0, G_wst_mean_37, G_wst_mean_45... |
+| clean | original | 5 | hybrid | 100.00% | nan% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | wst | 92.21% | 5.10% | R_wst_mean_15, R_wst_mean_53, R_wst_mean_60... |
+| clean | original | 5 | wst | 93.33% | 7.26% | R_wst_std_0, G_wst_mean_37, G_wst_mean_45... |
+| clean | original | 5 | wst | 91.80% | 5.71% | R_wst_mean_9, R_wst_mean_10, R_wst_mean_16... |
+| clean | original | 10 | advanced_stats | 100.00% | nan% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| clean | original | 10 | advanced_stats | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | hybrid | 100.00% | nan% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | hybrid | 97.50% | 3.33% | B_cv, R_wst_mean_3, R_wst_mean_40... |
+| clean | original | 10 | hybrid | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | wst | 95.69% | 3.89% | R_wst_mean_15, R_wst_mean_53, R_wst_mean_60... |
+| clean | original | 10 | wst | 92.50% | 7.17% | R_wst_mean_3, R_wst_mean_40, R_wst_std_0... |
+| clean | original | 10 | wst | 96.73% | 4.00% | R_wst_mean_1, R_wst_mean_8, R_wst_mean_9... |
+| clean | original | 20 | advanced_stats | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| clean | original | 20 | advanced_stats | 100.00% | nan% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 99.13% | 1.74% | R_std, R_min, R_cv... |
+| clean | original | 20 | hybrid | 96.67% | 4.86% | R_std, R_var, B_cv... |
+| clean | original | 20 | hybrid | 100.00% | nan% | R_std, R_var, R_min... |
+| clean | original | 20 | wst | 96.52% | 4.26% | R_wst_mean_7, R_wst_mean_15, R_wst_mean_44... |
+| clean | original | 20 | wst | 93.33% | 7.73% | R_wst_mean_3, R_wst_mean_13, R_wst_mean_29... |
+| clean | original | 20 | wst | 98.33% | 3.33% | R_wst_mean_0, R_wst_mean_1, R_wst_mean_7... |
+| clean | small | 2 | advanced_stats | 98.52% | 8.89% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | hybrid | 97.04% | 4.44% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | wst | 91.11% | 5.64% | R_wst_mean_15, R_wst_mean_60, R_wst_mean_16... |
+| clean | small | 5 | advanced_stats | 97.04% | 6.67% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | hybrid | 96.30% | 6.38% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | wst | 92.59% | 6.60% | R_wst_mean_6, R_wst_mean_7, R_wst_mean_15... |
+| clean | small | 10 | advanced_stats | 94.81% | 6.07% | R_std, R_min, R_iqr... |
+| clean | small | 10 | hybrid | 94.07% | 6.61% | R_std, R_min, R_iqr... |
+| clean | small | 10 | wst | 89.63% | 8.43% | R_wst_mean_6, R_wst_mean_7, R_wst_mean_15... |
+| clean | small | 20 | advanced_stats | 94.81% | 6.59% | R_std, R_var, R_min... |
+| clean | small | 20 | hybrid | 94.81% | 8.70% | R_std, R_var, R_min... |
+| clean | small | 20 | wst | 91.11% | 8.91% | R_wst_mean_1, R_wst_mean_6, R_wst_mean_7... |
+| saltpepper15 | mini | 2 | advanced_stats | 93.33% | 13.33% | R_iqr, G_iqr, B_p25... |
+| saltpepper15 | mini | 2 | hybrid | 93.33% | 9.89% | R_iqr, G_iqr, B_p25... |
+| saltpepper15 | mini | 2 | wst | 88.89% | 15.33% | B_wst_mean_0, B_wst_mean_54, R_wst_std_0... |
+| saltpepper15 | mini | 5 | advanced_stats | 88.89% | 14.33% | R_iqr, G_kurt, G_iqr... |
+| saltpepper15 | mini | 5 | hybrid | 93.33% | 13.33% | R_iqr, G_iqr, B_skew... |
+| saltpepper15 | mini | 5 | wst | 82.22% | 12.47% | R_wst_std_0, B_wst_mean_0, B_wst_mean_23... |
+| saltpepper15 | mini | 10 | advanced_stats | 84.44% | 16.33% | R_p25, R_iqr, G_kurt... |
+| saltpepper15 | mini | 10 | hybrid | 88.89% | 7.03% | R_p25, R_iqr, G_p25... |
+| saltpepper15 | mini | 10 | wst | 75.56% | 14.33% | R_wst_mean_0, R_wst_std_0, G_wst_std_0... |
+| saltpepper15 | mini | 20 | advanced_stats | 91.11% | 9.89% | R_mean, R_skew, R_cv... |
+| saltpepper15 | mini | 20 | hybrid | 88.89% | 10.89% | R_p25, R_iqr, G_kurt... |
+| saltpepper15 | mini | 20 | wst | 73.33% | 17.20% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper15 | original | 2 | advanced_stats | 98.26% | 3.48% | R_iqr, G_iqr |
+| saltpepper15 | original | 2 | advanced_stats | 98.33% | 2.04% | R_iqr, B_mean |
+| saltpepper15 | original | 2 | advanced_stats | 100.00% | 0.00% | R_iqr, G_iqr |
+| saltpepper15 | original | 2 | hybrid | 98.26% | 3.48% | R_iqr, G_iqr |
+| saltpepper15 | original | 2 | hybrid | 87.50% | 4.56% | R_iqr, R_wst_std_0 |
+| saltpepper15 | original | 2 | hybrid | 100.00% | 0.00% | R_iqr, G_iqr |
+| saltpepper15 | original | 2 | wst | 87.90% | 5.12% | R_wst_std_0, G_wst_std_0 |
+| saltpepper15 | original | 2 | wst | 90.83% | 1.67% | R_wst_std_0, G_wst_std_0 |
+| saltpepper15 | original | 2 | wst | 97.50% | 3.33% | G_wst_std_0, B_wst_mean_0 |
+| saltpepper15 | original | 5 | advanced_stats | 100.00% | 0.00% | R_p25, R_iqr, G_p25... |
+| saltpepper15 | original | 5 | advanced_stats | 98.33% | 2.04% | R_iqr, R_mad, B_mean... |
+| saltpepper15 | original | 5 | advanced_stats | 99.17% | 1.67% | R_cv, R_p25, R_iqr... |
+| saltpepper15 | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, G_p25, G_iqr... |
+| saltpepper15 | original | 5 | hybrid | 97.50% | 2.04% | R_iqr, R_wst_std_0, G_wst_std_0... |
+| saltpepper15 | original | 5 | hybrid | 99.17% | 1.67% | R_cv, R_p25, R_iqr... |
+| saltpepper15 | original | 5 | wst | 88.77% | 3.54% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper15 | original | 5 | wst | 97.50% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper15 | original | 5 | wst | 95.00% | 4.86% | R_wst_mean_0, R_wst_std_0, G_wst_std_0... |
+| saltpepper15 | original | 10 | advanced_stats | 100.00% | 0.00% | R_p25, R_p75, R_iqr... |
+| saltpepper15 | original | 10 | advanced_stats | 98.33% | 2.04% | R_iqr, R_mad, B_mean... |
+| saltpepper15 | original | 10 | advanced_stats | 100.00% | 0.00% | R_cv, R_p25, R_iqr... |
+| saltpepper15 | original | 10 | hybrid | 100.00% | 0.00% | R_p25, R_iqr, G_p25... |
+| saltpepper15 | original | 10 | hybrid | 98.33% | 2.04% | R_iqr, R_mad, B_mean... |
+| saltpepper15 | original | 10 | hybrid | 100.00% | 0.00% | R_cv, R_p25, R_iqr... |
+| saltpepper15 | original | 10 | wst | 90.51% | 3.28% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper15 | original | 10 | wst | 98.33% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper15 | original | 10 | wst | 97.50% | 2.04% | R_wst_mean_0, R_wst_mean_5, R_wst_std_0... |
+| saltpepper15 | original | 20 | advanced_stats | 100.00% | 0.00% | R_mean, R_skew, R_cv... |
+| saltpepper15 | original | 20 | advanced_stats | 98.33% | 2.04% | R_skew, R_kurt, R_iqr... |
+| saltpepper15 | original | 20 | advanced_stats | 100.00% | 0.00% | R_mean, R_skew, R_kurt... |
+| saltpepper15 | original | 20 | hybrid | 100.00% | 0.00% | R_skew, R_p25, R_p75... |
+| saltpepper15 | original | 20 | hybrid | 98.33% | 2.04% | R_kurt, R_iqr, R_mad... |
+| saltpepper15 | original | 20 | hybrid | 100.00% | 0.00% | R_mean, R_skew, R_cv... |
+| saltpepper15 | original | 20 | wst | 90.51% | 3.28% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper15 | original | 20 | wst | 97.50% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper15 | original | 20 | wst | 95.83% | 2.64% | R_wst_mean_0, R_wst_mean_1, R_wst_mean_2... |
+| saltpepper15 | small | 2 | advanced_stats | 94.81% | 6.87% | R_iqr, G_iqr, R_mad |
+| saltpepper15 | small | 2 | hybrid | 96.30% | 5.74% | R_iqr, G_iqr, R_wst_std_0 |
+| saltpepper15 | small | 2 | wst | 89.63% | 9.60% | R_wst_std_0, G_wst_std_0 |
+| saltpepper15 | small | 5 | advanced_stats | 97.04% | 3.63% | R_iqr, G_cv, G_p25... |
+| saltpepper15 | small | 5 | hybrid | 94.81% | 6.92% | R_iqr, G_p25, G_iqr... |
+| saltpepper15 | small | 5 | wst | 87.41% | 8.65% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper15 | small | 10 | advanced_stats | 98.52% | 1.81% | R_mean, R_p25, R_p50... |
+| saltpepper15 | small | 10 | hybrid | 97.04% | 2.77% | R_mean, R_p25, R_iqr... |
+| saltpepper15 | small | 10 | wst | 93.33% | 6.26% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper15 | small | 20 | advanced_stats | 98.52% | 2.96% | R_mean, R_skew, R_cv... |
+| saltpepper15 | small | 20 | hybrid | 97.04% | 3.63% | R_mean, R_skew, R_p25... |
+| saltpepper15 | small | 20 | wst | 90.37% | 7.55% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper25 | mini | 2 | advanced_stats | 84.44% | 18.78% | B_cv, B_p50, B_mean... |
+| saltpepper25 | mini | 2 | hybrid | 80.00% | 19.20% | B_skew, B_cv, R_skew... |
+| saltpepper25 | mini | 2 | wst | 80.00% | 22.65% | B_wst_mean_78, B_wst_std_3, R_wst_mean_0... |
+| saltpepper25 | mini | 5 | advanced_stats | 86.67% | 15.33% | R_p50, B_mean, B_skew... |
+| saltpepper25 | mini | 5 | hybrid | 80.00% | 19.20% | B_mean, B_skew, B_cv... |
+| saltpepper25 | mini | 5 | wst | 80.00% | 22.65% | R_wst_mean_0, B_wst_mean_0, B_wst_mean_70... |
+| saltpepper25 | mini | 10 | advanced_stats | 86.67% | 16.33% | R_skew, R_cv, R_p50... |
+| saltpepper25 | mini | 10 | hybrid | 77.78% | 18.20% | R_p50, G_skew, G_p50... |
+| saltpepper25 | mini | 10 | wst | 71.11% | 28.09% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper25 | mini | 20 | advanced_stats | 75.56% | 14.33% | R_mean, R_skew, R_kurt... |
+| saltpepper25 | mini | 20 | hybrid | 86.67% | 15.33% | R_mean, R_skew, R_cv... |
+| saltpepper25 | mini | 20 | wst | 66.67% | 23.80% | R_wst_mean_0, R_wst_std_0, R_wst_std_24... |
+| saltpepper25 | original | 2 | advanced_stats | 80.22% | 8.37% | B_cv, B_p50 |
+| saltpepper25 | original | 2 | advanced_stats | 71.67% | 8.08% | B_mean, B_cv |
+| saltpepper25 | original | 2 | advanced_stats | 93.33% | 5.65% | R_cv, B_p50 |
+| saltpepper25 | original | 2 | hybrid | 87.07% | 5.50% | B_cv, R_wst_std_0 |
+| saltpepper25 | original | 2 | hybrid | 98.33% | 2.04% | B_mean, R_wst_std_0 |
+| saltpepper25 | original | 2 | hybrid | 93.33% | 5.65% | R_cv, B_p50 |
+| saltpepper25 | original | 2 | wst | 83.62% | 6.38% | R_wst_std_0, B_wst_mean_0 |
+| saltpepper25 | original | 2 | wst | 97.50% | 3.33% | R_wst_std_0, B_wst_mean_0 |
+| saltpepper25 | original | 2 | wst | 88.37% | 4.14% | R_wst_mean_0, B_wst_mean_0 |
+| saltpepper25 | original | 5 | advanced_stats | 98.26% | 3.48% | R_skew, R_cv, R_iqr... |
+| saltpepper25 | original | 5 | advanced_stats | 83.33% | 3.73% | B_mean, B_skew, B_kurt... |
+| saltpepper25 | original | 5 | advanced_stats | 94.17% | 4.25% | R_cv, B_mean, B_skew... |
+| saltpepper25 | original | 5 | hybrid | 97.39% | 5.22% | R_skew, R_p75, B_cv... |
+| saltpepper25 | original | 5 | hybrid | 98.33% | 2.04% | B_mean, B_cv, R_wst_std_0... |
+| saltpepper25 | original | 5 | hybrid | 94.17% | 4.25% | R_cv, B_mean, B_skew... |
+| saltpepper25 | original | 5 | wst | 87.07% | 5.50% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper25 | original | 5 | wst | 99.17% | 1.67% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper25 | original | 5 | wst | 94.17% | 3.33% | R_wst_mean_0, R_wst_std_0, G_wst_std_0... |
+| saltpepper25 | original | 10 | advanced_stats | 97.39% | 5.22% | R_skew, R_cv, R_p50... |
+| saltpepper25 | original | 10 | advanced_stats | 89.17% | 5.00% | B_mean, B_std, B_var... |
+| saltpepper25 | original | 10 | advanced_stats | 92.50% | 6.67% | R_mean, R_skew, R_cv... |
+| saltpepper25 | original | 10 | hybrid | 97.39% | 5.22% | R_skew, R_cv, R_p75... |
+| saltpepper25 | original | 10 | hybrid | 99.17% | 1.67% | B_mean, B_std, B_var... |
+| saltpepper25 | original | 10 | hybrid | 92.50% | 6.67% | R_mean, R_skew, R_cv... |
+| saltpepper25 | original | 10 | wst | 87.07% | 4.77% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper25 | original | 10 | wst | 99.17% | 1.67% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper25 | original | 10 | wst | 92.50% | 4.08% | R_wst_mean_0, R_wst_mean_2, R_wst_mean_5... |
+| saltpepper25 | original | 20 | advanced_stats | 97.39% | 5.22% | R_mean, R_skew, R_kurt... |
+| saltpepper25 | original | 20 | advanced_stats | 96.67% | 4.86% | R_kurt, R_cv, R_p75... |
+| saltpepper25 | original | 20 | advanced_stats | 91.70% | 5.92% | R_mean, R_skew, R_cv... |
+| saltpepper25 | original | 20 | hybrid | 98.26% | 3.48% | R_mean, R_skew, R_kurt... |
+| saltpepper25 | original | 20 | hybrid | 98.33% | 2.04% | R_mad, G_mad, B_mean... |
+| saltpepper25 | original | 20 | hybrid | 93.33% | 5.65% | R_mean, R_skew, R_cv... |
+| saltpepper25 | original | 20 | wst | 88.80% | 3.43% | R_wst_mean_0, R_wst_mean_1, R_wst_std_0... |
+| saltpepper25 | original | 20 | wst | 97.50% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper25 | original | 20 | wst | 94.17% | 3.33% | R_wst_mean_0, R_wst_mean_1, R_wst_mean_2... |
+| saltpepper25 | small | 2 | advanced_stats | 86.67% | 10.51% | G_p50, B_p50, B_skew... |
+| saltpepper25 | small | 2 | hybrid | 83.70% | 11.86% | R_wst_std_0, G_wst_std_0, B_skew... |
+| saltpepper25 | small | 2 | wst | 85.93% | 12.40% | R_wst_std_0, G_wst_std_0, B_wst_mean_0 |
+| saltpepper25 | small | 5 | advanced_stats | 88.15% | 9.91% | R_skew, R_iqr, G_p50... |
+| saltpepper25 | small | 5 | hybrid | 88.89% | 10.98% | R_p75, R_iqr, G_p50... |
+| saltpepper25 | small | 5 | wst | 89.63% | 9.05% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper25 | small | 10 | advanced_stats | 90.37% | 8.55% | R_skew, R_p75, R_iqr... |
+| saltpepper25 | small | 10 | hybrid | 88.89% | 10.29% | R_skew, R_p75, R_iqr... |
+| saltpepper25 | small | 10 | wst | 90.37% | 8.57% | R_wst_mean_0, R_wst_std_0, G_wst_mean_0... |
+| saltpepper25 | small | 20 | advanced_stats | 91.85% | 7.07% | R_mean, R_skew, R_kurt... |
+| saltpepper25 | small | 20 | hybrid | 90.37% | 6.26% | R_mean, R_skew, R_kurt... |
+| saltpepper25 | small | 20 | wst | 86.67% | 9.69% | R_wst_mean_0, R_wst_mean_22, R_wst_std_0... |
+| saltpepper5 | mini | 2 | advanced_stats | 97.78% | 4.44% | R_iqr, G_iqr, R_mad... |
+| saltpepper5 | mini | 2 | hybrid | 97.78% | 4.44% | G_iqr, G_mad, R_iqr... |
+| saltpepper5 | mini | 2 | wst | 88.89% | 10.89% | B_wst_mean_0, B_wst_mean_11, R_wst_mean_0... |
+| saltpepper5 | mini | 5 | advanced_stats | 91.11% | 9.89% | R_iqr, R_mad, G_iqr... |
+| saltpepper5 | mini | 5 | hybrid | 91.11% | 9.89% | R_iqr, R_mad, G_iqr... |
+| saltpepper5 | mini | 5 | wst | 91.11% | 8.31% | R_wst_mean_11, B_wst_mean_0, B_wst_mean_11... |
+| saltpepper5 | mini | 10 | advanced_stats | 91.11% | 9.89% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | mini | 10 | hybrid | 88.89% | 10.89% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | mini | 10 | wst | 88.89% | 14.33% | R_wst_mean_11, B_wst_mean_0, B_wst_mean_11... |
+| saltpepper5 | mini | 20 | advanced_stats | 84.44% | 16.33% | R_var, R_skew, R_p10... |
+| saltpepper5 | mini | 20 | hybrid | 86.67% | 17.20% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | mini | 20 | wst | 75.56% | 22.07% | R_wst_mean_10, R_wst_mean_11, B_wst_mean_0... |
+| saltpepper5 | original | 2 | advanced_stats | 99.13% | 1.74% | G_iqr, G_mad |
+| saltpepper5 | original | 2 | advanced_stats | 90.83% | 4.08% | R_iqr, R_mad |
+| saltpepper5 | original | 2 | advanced_stats | 100.00% | 0.00% | G_iqr, G_mad |
+| saltpepper5 | original | 2 | hybrid | 99.13% | 1.74% | G_iqr, G_mad |
+| saltpepper5 | original | 2 | hybrid | 87.50% | 3.73% | R_mad, R_wst_std_0 |
+| saltpepper5 | original | 2 | hybrid | 100.00% | 0.00% | G_iqr, G_mad |
+| saltpepper5 | original | 2 | wst | 88.77% | 4.48% | R_wst_std_0, G_wst_std_0 |
+| saltpepper5 | original | 2 | wst | 90.00% | 6.24% | R_wst_std_0, G_wst_std_0 |
+| saltpepper5 | original | 2 | wst | 89.20% | 6.27% | R_wst_std_0, G_wst_std_0 |
+| saltpepper5 | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, R_mad, G_p10... |
+| saltpepper5 | original | 5 | advanced_stats | 98.33% | 2.04% | R_iqr, R_mad, G_mad... |
+| saltpepper5 | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, R_mad, G_iqr... |
+| saltpepper5 | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, R_mad, G_p10... |
+| saltpepper5 | original | 5 | hybrid | 93.33% | 4.25% | R_iqr, R_mad, G_grad_mean... |
+| saltpepper5 | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, R_mad, G_iqr... |
+| saltpepper5 | original | 5 | wst | 89.64% | 3.52% | R_wst_std_0, G_wst_std_0, B_wst_mean_10... |
+| saltpepper5 | original | 5 | wst | 98.33% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper5 | original | 5 | wst | 95.00% | 6.12% | R_wst_mean_0, R_wst_std_0, G_wst_std_0... |
+| saltpepper5 | original | 10 | advanced_stats | 99.13% | 1.74% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | original | 10 | advanced_stats | 99.17% | 1.67% | R_iqr, R_mad, R_grad_mean... |
+| saltpepper5 | original | 10 | advanced_stats | 100.00% | 0.00% | R_p10, R_p25, R_iqr... |
+| saltpepper5 | original | 10 | hybrid | 99.13% | 1.74% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | original | 10 | hybrid | 99.17% | 1.67% | R_iqr, R_mad, R_grad_mean... |
+| saltpepper5 | original | 10 | hybrid | 100.00% | 0.00% | R_p10, R_p25, R_iqr... |
+| saltpepper5 | original | 10 | wst | 88.77% | 4.48% | R_wst_mean_10, R_wst_mean_11, R_wst_std_0... |
+| saltpepper5 | original | 10 | wst | 98.33% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper5 | original | 10 | wst | 96.67% | 4.08% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_15... |
+| saltpepper5 | original | 20 | advanced_stats | 98.26% | 2.13% | R_std, R_var, R_p10... |
+| saltpepper5 | original | 20 | advanced_stats | 98.33% | 2.04% | R_std, R_var, R_iqr... |
+| saltpepper5 | original | 20 | advanced_stats | 100.00% | 0.00% | R_mean, R_skew, R_kurt... |
+| saltpepper5 | original | 20 | hybrid | 98.26% | 2.13% | R_std, R_var, R_p10... |
+| saltpepper5 | original | 20 | hybrid | 98.33% | 2.04% | R_iqr, R_mad, R_grad_mean... |
+| saltpepper5 | original | 20 | hybrid | 100.00% | 0.00% | R_skew, R_kurt, R_cv... |
+| saltpepper5 | original | 20 | wst | 89.64% | 4.46% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_10... |
+| saltpepper5 | original | 20 | wst | 98.33% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| saltpepper5 | original | 20 | wst | 96.67% | 1.67% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_10... |
+| saltpepper5 | small | 2 | advanced_stats | 95.56% | 3.63% | R_mad, G_mad, R_grad_mean |
+| saltpepper5 | small | 2 | hybrid | 96.30% | 4.06% | R_mad, G_mad, R_wst_std_0 |
+| saltpepper5 | small | 2 | wst | 88.89% | 8.31% | R_wst_std_0, G_wst_std_0, G_wst_mean_13 |
+| saltpepper5 | small | 5 | advanced_stats | 97.04% | 2.77% | R_iqr, R_mad, G_p10... |
+| saltpepper5 | small | 5 | hybrid | 97.04% | 2.77% | R_iqr, R_mad, G_p10... |
+| saltpepper5 | small | 5 | wst | 91.11% | 6.40% | R_wst_std_0, G_wst_std_0, B_wst_mean_10... |
+| saltpepper5 | small | 10 | advanced_stats | 96.30% | 2.34% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | small | 10 | hybrid | 96.30% | 4.06% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | small | 10 | wst | 94.07% | 5.93% | R_wst_mean_0, R_wst_mean_12, R_wst_std_0... |
+| saltpepper5 | small | 20 | advanced_stats | 99.26% | 1.48% | R_mean, R_std, R_var... |
+| saltpepper5 | small | 20 | hybrid | 98.52% | 2.96% | R_p10, R_iqr, R_mad... |
+| saltpepper5 | small | 20 | wst | 93.33% | 3.30% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_10... |
+
+### Speckle Noise
+
+| Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
+|---|---|---|---|---|---|---|
+| clean | mini | 2 | advanced_stats | 97.78% | 4.44% | R_min, G_max, B_min... |
+| clean | mini | 2 | hybrid | 95.56% | 8.89% | R_min, G_mad, B_min... |
+| clean | mini | 2 | wst | 95.56% | 5.44% | R_WST19_mean, R_WST23_mean, R_WST0_std... |
+| clean | mini | 5 | advanced_stats | 97.78% | 4.44% | R_min, R_iqr, G_iqr... |
+| clean | mini | 5 | hybrid | 95.56% | 8.89% | R_min, R_mad, G_iqr... |
+| clean | mini | 5 | wst | 93.33% | 9.89% | R_WST3_mean, R_WST19_mean, R_WST22_mean... |
+| clean | mini | 10 | advanced_stats | 95.56% | 8.89% | R_min, R_iqr, R_grad_mean... |
+| clean | mini | 10 | hybrid | 97.78% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 10 | wst | 91.11% | 9.89% | R_WST1_mean, R_WST3_mean, R_WST9_mean... |
+| clean | mini | 20 | advanced_stats | 91.11% | 9.89% | R_var, R_min, R_range... |
+| clean | mini | 20 | hybrid | 95.56% | 5.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 20 | wst | 88.89% | 10.89% | R_WST1_mean, R_WST3_mean, R_WST7_mean... |
+| clean | original | 2 | advanced_stats | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | advanced_stats | 98.33% | 3.33% | R_var, B_cv |
+| clean | original | 2 | advanced_stats | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | hybrid | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | hybrid | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | hybrid | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | wst | 99.13% | 1.74% | G_std, R_WST3_mean |
+| clean | original | 2 | wst | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | wst | 92.53% | 4.11% | R_std, G_std |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_min, R_iqr, G_iqr... |
+| clean | original | 5 | advanced_stats | 97.50% | 5.00% | R_std, R_var, R_mad... |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | hybrid | 99.17% | 1.67% | R_min, R_iqr, G_min... |
+| clean | original | 5 | hybrid | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | wst | 98.26% | 2.13% | R_std, G_std, R_WST3_mean... |
+| clean | original | 5 | wst | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | wst | 98.37% | 2.00% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | advanced_stats | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| clean | original | 10 | advanced_stats | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | hybrid | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | hybrid | 96.67% | 3.12% | R_var, B_cv, R_WST0_std... |
+| clean | original | 10 | hybrid | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | wst | 94.17% | 4.25% | R_std, R_WST0_std, G_WST2_mean... |
+| clean | original | 10 | wst | 98.37% | 2.00% | R_std, G_std, B_mean... |
+| clean | original | 20 | advanced_stats | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| clean | original | 20 | advanced_stats | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 97.50% | 2.04% | R_std, R_var, R_mad... |
+| clean | original | 20 | hybrid | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 20 | wst | 94.17% | 5.65% | R_std, R_WST0_std, R_WST2_mean... |
+| clean | original | 20 | wst | 99.17% | 1.67% | R_mean, R_std, G_std... |
+| clean | small | 2 | advanced_stats | 98.52% | 2.96% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | hybrid | 97.04% | 4.32% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | wst | 92.59% | 8.91% | R_std, R_WST18_mean, R_WST0_std... |
+| clean | small | 5 | advanced_stats | 97.04% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | hybrid | 96.30% | 2.96% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | wst | 94.07% | 5.11% | R_std, G_std, R_WST3_mean... |
+| clean | small | 10 | advanced_stats | 94.81% | 6.07% | R_std, R_min, R_iqr... |
+| clean | small | 10 | hybrid | 94.07% | 5.64% | R_std, R_min, R_iqr... |
+| clean | small | 10 | wst | 94.07% | 5.64% | R_std, G_std, R_WST0_std... |
+| clean | small | 20 | advanced_stats | 94.81% | 6.59% | R_std, R_var, R_min... |
+| clean | small | 20 | hybrid | 95.56% | 4.79% | R_std, R_var, R_min... |
+| clean | small | 20 | wst | 91.85% | 7.90% | R_std, G_std, R_WST0_std... |
+| speckle15 | mini | 2 | advanced_stats | 84.44% | 14.33% | R_min, B_min, B_max... |
+| speckle15 | mini | 2 | hybrid | 77.78% | 7.03% | R_max, B_min, B_p10... |
+| speckle15 | mini | 2 | wst | 93.33% | 9.89% | B_wst_mean_54, B_wst_mean_55, R_wst_mean_33... |
+| speckle15 | mini | 5 | advanced_stats | 84.44% | 16.33% | R_cv, R_iqr, R_mad... |
+| speckle15 | mini | 5 | hybrid | 91.11% | 10.89% | R_min, R_max, B_max... |
+| speckle15 | mini | 5 | wst | 95.56% | 8.89% | R_wst_std_78, B_wst_mean_19, B_wst_mean_30... |
+| speckle15 | mini | 10 | advanced_stats | 88.89% | 12.76% | R_std, R_cv, R_iqr... |
+| speckle15 | mini | 10 | hybrid | 91.11% | 10.89% | B_min, B_max, B_wst_mean_19... |
+| speckle15 | mini | 10 | wst | 88.89% | 15.33% | B_wst_mean_19, B_wst_mean_20, B_wst_mean_40... |
+| speckle15 | mini | 20 | advanced_stats | 80.00% | 16.91% | R_std, R_var, R_min... |
+| speckle15 | mini | 20 | hybrid | 91.11% | 10.89% | R_max, R_cv, B_max... |
+| speckle15 | mini | 20 | wst | 86.67% | 15.33% | R_wst_mean_49, R_wst_std_78, B_wst_mean_0... |
+| speckle15 | original | 2 | advanced_stats | 93.19% | 5.64% | R_cv, G_cv |
+| speckle15 | original | 2 | advanced_stats | 98.33% | 3.33% | B_cv, B_grad_mean |
+| speckle15 | original | 2 | advanced_stats | 100.00% | 0.00% | G_mad, B_cv |
+| speckle15 | original | 2 | hybrid | 93.19% | 5.64% | R_cv, G_cv |
+| speckle15 | original | 2 | hybrid | 98.33% | 3.33% | B_cv, R_wst_std_0 |
+| speckle15 | original | 2 | hybrid | 100.00% | 0.00% | G_mad, B_cv |
+| speckle15 | original | 2 | wst | 88.84% | 4.24% | R_wst_std_0, G_wst_std_0 |
+| speckle15 | original | 2 | wst | 95.00% | 3.12% | R_wst_std_0, G_wst_std_13 |
+| speckle15 | original | 2 | wst | 94.20% | 2.07% | R_wst_std_0, G_wst_std_0 |
+| speckle15 | original | 5 | advanced_stats | 92.28% | 3.08% | R_cv, G_cv, G_iqr... |
+| speckle15 | original | 5 | advanced_stats | 98.33% | 3.33% | R_mad, G_cv, B_cv... |
+| speckle15 | original | 5 | advanced_stats | 100.00% | 0.00% | R_cv, G_var, G_iqr... |
+| speckle15 | original | 5 | hybrid | 94.89% | 4.90% | R_cv, G_cv, G_mad... |
+| speckle15 | original | 5 | hybrid | 98.33% | 3.33% | B_cv, R_wst_std_0, G_wst_std_12... |
+| speckle15 | original | 5 | hybrid | 100.00% | 0.00% | R_cv, G_var, G_iqr... |
+| speckle15 | original | 5 | wst | 91.45% | 5.95% | R_wst_std_0, G_wst_mean_6, G_wst_mean_29... |
+| speckle15 | original | 5 | wst | 97.50% | 2.04% | R_wst_std_0, G_wst_std_12, G_wst_std_13... |
+| speckle15 | original | 5 | wst | 96.70% | 3.11% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| speckle15 | original | 10 | advanced_stats | 94.02% | 4.27% | R_cv, R_iqr, R_mad... |
+| speckle15 | original | 10 | advanced_stats | 97.50% | 3.33% | R_std, R_range, R_iqr... |
+| speckle15 | original | 10 | advanced_stats | 99.20% | 1.60% | R_cv, R_p10, G_std... |
+| speckle15 | original | 10 | hybrid | 92.28% | 4.13% | R_cv, R_mad, G_std... |
+| speckle15 | original | 10 | hybrid | 97.50% | 2.04% | B_cv, B_grad_mean, R_wst_std_0... |
+| speckle15 | original | 10 | hybrid | 99.17% | 1.67% | R_cv, R_p10, G_std... |
+| speckle15 | original | 10 | wst | 92.32% | 5.53% | R_wst_mean_6, R_wst_mean_44, R_wst_mean_53... |
+| speckle15 | original | 10 | wst | 96.67% | 3.12% | R_wst_std_0, G_wst_mean_9, G_wst_mean_13... |
+| speckle15 | original | 10 | wst | 95.87% | 4.56% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| speckle15 | original | 20 | advanced_stats | 93.15% | 4.29% | R_std, R_var, R_min... |
+| speckle15 | original | 20 | advanced_stats | 97.50% | 3.33% | R_std, R_var, R_range... |
+| speckle15 | original | 20 | advanced_stats | 98.37% | 2.00% | R_mean, R_std, R_var... |
+| speckle15 | original | 20 | hybrid | 93.15% | 4.29% | R_std, R_var, R_min... |
+| speckle15 | original | 20 | hybrid | 97.50% | 2.04% | B_cv, B_grad_mean, R_wst_mean_11... |
+| speckle15 | original | 20 | hybrid | 97.53% | 2.01% | R_cv, R_p10, R_p25... |
+| speckle15 | original | 20 | wst | 91.45% | 4.50% | R_wst_mean_6, R_wst_mean_44, R_wst_mean_52... |
+| speckle15 | original | 20 | wst | 96.67% | 3.12% | R_wst_mean_11, R_wst_mean_12, R_wst_std_0... |
+| speckle15 | original | 20 | wst | 95.90% | 3.65% | R_wst_mean_0, R_wst_mean_41, R_wst_mean_76... |
+| speckle15 | small | 2 | advanced_stats | 94.07% | 7.22% | R_cv, G_iqr, G_std... |
+| speckle15 | small | 2 | hybrid | 94.07% | 6.07% | R_cv, R_wst_std_0, G_std... |
+| speckle15 | small | 2 | wst | 91.11% | 7.55% | R_wst_std_0, G_wst_std_0, B_wst_mean_12... |
+| speckle15 | small | 5 | advanced_stats | 96.30% | 5.11% | R_cv, R_mad, G_cv... |
+| speckle15 | small | 5 | hybrid | 94.07% | 6.07% | R_cv, R_mad, G_cv... |
+| speckle15 | small | 5 | wst | 92.59% | 5.97% | R_wst_mean_3, R_wst_mean_38, R_wst_std_0... |
+| speckle15 | small | 10 | advanced_stats | 94.81% | 4.59% | R_std, R_var, R_cv... |
+| speckle15 | small | 10 | hybrid | 96.30% | 3.63% | R_cv, R_mad, G_cv... |
+| speckle15 | small | 10 | wst | 88.15% | 5.64% | R_wst_mean_3, R_wst_mean_5, R_wst_mean_6... |
+| speckle15 | small | 20 | advanced_stats | 95.56% | 6.26% | R_mean, R_std, R_var... |
+| speckle15 | small | 20 | hybrid | 92.59% | 4.78% | R_std, R_var, R_cv... |
+| speckle15 | small | 20 | wst | 91.85% | 7.69% | R_wst_mean_0, R_wst_mean_2, R_wst_mean_3... |
+| speckle35 | mini | 2 | advanced_stats | 68.89% | 14.33% | B_p25, B_p50, R_p90... |
+| speckle35 | mini | 2 | hybrid | 51.11% | 5.44% | B_wst_mean_48, B_wst_mean_62, B_max... |
+| speckle35 | mini | 2 | wst | 95.56% | 8.89% | B_wst_mean_19, B_wst_mean_30, B_wst_mean_0... |
+| speckle35 | mini | 5 | advanced_stats | 91.11% | 13.33% | B_skew, B_cv, B_p10... |
+| speckle35 | mini | 5 | hybrid | 91.11% | 10.89% | B_wst_mean_30, B_wst_mean_32, B_wst_mean_37... |
+| speckle35 | mini | 5 | wst | 88.89% | 8.89% | R_wst_std_78, B_wst_mean_19, B_wst_mean_30... |
+| speckle35 | mini | 10 | advanced_stats | 86.67% | 14.38% | R_mean, R_cv, B_mean... |
+| speckle35 | mini | 10 | hybrid | 86.67% | 13.76% | B_p50, B_wst_mean_19, B_wst_mean_40... |
+| speckle35 | mini | 10 | wst | 84.44% | 21.85% | B_wst_mean_2, B_wst_mean_18, B_wst_mean_20... |
+| speckle35 | mini | 20 | advanced_stats | 86.67% | 15.33% | R_mean, R_skew, R_cv... |
+| speckle35 | mini | 20 | hybrid | 86.67% | 15.33% | B_p50, G_wst_mean_56, G_wst_std_67... |
+| speckle35 | mini | 20 | wst | 84.44% | 12.76% | R_wst_mean_14, R_wst_mean_38, R_wst_std_78... |
+| speckle35 | original | 2 | advanced_stats | 88.01% | 7.76% | B_skew, B_cv |
+| speckle35 | original | 2 | advanced_stats | 97.50% | 3.33% | B_cv, B_p10 |
+| speckle35 | original | 2 | advanced_stats | 97.53% | 2.01% | R_cv, B_cv |
+| speckle35 | original | 2 | hybrid | 93.15% | 4.29% | R_wst_std_0, G_wst_std_0 |
+| speckle35 | original | 2 | hybrid | 96.67% | 3.12% | B_cv, R_wst_std_0 |
+| speckle35 | original | 2 | hybrid | 95.87% | 2.64% | B_cv, G_wst_std_0 |
+| speckle35 | original | 2 | wst | 93.15% | 4.29% | R_wst_std_0, G_wst_std_0 |
+| speckle35 | original | 2 | wst | 94.17% | 4.25% | R_wst_std_0, B_wst_std_25 |
+| speckle35 | original | 2 | wst | 96.67% | 3.12% | R_wst_std_0, G_wst_std_0 |
+| speckle35 | original | 5 | advanced_stats | 90.62% | 7.19% | G_cv, B_skew, B_cv... |
+| speckle35 | original | 5 | advanced_stats | 97.50% | 3.33% | B_mean, B_cv, B_p10... |
+| speckle35 | original | 5 | advanced_stats | 98.37% | 2.00% | R_cv, R_p10, B_cv... |
+| speckle35 | original | 5 | hybrid | 94.89% | 4.90% | B_cv, R_wst_mean_11, R_wst_mean_12... |
+| speckle35 | original | 5 | hybrid | 98.33% | 3.33% | B_cv, R_wst_std_0, B_wst_mean_9... |
+| speckle35 | original | 5 | hybrid | 96.70% | 3.11% | R_cv, B_cv, B_p10... |
+| speckle35 | original | 5 | wst | 94.89% | 4.90% | R_wst_mean_11, R_wst_mean_12, R_wst_std_0... |
+| speckle35 | original | 5 | wst | 97.50% | 3.33% | R_wst_std_0, B_wst_mean_4, B_wst_mean_9... |
+| speckle35 | original | 5 | wst | 95.90% | 3.65% | R_wst_std_0, G_wst_std_0, B_wst_mean_2... |
+| speckle35 | original | 10 | advanced_stats | 94.89% | 4.90% | R_kurt, G_skew, G_cv... |
+| speckle35 | original | 10 | advanced_stats | 98.33% | 3.33% | B_mean, B_std, B_var... |
+| speckle35 | original | 10 | advanced_stats | 96.70% | 3.11% | R_skew, R_cv, R_p10... |
+| speckle35 | original | 10 | hybrid | 95.72% | 3.81% | B_skew, B_cv, B_p25... |
+| speckle35 | original | 10 | hybrid | 98.33% | 3.33% | B_cv, B_p10, B_p25... |
+| speckle35 | original | 10 | hybrid | 96.70% | 3.11% | R_cv, R_p10, R_p25... |
+| speckle35 | original | 10 | wst | 94.02% | 4.27% | R_wst_mean_11, R_wst_mean_12, R_wst_std_0... |
+| speckle35 | original | 10 | wst | 98.33% | 3.33% | R_wst_std_0, B_wst_mean_3, B_wst_mean_4... |
+| speckle35 | original | 10 | wst | 97.50% | 3.33% | R_wst_std_0, G_wst_std_0, B_wst_mean_2... |
+| speckle35 | original | 20 | advanced_stats | 93.15% | 4.29% | R_skew, R_kurt, R_cv... |
+| speckle35 | original | 20 | advanced_stats | 98.33% | 2.04% | R_std, R_var, R_p90... |
+| speckle35 | original | 20 | advanced_stats | 95.07% | 3.05% | R_mean, R_skew, R_cv... |
+| speckle35 | original | 20 | hybrid | 96.59% | 4.17% | G_skew, G_cv, B_skew... |
+| speckle35 | original | 20 | hybrid | 98.33% | 3.33% | B_mean, B_cv, B_p10... |
+| speckle35 | original | 20 | hybrid | 97.53% | 2.01% | R_cv, R_p10, R_p25... |
+| speckle35 | original | 20 | wst | 95.72% | 3.81% | R_wst_mean_11, R_wst_mean_12, R_wst_mean_13... |
+| speckle35 | original | 20 | wst | 98.33% | 3.33% | R_wst_std_0, G_wst_std_0, B_wst_mean_0... |
+| speckle35 | original | 20 | wst | 96.67% | 3.12% | R_wst_mean_5, R_wst_std_0, G_wst_std_0... |
+| speckle35 | small | 2 | advanced_stats | 91.11% | 6.93% | G_skew, B_cv, B_p10... |
+| speckle35 | small | 2 | hybrid | 93.33% | 6.26% | R_wst_std_0, G_wst_std_0, B_cv... |
+| speckle35 | small | 2 | wst | 91.11% | 6.07% | R_wst_std_0, G_wst_std_0, B_wst_std_14 |
+| speckle35 | small | 5 | advanced_stats | 91.11% | 4.59% | G_skew, G_cv, G_p10... |
+| speckle35 | small | 5 | hybrid | 94.07% | 5.11% | G_skew, G_cv, B_cv... |
+| speckle35 | small | 5 | wst | 91.11% | 7.47% | R_wst_std_0, G_wst_mean_23, G_wst_mean_29... |
+| speckle35 | small | 10 | advanced_stats | 91.85% | 4.59% | R_mean, G_skew, G_cv... |
+| speckle35 | small | 10 | hybrid | 91.85% | 6.93% | G_skew, G_cv, G_p10... |
+| speckle35 | small | 10 | wst | 91.11% | 9.05% | R_wst_mean_20, R_wst_std_0, G_wst_mean_22... |
+| speckle35 | small | 20 | advanced_stats | 88.89% | 6.26% | R_mean, R_kurt, R_cv... |
+| speckle35 | small | 20 | hybrid | 91.85% | 6.93% | G_skew, G_cv, G_p10... |
+| speckle35 | small | 20 | wst | 91.85% | 9.62% | R_wst_mean_20, R_wst_std_0, G_wst_mean_1... |
+| speckle55 | mini | 2 | advanced_stats | 64.44% | 18.78% | G_p90, B_kurt, R_p90... |
+| speckle55 | mini | 2 | hybrid | 75.56% | 21.36% | G_p90, B_wst_std_37, R_p90... |
+| speckle55 | mini | 2 | wst | 95.56% | 8.89% | B_wst_mean_30, B_wst_mean_49, R_wst_std_17... |
+| speckle55 | mini | 5 | advanced_stats | 86.67% | 18.78% | G_p90, B_skew, B_kurt... |
+| speckle55 | mini | 5 | hybrid | 91.11% | 10.89% | R_p90, G_p90, B_p90... |
+| speckle55 | mini | 5 | wst | 86.67% | 18.78% | B_wst_mean_20, B_wst_mean_30, B_wst_mean_31... |
+| speckle55 | mini | 10 | advanced_stats | 91.11% | 10.89% | R_p10, R_p90, G_p90... |
+| speckle55 | mini | 10 | hybrid | 95.56% | 8.89% | G_p90, B_p50, R_wst_mean_54... |
+| speckle55 | mini | 10 | wst | 86.67% | 18.78% | B_wst_mean_20, B_wst_mean_30, B_wst_mean_37... |
+| speckle55 | mini | 20 | advanced_stats | 80.00% | 16.91% | R_skew, R_kurt, R_cv... |
+| speckle55 | mini | 20 | hybrid | 88.89% | 10.89% | R_p90, G_p90, R_wst_mean_38... |
+| speckle55 | mini | 20 | wst | 84.44% | 15.92% | R_wst_mean_54, R_wst_std_0, B_wst_mean_2... |
+| speckle55 | original | 2 | advanced_stats | 75.94% | 4.64% | B_cv, B_p25 |
+| speckle55 | original | 2 | advanced_stats | 88.33% | 9.28% | B_kurt, B_cv |
+| speckle55 | original | 2 | advanced_stats | 95.93% | 4.38% | B_cv, B_p25 |
+| speckle55 | original | 2 | hybrid | 95.72% | 2.64% | R_wst_std_0, G_wst_std_0 |
+| speckle55 | original | 2 | hybrid | 98.33% | 3.33% | B_p25, R_wst_std_0 |
+| speckle55 | original | 2 | hybrid | 95.03% | 3.13% | R_wst_std_0, G_wst_std_0 |
+| speckle55 | original | 2 | wst | 95.72% | 2.64% | R_wst_std_0, G_wst_std_0 |
+| speckle55 | original | 2 | wst | 90.00% | 5.65% | R_wst_std_0, R_wst_std_2 |
+| speckle55 | original | 2 | wst | 95.03% | 3.13% | R_wst_std_0, G_wst_std_0 |
+| speckle55 | original | 5 | advanced_stats | 76.78% | 4.05% | B_skew, B_cv, B_p25... |
+| speckle55 | original | 5 | advanced_stats | 98.33% | 3.33% | B_mean, B_kurt, B_cv... |
+| speckle55 | original | 5 | advanced_stats | 95.10% | 3.90% | R_p10, R_p25, B_skew... |
+| speckle55 | original | 5 | hybrid | 94.89% | 4.06% | B_cv, B_p25, R_wst_std_0... |
+| speckle55 | original | 5 | hybrid | 98.33% | 3.33% | B_kurt, B_cv, R_wst_std_0... |
+| speckle55 | original | 5 | hybrid | 95.90% | 3.65% | B_skew, B_cv, B_p25... |
+| speckle55 | original | 5 | wst | 94.86% | 3.18% | R_wst_std_0, G_wst_std_0, B_wst_mean_40... |
+| speckle55 | original | 5 | wst | 97.50% | 3.33% | R_wst_std_0, R_wst_std_2, G_wst_std_0... |
+| speckle55 | original | 5 | wst | 98.33% | 2.04% | R_wst_std_0, G_wst_std_0, B_wst_mean_2... |
+| speckle55 | original | 10 | advanced_stats | 76.81% | 6.01% | R_p25, G_skew, G_p25... |
+| speckle55 | original | 10 | advanced_stats | 97.50% | 3.33% | B_mean, B_std, B_var... |
+| speckle55 | original | 10 | advanced_stats | 94.27% | 4.09% | R_skew, R_cv, R_p10... |
+| speckle55 | original | 10 | hybrid | 94.89% | 4.06% | B_skew, B_cv, B_p10... |
+| speckle55 | original | 10 | hybrid | 98.33% | 3.33% | B_kurt, B_cv, B_p10... |
+| speckle55 | original | 10 | hybrid | 98.33% | 2.04% | R_cv, R_p25, B_skew... |
+| speckle55 | original | 10 | wst | 94.02% | 4.27% | R_wst_std_0, G_wst_mean_1, G_wst_mean_5... |
+| speckle55 | original | 10 | wst | 97.50% | 3.33% | R_wst_std_0, R_wst_std_2, G_wst_std_0... |
+| speckle55 | original | 10 | wst | 96.70% | 3.11% | R_wst_mean_5, R_wst_std_0, G_wst_std_0... |
+| speckle55 | original | 20 | advanced_stats | 84.57% | 6.75% | R_p25, R_p50, R_p90... |
+| speckle55 | original | 20 | advanced_stats | 98.33% | 3.33% | R_mean, R_std, R_var... |
+| speckle55 | original | 20 | advanced_stats | 93.40% | 3.30% | R_mean, R_skew, R_cv... |
+| speckle55 | original | 20 | hybrid | 94.02% | 4.27% | B_skew, B_cv, B_p10... |
+| speckle55 | original | 20 | hybrid | 98.33% | 3.33% | B_mean, B_kurt, B_cv... |
+| speckle55 | original | 20 | hybrid | 95.90% | 3.65% | R_skew, R_cv, R_p10... |
+| speckle55 | original | 20 | wst | 94.89% | 4.90% | R_wst_mean_1, R_wst_mean_28, R_wst_mean_73... |
+| speckle55 | original | 20 | wst | 97.50% | 3.33% | R_wst_std_0, R_wst_std_2, R_wst_std_3... |
+| speckle55 | original | 20 | wst | 95.90% | 2.53% | R_wst_mean_0, R_wst_mean_4, R_wst_mean_5... |
+| speckle55 | small | 2 | advanced_stats | 91.11% | 8.08% | G_cv, G_p50, B_cv... |
+| speckle55 | small | 2 | hybrid | 91.85% | 5.73% | R_wst_std_0, G_wst_std_0, B_cv |
+| speckle55 | small | 2 | wst | 94.07% | 5.93% | R_wst_std_0, G_wst_std_0, B_wst_std_24 |
+| speckle55 | small | 5 | advanced_stats | 88.15% | 10.87% | G_skew, G_cv, G_p10... |
+| speckle55 | small | 5 | hybrid | 93.33% | 6.26% | R_wst_std_0, G_wst_mean_27, G_wst_std_0... |
+| speckle55 | small | 5 | wst | 91.85% | 7.22% | R_wst_std_0, G_wst_mean_27, G_wst_std_0... |
+| speckle55 | small | 10 | advanced_stats | 88.89% | 7.22% | G_mean, G_skew, G_cv... |
+| speckle55 | small | 10 | hybrid | 94.81% | 7.74% | G_cv, G_p10, R_wst_mean_14... |
+| speckle55 | small | 10 | wst | 93.33% | 7.55% | R_wst_mean_14, R_wst_std_0, G_wst_mean_21... |
+| speckle55 | small | 20 | advanced_stats | 88.89% | 7.22% | R_mean, R_p50, R_p75... |
+| speckle55 | small | 20 | hybrid | 92.59% | 7.41% | G_skew, G_cv, G_p10... |
+| speckle55 | small | 20 | wst | 92.59% | 8.09% | R_wst_mean_14, R_wst_std_0, R_wst_std_51... |
+
+### Uniform Noise
+
+| Noise Condition | Dataset Type | K Features | Feature Method | Mean Accuracy | Std Accuracy | Top Selected Features |
+|---|---|---|---|---|---|---|
+| clean | mini | 2 | advanced_stats | 97.78% | 4.44% | R_min, G_max, B_min... |
+| clean | mini | 2 | hybrid | 95.56% | 8.89% | R_min, G_mad, B_min... |
+| clean | mini | 2 | wst | 95.56% | 5.44% | R_WST19_mean, R_WST23_mean, R_WST0_std... |
+| clean | mini | 5 | advanced_stats | 97.78% | 4.44% | R_min, R_iqr, G_iqr... |
+| clean | mini | 5 | hybrid | 95.56% | 8.89% | R_min, R_mad, G_iqr... |
+| clean | mini | 5 | wst | 93.33% | 9.89% | R_WST3_mean, R_WST19_mean, R_WST22_mean... |
+| clean | mini | 10 | advanced_stats | 95.56% | 8.89% | R_min, R_iqr, R_grad_mean... |
+| clean | mini | 10 | hybrid | 97.78% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 10 | wst | 91.11% | 9.89% | R_WST1_mean, R_WST3_mean, R_WST9_mean... |
+| clean | mini | 20 | advanced_stats | 91.11% | 9.89% | R_var, R_min, R_range... |
+| clean | mini | 20 | hybrid | 95.56% | 5.44% | R_min, R_iqr, R_mad... |
+| clean | mini | 20 | wst | 88.89% | 10.89% | R_WST1_mean, R_WST3_mean, R_WST7_mean... |
+| clean | original | 2 | advanced_stats | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | advanced_stats | 98.33% | 3.33% | R_var, B_cv |
+| clean | original | 2 | advanced_stats | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | hybrid | 99.13% | 1.74% | R_iqr, B_min |
+| clean | original | 2 | hybrid | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | hybrid | 99.17% | 1.67% | G_iqr, B_min |
+| clean | original | 2 | wst | 99.13% | 1.74% | G_std, R_WST3_mean |
+| clean | original | 2 | wst | 94.17% | 5.65% | R_WST0_std, B_WST5_std |
+| clean | original | 2 | wst | 92.53% | 4.11% | R_std, G_std |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_min, R_iqr, G_iqr... |
+| clean | original | 5 | advanced_stats | 97.50% | 5.00% | R_std, R_var, R_mad... |
+| clean | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | hybrid | 99.17% | 1.67% | R_min, R_iqr, G_min... |
+| clean | original | 5 | hybrid | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, G_iqr, G_mad... |
+| clean | original | 5 | wst | 98.26% | 2.13% | R_std, G_std, R_WST3_mean... |
+| clean | original | 5 | wst | 95.00% | 4.08% | R_WST0_std, G_WST2_mean, G_WST15_mean... |
+| clean | original | 5 | wst | 98.37% | 2.00% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | advanced_stats | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| clean | original | 10 | advanced_stats | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | hybrid | 100.00% | 0.00% | R_min, R_cv, R_iqr... |
+| clean | original | 10 | hybrid | 96.67% | 3.12% | R_var, B_cv, R_WST0_std... |
+| clean | original | 10 | hybrid | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| clean | original | 10 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 10 | wst | 94.17% | 4.25% | R_std, R_WST0_std, G_WST2_mean... |
+| clean | original | 10 | wst | 98.37% | 2.00% | R_std, G_std, B_mean... |
+| clean | original | 20 | advanced_stats | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| clean | original | 20 | advanced_stats | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 99.13% | 1.74% | R_std, R_var, R_min... |
+| clean | original | 20 | hybrid | 97.50% | 2.04% | R_std, R_var, R_mad... |
+| clean | original | 20 | hybrid | 100.00% | 0.00% | R_std, R_var, R_min... |
+| clean | original | 20 | wst | 97.43% | 3.46% | R_std, G_std, R_WST0_std... |
+| clean | original | 20 | wst | 94.17% | 5.65% | R_std, R_WST0_std, R_WST2_mean... |
+| clean | original | 20 | wst | 99.17% | 1.67% | R_mean, R_std, G_std... |
+| clean | small | 2 | advanced_stats | 98.52% | 2.96% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | hybrid | 97.04% | 4.32% | R_iqr, G_iqr, G_mad... |
+| clean | small | 2 | wst | 92.59% | 8.91% | R_std, R_WST18_mean, R_WST0_std... |
+| clean | small | 5 | advanced_stats | 97.04% | 4.44% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | hybrid | 96.30% | 2.96% | R_min, R_iqr, R_mad... |
+| clean | small | 5 | wst | 94.07% | 5.11% | R_std, G_std, R_WST3_mean... |
+| clean | small | 10 | advanced_stats | 94.81% | 6.07% | R_std, R_min, R_iqr... |
+| clean | small | 10 | hybrid | 94.07% | 5.64% | R_std, R_min, R_iqr... |
+| clean | small | 10 | wst | 94.07% | 5.64% | R_std, G_std, R_WST0_std... |
+| clean | small | 20 | advanced_stats | 94.81% | 6.59% | R_std, R_var, R_min... |
+| clean | small | 20 | hybrid | 95.56% | 4.79% | R_std, R_var, R_min... |
+| clean | small | 20 | wst | 91.85% | 7.90% | R_std, G_std, R_WST0_std... |
+| uniform10 | mini | 2 | advanced_stats | 97.78% | 4.44% | R_min, B_min, G_iqr... |
+| uniform10 | mini | 2 | hybrid | 95.56% | 5.44% | R_min, B_min, G_iqr... |
+| uniform10 | mini | 2 | wst | 95.56% | 8.89% | G_wst_mean_70, G_wst_mean_71, R_wst_mean_0... |
+| uniform10 | mini | 5 | advanced_stats | 86.67% | 15.33% | R_min, R_iqr, R_grad_mean... |
+| uniform10 | mini | 5 | hybrid | 93.33% | 13.33% | R_min, R_iqr, G_iqr... |
+| uniform10 | mini | 5 | wst | 97.78% | 4.44% | R_wst_mean_2, R_wst_mean_14, G_wst_mean_2... |
+| uniform10 | mini | 10 | advanced_stats | 86.67% | 9.89% | R_min, R_iqr, R_mad... |
+| uniform10 | mini | 10 | hybrid | 93.33% | 9.89% | R_min, R_iqr, R_mad... |
+| uniform10 | mini | 10 | wst | 95.56% | 8.89% | R_wst_mean_2, R_wst_mean_6, R_wst_mean_7... |
+| uniform10 | mini | 20 | advanced_stats | 86.67% | 10.89% | R_std, R_var, R_min... |
+| uniform10 | mini | 20 | hybrid | 91.11% | 10.89% | R_min, R_iqr, R_mad... |
+| uniform10 | mini | 20 | wst | 91.11% | 10.89% | R_wst_mean_2, R_wst_mean_6, R_wst_mean_14... |
+| uniform10 | original | 2 | advanced_stats | 99.13% | 1.74% | G_iqr, B_min |
+| uniform10 | original | 2 | advanced_stats | 85.00% | 5.65% | R_std, R_var |
+| uniform10 | original | 2 | advanced_stats | 100.00% | 0.00% | G_iqr, B_min |
+| uniform10 | original | 2 | hybrid | 99.13% | 1.74% | G_iqr, B_min |
+| uniform10 | original | 2 | hybrid | 94.17% | 4.25% | R_wst_std_0, G_wst_mean_44 |
+| uniform10 | original | 2 | hybrid | 100.00% | 0.00% | G_iqr, B_min |
+| uniform10 | original | 2 | wst | 96.59% | 3.14% | R_wst_mean_6, G_wst_std_0 |
+| uniform10 | original | 2 | wst | 94.17% | 4.25% | R_wst_std_0, G_wst_mean_44 |
+| uniform10 | original | 2 | wst | 91.67% | 4.56% | R_wst_std_0, G_wst_std_0 |
+| uniform10 | original | 5 | advanced_stats | 97.46% | 3.35% | R_min, R_iqr, G_min... |
+| uniform10 | original | 5 | advanced_stats | 95.00% | 6.12% | R_std, R_var, R_mad... |
+| uniform10 | original | 5 | advanced_stats | 100.00% | 0.00% | R_iqr, R_mad, G_iqr... |
+| uniform10 | original | 5 | hybrid | 97.46% | 3.35% | R_min, R_iqr, G_min... |
+| uniform10 | original | 5 | hybrid | 93.33% | 5.65% | R_wst_std_0, G_wst_mean_4, G_wst_mean_5... |
+| uniform10 | original | 5 | hybrid | 100.00% | 0.00% | R_iqr, R_mad, G_iqr... |
+| uniform10 | original | 5 | wst | 97.43% | 2.10% | R_wst_mean_5, R_wst_mean_6, R_wst_mean_15... |
+| uniform10 | original | 5 | wst | 93.33% | 5.65% | R_wst_std_0, G_wst_mean_4, G_wst_mean_5... |
+| uniform10 | original | 5 | wst | 95.03% | 3.13% | R_wst_mean_9, R_wst_mean_16, R_wst_std_0... |
+| uniform10 | original | 10 | advanced_stats | 97.46% | 3.35% | R_min, R_cv, R_iqr... |
+| uniform10 | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| uniform10 | original | 10 | advanced_stats | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| uniform10 | original | 10 | hybrid | 97.46% | 3.35% | R_min, R_cv, R_iqr... |
+| uniform10 | original | 10 | hybrid | 94.17% | 6.24% | R_std, R_var, R_wst_mean_13... |
+| uniform10 | original | 10 | hybrid | 99.17% | 1.67% | R_min, R_p10, R_iqr... |
+| uniform10 | original | 10 | wst | 96.56% | 3.24% | R_wst_mean_2, R_wst_mean_4, R_wst_mean_5... |
+| uniform10 | original | 10 | wst | 92.50% | 7.17% | R_wst_mean_13, R_wst_std_0, G_wst_mean_4... |
+| uniform10 | original | 10 | wst | 97.50% | 3.33% | R_wst_mean_9, R_wst_mean_10, R_wst_mean_15... |
+| uniform10 | original | 20 | advanced_stats | 97.43% | 2.10% | R_std, R_var, R_min... |
+| uniform10 | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| uniform10 | original | 20 | advanced_stats | 100.00% | 0.00% | R_std, R_var, R_min... |
+| uniform10 | original | 20 | hybrid | 97.43% | 2.10% | R_std, R_var, R_min... |
+| uniform10 | original | 20 | hybrid | 94.17% | 8.16% | R_std, R_var, R_mad... |
+| uniform10 | original | 20 | hybrid | 100.00% | 0.00% | R_std, R_var, R_min... |
+| uniform10 | original | 20 | wst | 95.69% | 3.89% | R_wst_mean_2, R_wst_mean_3, R_wst_mean_4... |
+| uniform10 | original | 20 | wst | 91.67% | 6.46% | R_wst_mean_4, R_wst_mean_11, R_wst_mean_13... |
+| uniform10 | original | 20 | wst | 98.33% | 3.33% | R_wst_mean_0, R_wst_mean_7, R_wst_mean_8... |
+| uniform10 | small | 2 | advanced_stats | 96.30% | 2.96% | R_iqr, G_iqr, G_mad... |
+| uniform10 | small | 2 | hybrid | 95.56% | 4.79% | R_iqr, G_iqr, G_mad... |
+| uniform10 | small | 2 | wst | 91.11% | 7.47% | R_wst_mean_14, R_wst_mean_15, R_wst_std_0... |
+| uniform10 | small | 5 | advanced_stats | 96.30% | 4.25% | R_min, R_iqr, R_mad... |
+| uniform10 | small | 5 | hybrid | 95.56% | 4.79% | R_min, R_iqr, R_mad... |
+| uniform10 | small | 5 | wst | 91.11% | 7.76% | R_wst_mean_7, R_wst_mean_14, R_wst_mean_15... |
+| uniform10 | small | 10 | advanced_stats | 94.81% | 6.59% | R_std, R_var, R_min... |
+| uniform10 | small | 10 | hybrid | 94.07% | 5.73% | R_std, R_var, R_min... |
+| uniform10 | small | 10 | wst | 90.37% | 7.22% | R_wst_mean_6, R_wst_mean_7, R_wst_mean_14... |
+| uniform10 | small | 20 | advanced_stats | 94.07% | 6.40% | R_std, R_var, R_min... |
+| uniform10 | small | 20 | hybrid | 94.07% | 6.61% | R_std, R_var, R_min... |
+| uniform10 | small | 20 | wst | 88.89% | 7.89% | R_wst_mean_4, R_wst_mean_5, R_wst_mean_6... |
+| uniform25 | mini | 2 | advanced_stats | 91.11% | 9.89% | R_min, B_min, R_grad_mean... |
+| uniform25 | mini | 2 | hybrid | 91.11% | 9.89% | R_min, B_min, R_grad_mean... |
+| uniform25 | mini | 2 | wst | 88.89% | 10.89% | R_wst_mean_6, R_wst_mean_15, R_wst_std_0... |
+| uniform25 | mini | 5 | advanced_stats | 80.00% | 15.33% | R_min, G_min, G_mad... |
+| uniform25 | mini | 5 | hybrid | 91.11% | 14.33% | R_min, G_iqr, G_mad... |
+| uniform25 | mini | 5 | wst | 88.89% | 10.89% | R_wst_mean_2, R_wst_mean_6, R_wst_mean_7... |
+| uniform25 | mini | 10 | advanced_stats | 95.56% | 8.89% | R_min, R_mad, R_grad_mean... |
+| uniform25 | mini | 10 | hybrid | 86.67% | 15.33% | R_min, R_grad_mean, G_min... |
+| uniform25 | mini | 10 | wst | 97.78% | 4.44% | R_wst_mean_2, R_wst_mean_6, R_wst_mean_12... |
+| uniform25 | mini | 20 | advanced_stats | 84.44% | 15.33% | R_std, R_var, R_min... |
+| uniform25 | mini | 20 | hybrid | 88.89% | 10.89% | R_var, R_min, R_grad_mean... |
+| uniform25 | mini | 20 | wst | 84.44% | 15.33% | R_wst_mean_2, R_wst_mean_6, R_wst_mean_7... |
+| uniform25 | original | 2 | advanced_stats | 98.33% | 3.33% | R_min, G_min |
+| uniform25 | original | 2 | advanced_stats | 85.83% | 3.33% | R_std, R_var |
+| uniform25 | original | 2 | advanced_stats | 98.37% | 2.00% | G_mad, B_cv |
+| uniform25 | original | 2 | hybrid | 98.33% | 3.33% | R_min, G_min |
+| uniform25 | original | 2 | hybrid | 93.33% | 5.65% | R_wst_std_0, G_wst_mean_13 |
+| uniform25 | original | 2 | hybrid | 98.37% | 2.00% | G_mad, B_cv |
+| uniform25 | original | 2 | wst | 96.56% | 1.72% | R_wst_mean_15, G_wst_std_0 |
+| uniform25 | original | 2 | wst | 93.33% | 5.65% | R_wst_std_0, G_wst_mean_13 |
+| uniform25 | original | 2 | wst | 91.70% | 2.69% | R_wst_std_0, G_wst_std_0 |
+| uniform25 | original | 5 | advanced_stats | 97.46% | 3.35% | R_min, R_mad, G_min... |
+| uniform25 | original | 5 | advanced_stats | 95.00% | 8.08% | R_std, R_var, R_iqr... |
+| uniform25 | original | 5 | advanced_stats | 99.17% | 1.67% | R_mad, G_min, G_iqr... |
+| uniform25 | original | 5 | hybrid | 97.46% | 3.35% | R_min, R_mad, G_min... |
+| uniform25 | original | 5 | hybrid | 94.17% | 5.65% | R_std, R_var, R_wst_std_0... |
+| uniform25 | original | 5 | hybrid | 98.33% | 2.04% | R_mad, G_var, G_iqr... |
+| uniform25 | original | 5 | wst | 96.56% | 3.24% | R_wst_mean_15, R_wst_std_0, G_wst_mean_14... |
+| uniform25 | original | 5 | wst | 93.33% | 7.73% | R_wst_mean_13, R_wst_std_0, G_wst_mean_13... |
+| uniform25 | original | 5 | wst | 97.50% | 3.33% | R_wst_std_0, G_wst_mean_16, G_wst_std_0... |
+| uniform25 | original | 10 | advanced_stats | 97.50% | 5.00% | R_std, R_var, R_min... |
+| uniform25 | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| uniform25 | original | 10 | advanced_stats | 98.33% | 2.04% | R_min, R_mad, G_std... |
+| uniform25 | original | 10 | hybrid | 97.50% | 5.00% | R_std, R_min, R_mad... |
+| uniform25 | original | 10 | hybrid | 95.00% | 4.08% | R_std, R_var, R_iqr... |
+| uniform25 | original | 10 | hybrid | 98.33% | 2.04% | R_min, R_mad, G_std... |
+| uniform25 | original | 10 | wst | 95.69% | 4.76% | R_wst_mean_10, R_wst_mean_13, R_wst_mean_14... |
+| uniform25 | original | 10 | wst | 93.33% | 7.73% | R_wst_mean_13, R_wst_std_0, G_wst_mean_11... |
+| uniform25 | original | 10 | wst | 95.83% | 3.73% | R_wst_mean_0, R_wst_mean_10, R_wst_mean_15... |
+| uniform25 | original | 20 | advanced_stats | 97.46% | 3.35% | R_std, R_var, R_min... |
+| uniform25 | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_range... |
+| uniform25 | original | 20 | advanced_stats | 99.17% | 1.67% | R_std, R_var, R_min... |
+| uniform25 | original | 20 | hybrid | 99.13% | 1.74% | R_std, R_var, R_min... |
+| uniform25 | original | 20 | hybrid | 95.00% | 6.12% | R_std, R_var, R_iqr... |
+| uniform25 | original | 20 | hybrid | 98.33% | 2.04% | R_std, R_var, R_min... |
+| uniform25 | original | 20 | wst | 94.82% | 5.08% | R_wst_mean_9, R_wst_mean_10, R_wst_mean_11... |
+| uniform25 | original | 20 | wst | 95.83% | 4.56% | R_wst_mean_11, R_wst_mean_12, R_wst_mean_13... |
+| uniform25 | original | 20 | wst | 98.33% | 3.33% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_10... |
+| uniform25 | small | 2 | advanced_stats | 94.81% | 6.07% | R_min, R_iqr, G_min... |
+| uniform25 | small | 2 | hybrid | 95.56% | 5.73% | R_min, R_mad, G_min... |
+| uniform25 | small | 2 | wst | 89.63% | 7.36% | R_wst_mean_14, G_wst_mean_14, R_wst_std_0... |
+| uniform25 | small | 5 | advanced_stats | 94.07% | 7.98% | R_min, R_iqr, R_mad... |
+| uniform25 | small | 5 | hybrid | 91.11% | 6.07% | R_min, R_iqr, R_mad... |
+| uniform25 | small | 5 | wst | 91.85% | 6.93% | R_wst_mean_14, R_wst_mean_15, R_wst_std_0... |
+| uniform25 | small | 10 | advanced_stats | 91.85% | 9.10% | R_std, R_var, R_min... |
+| uniform25 | small | 10 | hybrid | 91.11% | 6.59% | R_min, R_range, R_iqr... |
+| uniform25 | small | 10 | wst | 89.63% | 8.43% | R_wst_mean_5, R_wst_mean_14, R_wst_mean_15... |
+| uniform25 | small | 20 | advanced_stats | 94.07% | 5.44% | R_std, R_var, R_min... |
+| uniform25 | small | 20 | hybrid | 91.11% | 6.93% | R_std, R_var, R_min... |
+| uniform25 | small | 20 | wst | 92.59% | 8.41% | R_wst_mean_0, R_wst_mean_4, R_wst_mean_5... |
+| uniform40 | mini | 2 | advanced_stats | 75.56% | 18.78% | G_min, B_min, R_min... |
+| uniform40 | mini | 2 | hybrid | 86.67% | 15.33% | G_min, B_min, G_range... |
+| uniform40 | mini | 2 | wst | 88.89% | 15.33% | R_wst_mean_14, B_wst_mean_0, G_wst_std_0... |
+| uniform40 | mini | 5 | advanced_stats | 84.44% | 15.33% | R_min, G_min, G_range... |
+| uniform40 | mini | 5 | hybrid | 84.44% | 14.33% | R_min, G_min, G_max... |
+| uniform40 | mini | 5 | wst | 95.56% | 5.44% | R_wst_mean_13, R_wst_mean_14, R_wst_std_13... |
+| uniform40 | mini | 10 | advanced_stats | 93.33% | 5.44% | R_min, R_grad_mean, G_min... |
+| uniform40 | mini | 10 | hybrid | 86.67% | 15.33% | G_std, G_min, G_range... |
+| uniform40 | mini | 10 | wst | 88.89% | 14.33% | R_wst_mean_10, R_wst_mean_11, R_wst_mean_13... |
+| uniform40 | mini | 20 | advanced_stats | 86.67% | 17.20% | R_std, R_var, R_min... |
+| uniform40 | mini | 20 | hybrid | 86.67% | 15.33% | R_min, R_cv, R_mad... |
+| uniform40 | mini | 20 | wst | 86.67% | 18.78% | R_wst_mean_10, R_wst_mean_11, R_wst_mean_12... |
+| uniform40 | original | 2 | advanced_stats | 97.46% | 3.35% | R_min, G_min |
+| uniform40 | original | 2 | advanced_stats | 87.50% | 4.56% | R_var, R_iqr |
+| uniform40 | original | 2 | advanced_stats | 97.50% | 2.04% | G_mad, B_cv |
+| uniform40 | original | 2 | hybrid | 97.46% | 3.35% | R_min, G_min |
+| uniform40 | original | 2 | hybrid | 93.33% | 5.65% | R_wst_std_0, G_wst_mean_13 |
+| uniform40 | original | 2 | hybrid | 97.50% | 2.04% | G_mad, B_cv |
+| uniform40 | original | 2 | wst | 89.71% | 5.73% | R_wst_std_0, G_wst_std_0 |
+| uniform40 | original | 2 | wst | 93.33% | 5.65% | R_wst_std_0, G_wst_mean_13 |
+| uniform40 | original | 2 | wst | 95.03% | 1.68% | R_wst_std_0, G_wst_std_0 |
+| uniform40 | original | 5 | advanced_stats | 97.46% | 3.35% | R_min, G_std, G_var... |
+| uniform40 | original | 5 | advanced_stats | 95.83% | 4.56% | R_std, R_var, R_iqr... |
+| uniform40 | original | 5 | advanced_stats | 97.50% | 2.04% | R_var, G_std, G_var... |
+| uniform40 | original | 5 | hybrid | 97.46% | 3.35% | R_min, G_std, G_var... |
+| uniform40 | original | 5 | hybrid | 92.50% | 4.86% | R_iqr, R_wst_mean_13, R_wst_std_0... |
+| uniform40 | original | 5 | hybrid | 97.50% | 2.04% | R_var, G_std, G_var... |
+| uniform40 | original | 5 | wst | 97.43% | 2.10% | R_wst_std_0, G_wst_mean_9, G_wst_mean_13... |
+| uniform40 | original | 5 | wst | 94.17% | 6.24% | R_wst_mean_13, R_wst_std_0, G_wst_mean_11... |
+| uniform40 | original | 5 | wst | 95.00% | 4.08% | R_wst_std_0, G_wst_mean_16, G_wst_std_0... |
+| uniform40 | original | 10 | advanced_stats | 96.63% | 4.87% | R_std, R_var, R_min... |
+| uniform40 | original | 10 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| uniform40 | original | 10 | advanced_stats | 98.33% | 2.04% | R_std, R_var, R_cv... |
+| uniform40 | original | 10 | hybrid | 97.46% | 3.35% | R_std, R_var, R_min... |
+| uniform40 | original | 10 | hybrid | 96.67% | 3.12% | R_std, R_var, R_iqr... |
+| uniform40 | original | 10 | hybrid | 97.50% | 3.33% | R_std, R_var, R_cv... |
+| uniform40 | original | 10 | wst | 96.56% | 5.06% | R_wst_mean_11, R_wst_std_0, G_wst_mean_9... |
+| uniform40 | original | 10 | wst | 95.00% | 6.12% | R_wst_mean_11, R_wst_mean_12, R_wst_mean_13... |
+| uniform40 | original | 10 | wst | 95.83% | 4.56% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_16... |
+| uniform40 | original | 20 | advanced_stats | 97.46% | 3.35% | R_std, R_var, R_min... |
+| uniform40 | original | 20 | advanced_stats | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| uniform40 | original | 20 | advanced_stats | 99.17% | 1.67% | R_std, R_var, R_min... |
+| uniform40 | original | 20 | hybrid | 100.00% | 0.00% | R_std, R_var, R_min... |
+| uniform40 | original | 20 | hybrid | 98.33% | 3.33% | R_std, R_var, R_iqr... |
+| uniform40 | original | 20 | hybrid | 98.33% | 2.04% | R_std, R_var, R_min... |
+| uniform40 | original | 20 | wst | 96.56% | 5.06% | R_wst_mean_9, R_wst_mean_10, R_wst_mean_11... |
+| uniform40 | original | 20 | wst | 98.33% | 3.33% | R_wst_mean_10, R_wst_mean_11, R_wst_mean_12... |
+| uniform40 | original | 20 | wst | 96.67% | 3.12% | R_wst_mean_0, R_wst_mean_9, R_wst_mean_10... |
+| uniform40 | small | 2 | advanced_stats | 90.37% | 7.74% | R_mad, G_range, G_std... |
+| uniform40 | small | 2 | hybrid | 92.59% | 8.09% | G_range, G_wst_mean_14, G_std... |
+| uniform40 | small | 2 | wst | 93.33% | 6.94% | R_wst_std_0, G_wst_mean_14, G_wst_std_0... |
+| uniform40 | small | 5 | advanced_stats | 93.33% | 7.62% | R_std, R_var, R_mad... |
+| uniform40 | small | 5 | hybrid | 89.63% | 7.74% | R_std, R_var, R_mad... |
+| uniform40 | small | 5 | wst | 89.63% | 9.65% | R_wst_mean_15, R_wst_std_0, G_wst_mean_12... |
+| uniform40 | small | 10 | advanced_stats | 91.85% | 7.95% | R_std, R_var, R_min... |
+| uniform40 | small | 10 | hybrid | 91.11% | 8.07% | R_std, R_var, R_min... |
+| uniform40 | small | 10 | wst | 91.85% | 5.64% | R_wst_mean_14, R_wst_mean_15, R_wst_std_0... |
+| uniform40 | small | 20 | advanced_stats | 95.56% | 5.44% | R_std, R_var, R_min... |
+| uniform40 | small | 20 | hybrid | 92.59% | 7.12% | R_std, R_var, R_min... |
+| uniform40 | small | 20 | wst | 94.07% | 5.44% | R_wst_mean_0, R_wst_mean_13, R_wst_mean_14... |
+
+
 ## DISCUSSION AND CONCLUSIONS:
 ## FUTURE DEVELOPMENTS:
 
